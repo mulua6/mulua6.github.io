@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>testng | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="testng"/>
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>testng</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/02/10/testng/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-02-10T14:04:04.000Z">
+          2015 Feb 10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>在maven工程中，使用testng</p>
+<p>pom.xml配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tesgng<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>tesgng Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.testng<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>testng<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.8.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.18.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">              <span class="comment">&lt;!--&lt;configuration&gt;--&gt;</span></div><div class="line">                  <span class="comment">&lt;!--&lt;suiteXmlFiles&gt;--&gt;</span></div><div class="line">                      <span class="comment">&lt;!--&lt;suiteXmlFile&gt;src/test/resources/testng.xml&lt;/suiteXmlFile&gt;--&gt;</span></div><div class="line">                  <span class="comment">&lt;!--&lt;/suiteXmlFiles&gt;--&gt;</span></div><div class="line">              <span class="comment">&lt;!--&lt;/configuration&gt;--&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>tesgng<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>引入testng 的jar包，和插件包</p>
+<p>如果在terminal 中输入mvn test 在surefire插件的配置中如果没有配置configuration信息，maven会把src/test/java/ 下所有的类名中包含test的类进行测试，</p>
+<p>如果想要执行自己写得testng.xml 可以右键点击该文件 点执行，就回执行配置的信息<br>或者在surefire插件的配置configuration信息 把testng.xml配置进去即可  （注意这个路径得写对啊）</p>
+<p>官方文档如下：（有其他的配置方式如下）</p>
+<p>Using Suite XML Files<br>Another alternative is to use TestNG suite XML files. This allows flexible configuration of the tests to be run. These files are created in the normal way, and then added to the Surefire Plugin configuration:</p>
+<p><plugins><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <suitexmlfiles><br>            <suitexmlfile>testng.xml</suitexmlfile><br>          </suitexmlfiles><br>        </configuration><br>      </plugin><br>    […]<br></plugins><br>This configuration will override the includes and excludes patterns and run all tests in the suite files.</p>
+<p>Specifying Test Parameters<br>Your TestNG test can accept parameters with the @Parameters annotation. You can also pass parameters from Maven into your TestNG test, by specifying them as system properties, like this:</p>
+<p><plugins><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <systempropertyvariables><br>            <propertyname>firefox</propertyname><br>          </systempropertyvariables><br>        </configuration><br>      </plugin><br>    […]<br></plugins><br>For more information about setting system properties in Surefire tests, see System Properties.</p>
+<p>Using Groups<br>TestNG allows you to group your tests. You can then execute one or more specific groups. To do this with Surefire, use the groups parameter, for example:</p>
+<p><plugins><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <groups>functest,perftest</groups><br>        </configuration><br>      </plugin><br>    […]<br></plugins><br>Likewise, the excludedGroups parameter can be used to run all but a certain set of groups.</p>
+<p>Running Tests in Parallel<br>TestNG allows you to run your tests in parallel, including JUnit tests. To do this, you must set the parallel parameter, and may change the threadCount parameter if the default of 5 is not sufficient. For example:</p>
+<p><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <parallel>methods</parallel><br>          <threadcount>10</threadcount><br>        </configuration><br>      </plugin><br>    […]<br><br>This is particularly useful for slow tests that can have high concurrency, or to quickly and roughly assess the independence and thread safety of your tests and code.</p>
+<p>See also Fork Options and Parallel Test Execution.</p>
+<p>Using Custom Listeners and Reporters<br>TestNG provides support for attaching custom listeners, reporters, annotation transformers and method interceptors to your tests. By default, TestNG attaches a few basic listeners to generate HTML and XML reports.</p>
+<p>You can configure multiple custom listeners like this:</p>
+<p><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <properties><br>            <property><br>              <name>usedefaultlisteners</name><br>              <value>false</value> <!-- disabling default listeners is optional --><br>            </property><br>            <property><br>              <name>listener</name><br>              <value>com.mycompany.MyResultListener,com.mycompany.MyAnnotationTransformer,com.mycompany.MyMethodInterceptor</value><br>            </property><br>            <property><br>              <name>reporter</name><br>              <value>listenReport.Reporter</value><br>            </property><br>          </properties><br>        </configuration><br>      </plugin><br>    […]<br><br>For more information on TestNG, see the TestNG web site.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'mulua';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

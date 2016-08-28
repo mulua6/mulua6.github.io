@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>testng | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        
+
+<div class="article">
+
+<h2 class="article-title  tag">testng</h2>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2015/02/12/TestNG的多线程测试/"><span>TestNG的多线程测试</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/02/12/TestNG的多线程测试/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-02-12T10:16:45.000Z">
+          2015 Feb 12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>testng的并行测试使用的是parallel 或者threadPoolSize={size}</p>
+<p>第一种方法：<br>parallel 的级别有methods,tests,classes,instances</p>
+<ul>
+<li>methods:所有的测试方法都用不同的线程运行</li>
+<li>tests： 同一个test中得方法用一个线程运行，不同的test用不同的test运行</li>
+<li>classes：同一个class中用一个线程运行</li>
+<li>instance: 同一个实例用同一个线程运行</li>
+</ul>
+<p>下面是使用方法，在testng.xml中设置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"methods"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"tests"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"classes"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"instances"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">`</div></pre></td></tr></table></figure></p>
+<p>第二种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span>(threadPoolSize = <span class="number">3</span>, invocationCount = <span class="number">10</span>,  timeOut = <span class="number">10000</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testServer</span><span class="params">()</span> </span>&#123;</div></pre></td></tr></table></figure></p>
+<p>下面是当parallel=“tests”时配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"Test2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">classes</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"com.Test1"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">classes</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>运行结果如下：</p>
+<hr>
+<h2 id="T-E-S-T-S"><a href="#T-E-S-T-S" class="headerlink" title=" T E S T S"></a> T E S T S</h2><p>Running TestSuite<br>currentThread:TestNG—–id:8<br>linux.checkintest<br>currentThread:TestNG—–id:8<br>testMethod1<br>currentThread:TestNG—–id:8<br>testMethod2<br>currentThread:TestNG—–id:8<br>testMethod3<br>currentThread:TestNG—–id:8<br>windows.checkintest<br>currentThread:TestNG—–id:8<br>windows.functest<br>Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.316 sec - in TestSuite</p>
+<p>明显看出来所有的方法是使用的同一个线程。</p>
+<p>当配置parallel=”methods”时，运行结果如下：</p>
+<hr>
+<h2 id="T-E-S-T-S-1"><a href="#T-E-S-T-S-1" class="headerlink" title=" T E S T S"></a> T E S T S</h2><p>Running TestSuite<br>currentThread:pool-1-thread-2—–id:9<br>currentThread:pool-1-thread-6—–id:13<br>currentThread:pool-1-thread-4—–id:11<br>currentThread:pool-1-thread-1—–id:8<br>currentThread:pool-1-thread-5—–id:12<br>currentThread:pool-1-thread-3—–id:10<br>windows.checkintest<br>testMethod2<br>testMethod1<br>windows.functest<br>linux.checkintest<br>testMethod3<br>Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.911 sec - in TestSuite</p>
+<p>下面附上官方文档:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">5.10.2 - Parallel tests, classes and methods</div><div class="line"></div><div class="line">The parallel attribute on the <span class="tag">&lt;<span class="name">suite</span>&gt;</span> tag can take one of following values:</div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"methods"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"tests"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"classes"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"instances"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line">parallel="methods": TestNG will run all your test methods in separate threads. Dependent methods will also run in separate threads but they will respect the order that you specified.</div><div class="line"></div><div class="line">parallel="tests": TestNG will run all the methods in the same <span class="tag">&lt;<span class="name">test</span>&gt;</span> tag in the same thread, but each <span class="tag">&lt;<span class="name">test</span>&gt;</span> tag will be in a separate thread. This allows you to group all your classes that are not thread safe in the same <span class="tag">&lt;<span class="name">test</span>&gt;</span> and guarantee they will all run in the same thread while taking advantage of TestNG using as many threads as possible to run your tests.</div><div class="line"></div><div class="line">parallel="classes": TestNG will run all the methods in the same class in the same thread, but each class will be run in a separate thread.</div><div class="line"></div><div class="line">parallel="instances": TestNG will run all the methods in the same instance in the same thread, but two methods on two different instances will be running in different threads.</div><div class="line">Additionally, the attribute thread-count allows you to specify how many threads should be allocated for this execution.</div><div class="line"></div><div class="line">Note: the @Test attribute timeOut works in both parallel and non-parallel mode.</div><div class="line">You can also specify that a @Test method should be invoked from different threads. You can use the attribute threadPoolSize to achieve this result:</div><div class="line">@Test(threadPoolSize = 3, invocationCount = 10,  timeOut = 10000)</div><div class="line">public void testServer() &#123;</div><div class="line">In this example, the function testServer will be invoked ten times from three different threads. Additionally, a time-out of ten seconds guarantees that none of the threads will block on this thread forever.</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/testng/">testng</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2015/02/12/TestNG的多线程测试/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+  <nav class="pagination">
+  
+  
+</nav>
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

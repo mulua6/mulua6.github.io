@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java中的路径问题 | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="java中的路径问题"/>
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>java中的路径问题</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/08/27/java中的路径问题/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-08-27T00:51:22.000Z">
+          2016 Aug 27
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <a id="more"></a>
+<p>在普通的java程序中<br>    className.class.getClassloader().getResourse(“”);<br>    this.getClass().getResource(“”)<br>获取的是classPath的路径</p>
+<p>在maven的java web中<br>spring + mybatis</p>
+<p>首先是web.xml中配置spring的配置文件applicationContext.xml<br>方法一：配置文件在WEB-INF下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>/WEB-INF/applicationContext.xml</param-value><br>        <!--这里写WEB-INF/applicationContext.xml效果是一样的--><br>    </context-param></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在/WEB-INF/下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：/WEB-INF/spring/spring-dbcp-db.xml  </import></p>
+<p>方法二：配置文件在resources下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>classpath:applicationContext.xml</param-value><!--在多个项目中可以使用classpath*: 效果一样--><br>    </context-param></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在classes下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：WEB-INF/classes/spring/spring-dbcp-db.xml</import></p>
+<p>在其他的xml配置文件中：这两种写法都可以<br>    <bean id="jdbc" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"><br>       <property name="locations" value="/WEB-INF/jdbc.properties"><br>    或者<br>    <property name="locations" value="classpath\*:jdbc.properties"><br>    </property></property></bean></p>
+<p>但是在单元测试spring的时候：<br>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“applicationContext.xml”);<br>这段代码回去读class path下的文件，所以包含在applicationContext.xml里边的文件也是从class path下查找，所以一般会把配置文件放一份到resources下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'mulua';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>归档：2015/2 | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        
+
+<div class="article">
+
+<h2 class="article-title ">2015/2</h2>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2015/02/12/TestNG的多线程测试/"><span>TestNG的多线程测试</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/02/12/TestNG的多线程测试/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-02-12T10:16:45.000Z">
+          2015 Feb 12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>testng的并行测试使用的是parallel 或者threadPoolSize={size}</p>
+<p>第一种方法：<br>parallel 的级别有methods,tests,classes,instances</p>
+<ul>
+<li>methods:所有的测试方法都用不同的线程运行</li>
+<li>tests： 同一个test中得方法用一个线程运行，不同的test用不同的test运行</li>
+<li>classes：同一个class中用一个线程运行</li>
+<li>instance: 同一个实例用同一个线程运行</li>
+</ul>
+<p>下面是使用方法，在testng.xml中设置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"methods"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"tests"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"classes"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"instances"</span> <span class="attr">thread-count</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">`</div></pre></td></tr></table></figure></p>
+<p>第二种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span>(threadPoolSize = <span class="number">3</span>, invocationCount = <span class="number">10</span>,  timeOut = <span class="number">10000</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testServer</span><span class="params">()</span> </span>&#123;</div></pre></td></tr></table></figure></p>
+<p>下面是当parallel=“tests”时配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"Test2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">classes</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"com.Test1"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">classes</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>运行结果如下：</p>
+<hr>
+<h2 id="T-E-S-T-S"><a href="#T-E-S-T-S" class="headerlink" title=" T E S T S"></a> T E S T S</h2><p>Running TestSuite<br>currentThread:TestNG—–id:8<br>linux.checkintest<br>currentThread:TestNG—–id:8<br>testMethod1<br>currentThread:TestNG—–id:8<br>testMethod2<br>currentThread:TestNG—–id:8<br>testMethod3<br>currentThread:TestNG—–id:8<br>windows.checkintest<br>currentThread:TestNG—–id:8<br>windows.functest<br>Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.316 sec - in TestSuite</p>
+<p>明显看出来所有的方法是使用的同一个线程。</p>
+<p>当配置parallel=”methods”时，运行结果如下：</p>
+<hr>
+<h2 id="T-E-S-T-S-1"><a href="#T-E-S-T-S-1" class="headerlink" title=" T E S T S"></a> T E S T S</h2><p>Running TestSuite<br>currentThread:pool-1-thread-2—–id:9<br>currentThread:pool-1-thread-6—–id:13<br>currentThread:pool-1-thread-4—–id:11<br>currentThread:pool-1-thread-1—–id:8<br>currentThread:pool-1-thread-5—–id:12<br>currentThread:pool-1-thread-3—–id:10<br>windows.checkintest<br>testMethod2<br>testMethod1<br>windows.functest<br>linux.checkintest<br>testMethod3<br>Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.911 sec - in TestSuite</p>
+<p>下面附上官方文档:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">5.10.2 - Parallel tests, classes and methods</div><div class="line"></div><div class="line">The parallel attribute on the <span class="tag">&lt;<span class="name">suite</span>&gt;</span> tag can take one of following values:</div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"methods"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"tests"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"classes"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">suite</span> <span class="attr">name</span>=<span class="string">"My suite"</span> <span class="attr">parallel</span>=<span class="string">"instances"</span> <span class="attr">thread-count</span>=<span class="string">"5"</span>&gt;</span></div><div class="line">parallel="methods": TestNG will run all your test methods in separate threads. Dependent methods will also run in separate threads but they will respect the order that you specified.</div><div class="line"></div><div class="line">parallel="tests": TestNG will run all the methods in the same <span class="tag">&lt;<span class="name">test</span>&gt;</span> tag in the same thread, but each <span class="tag">&lt;<span class="name">test</span>&gt;</span> tag will be in a separate thread. This allows you to group all your classes that are not thread safe in the same <span class="tag">&lt;<span class="name">test</span>&gt;</span> and guarantee they will all run in the same thread while taking advantage of TestNG using as many threads as possible to run your tests.</div><div class="line"></div><div class="line">parallel="classes": TestNG will run all the methods in the same class in the same thread, but each class will be run in a separate thread.</div><div class="line"></div><div class="line">parallel="instances": TestNG will run all the methods in the same instance in the same thread, but two methods on two different instances will be running in different threads.</div><div class="line">Additionally, the attribute thread-count allows you to specify how many threads should be allocated for this execution.</div><div class="line"></div><div class="line">Note: the @Test attribute timeOut works in both parallel and non-parallel mode.</div><div class="line">You can also specify that a @Test method should be invoked from different threads. You can use the attribute threadPoolSize to achieve this result:</div><div class="line">@Test(threadPoolSize = 3, invocationCount = 10,  timeOut = 10000)</div><div class="line">public void testServer() &#123;</div><div class="line">In this example, the function testServer will be invoked ten times from three different threads. Additionally, a time-out of ten seconds guarantees that none of the threads will block on this thread forever.</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/testng/">testng</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2015/02/12/TestNG的多线程测试/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2015/02/10/testng/"><span>testng</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/02/10/testng/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-02-10T14:04:04.000Z">
+          2015 Feb 10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>在maven工程中，使用testng</p>
+<p>pom.xml配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tesgng<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>tesgng Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.testng<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>testng<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.8.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.18.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">              <span class="comment">&lt;!--&lt;configuration&gt;--&gt;</span></div><div class="line">                  <span class="comment">&lt;!--&lt;suiteXmlFiles&gt;--&gt;</span></div><div class="line">                      <span class="comment">&lt;!--&lt;suiteXmlFile&gt;src/test/resources/testng.xml&lt;/suiteXmlFile&gt;--&gt;</span></div><div class="line">                  <span class="comment">&lt;!--&lt;/suiteXmlFiles&gt;--&gt;</span></div><div class="line">              <span class="comment">&lt;!--&lt;/configuration&gt;--&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>tesgng<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>引入testng 的jar包，和插件包</p>
+<p>如果在terminal 中输入mvn test 在surefire插件的配置中如果没有配置configuration信息，maven会把src/test/java/ 下所有的类名中包含test的类进行测试，</p>
+<p>如果想要执行自己写得testng.xml 可以右键点击该文件 点执行，就回执行配置的信息<br>或者在surefire插件的配置configuration信息 把testng.xml配置进去即可  （注意这个路径得写对啊）</p>
+<p>官方文档如下：（有其他的配置方式如下）</p>
+<p>Using Suite XML Files<br>Another alternative is to use TestNG suite XML files. This allows flexible configuration of the tests to be run. These files are created in the normal way, and then added to the Surefire Plugin configuration:</p>
+<p><plugins><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <suitexmlfiles><br>            <suitexmlfile>testng.xml</suitexmlfile><br>          </suitexmlfiles><br>        </configuration><br>      </plugin><br>    […]<br></plugins><br>This configuration will override the includes and excludes patterns and run all tests in the suite files.</p>
+<p>Specifying Test Parameters<br>Your TestNG test can accept parameters with the @Parameters annotation. You can also pass parameters from Maven into your TestNG test, by specifying them as system properties, like this:</p>
+<p><plugins><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <systempropertyvariables><br>            <propertyname>firefox</propertyname><br>          </systempropertyvariables><br>        </configuration><br>      </plugin><br>    […]<br></plugins><br>For more information about setting system properties in Surefire tests, see System Properties.</p>
+<p>Using Groups<br>TestNG allows you to group your tests. You can then execute one or more specific groups. To do this with Surefire, use the groups parameter, for example:</p>
+<p><plugins><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <groups>functest,perftest</groups><br>        </configuration><br>      </plugin><br>    […]<br></plugins><br>Likewise, the excludedGroups parameter can be used to run all but a certain set of groups.</p>
+<p>Running Tests in Parallel<br>TestNG allows you to run your tests in parallel, including JUnit tests. To do this, you must set the parallel parameter, and may change the threadCount parameter if the default of 5 is not sufficient. For example:</p>
+<p><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <parallel>methods</parallel><br>          <threadcount>10</threadcount><br>        </configuration><br>      </plugin><br>    […]<br><br>This is particularly useful for slow tests that can have high concurrency, or to quickly and roughly assess the independence and thread safety of your tests and code.</p>
+<p>See also Fork Options and Parallel Test Execution.</p>
+<p>Using Custom Listeners and Reporters<br>TestNG provides support for attaching custom listeners, reporters, annotation transformers and method interceptors to your tests. By default, TestNG attaches a few basic listeners to generate HTML and XML reports.</p>
+<p>You can configure multiple custom listeners like this:</p>
+<p><br>    […]<br>      <plugin><br>        <groupid>org.apache.maven.plugins</groupid><br>        <artifactid>maven-surefire-plugin</artifactid><br>        <version>2.18.1</version><br>        <configuration><br>          <properties><br>            <property><br>              <name>usedefaultlisteners</name><br>              <value>false</value> <!-- disabling default listeners is optional --><br>            </property><br>            <property><br>              <name>listener</name><br>              <value>com.mycompany.MyResultListener,com.mycompany.MyAnnotationTransformer,com.mycompany.MyMethodInterceptor</value><br>            </property><br>            <property><br>              <name>reporter</name><br>              <value>listenReport.Reporter</value><br>            </property><br>          </properties><br>        </configuration><br>      </plugin><br>    […]<br><br>For more information on TestNG, see the TestNG web site.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2015/02/10/testng/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2015/02/04/intellij-多线程debug/"><span>intellij 多线程debug</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/02/04/intellij-多线程debug/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-02-04T21:32:16.000Z">
+          2015 Feb 4
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>之所以要写这个，是因为之前在用eclipse的时候 设置的断点默认是可以多线程调试的，<br>换用intellij后我发现 只要一个线程断点停下之后，其他线程 根本就不会走，处于完全阻塞状态，<br>百度了好久也没有找到答案，结果还是在<a href="http://stackoverflow.com/上找到了解决办法，如下：" target="_blank" rel="external">http://stackoverflow.com/上找到了解决办法，如下：</a></p>
+<p><img src="/img/intellij-1.png" alt="设置断点策略"><br>原来是intellij 设置的断点默认是all 也就是阻塞所有的线程，只需要把这里设置为Thread即可（这个对话框是右键点击断点出来的哦！）</p>
+<p>这个估计是之前的老版本：<br>To quote the suspend policy</p>
+<p>Item Description</p>
+<pre><code>+ All : When the breakpoint is hit, all threads are suspended
++ Thread : When the breakpoint is hit, the thread where the breakpoint is hit is     suspended.
++ None: No thread is suspended.
+</code></pre><p>第二种<br><img src="/img/intellij-2.jpg" alt="设置断点策略"></p>
+<p>画红线的是正在用运行的线程：</p>
+<p><img src="/img/intellij-3.png" alt="多线程debug方法"></p>
+<p>解决问题的地址：<br>![stackoverflow中得地址](<a href="http://stackoverflow.com/questions/12581072/intellij-thread-debug）" target="_blank" rel="external">http://stackoverflow.com/questions/12581072/intellij-thread-debug）</a></p>
+<p>帖子快照</p>
+<p><img src="/img/intellij-4.png" alt="stackoverflow截图-问题"><br><img src="/img/intellij-5.png" alt="stackoverflow截图-答案"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/intellij/">intellij</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2015/02/04/intellij-多线程debug/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+  <nav class="pagination">
+  
+  
+</nav>
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

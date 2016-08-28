@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>mulu</title>
+  <subtitle>walk with my life</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="mulua6.github.io/"/>
+  <updated>2016-08-28T01:12:08.000Z</updated>
+  <id>mulua6.github.io/</id>
+  
+  <author>
+    <name>mulu</name>
+    <email>mulua6@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java面试复习大纲</title>
+    <link href="mulua6.github.io/2016/08/28/java%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/"/>
+    <id>mulua6.github.io/2016/08/28/java面试复习大纲/</id>
+    <published>2016-08-28T01:12:08.000Z</published>
+    <updated>2016-08-28T01:12:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<p>Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库<br>使用和避免null<br>集合<br>不可变集合<br>当对象被不可信的库调用时，不可变形式是安全的；<br>不可变对象被多个线程调用时，不存在竞态条件问题<br>不可变集合不需要考虑变化，因此可以节省时间和空间。所有不可变的集合都比它们的可变形式有更好的内存利用率（分析和测试细节）；<br>不可变对象因为有固定不变，可以作为常量来安全使用。</p>
+<p>新集合类型<br>multisite   不是map<br>multimap    not map<br>集合工具类<br>静态工厂方法<br>Iterables</p>
+<p>扩展工具类<br>缓存<br>    01  LoadingCache<key, graph=""> graphs = CacheBuilder.newBuilder()<br>    02     .maximumSize(1000)<br>    03<br>            .expireAfterWrite(10, TimeUnit.MINUTES)<br>    04<br>            .removalListener(MY_LISTENER)<br>    05<br>            .build(<br>    06<br>                new CacheLoader<key, graph="">() {<br>    07<br>                    public Graph load(Key key) throws AnyException {<br>    08<br>                        return createExpensiveGraph(key);<br>    09<br>                    }<br>    10<br>            });</key,></key,></p>
+<p><a href="http://www.zuidaima.com/share/1759689106541568.htm" target="_blank" rel="external">待超轻量级DI容器框架Google Guice与Spring框架的区别教程详解及其demo代码片段分享</a></p>
+<p>反射<br>Java 反射API的第一个主要作用是获取程序在运行时刻的内部结构。<br>通俗地说,反射机制就是可以把一个类,类的成员(函数,属性),当成一个对象来操作,希望读者能理解,也就是说,类,类的成员,我们在运行的时候还可以动态地去操作他们.</p>
+<p>//Demo1.  通过Java反射机制得到类的包名和类名<br>//Demo2.  验证所有的类都是Class类的实例对象<br>//Demo3.  通过Java反射机制，用Class 创建类对象<a href="">这也就是反射存在的意义所在</a>，无参构造<br>//Demo4:  通过Java反射机制得到一个类的构造函数，并实现构造带参实例对象<br>//Demo5:  通过Java反射机制操作成员变量, set 和 get<br>//Demo6: 通过Java反射机制得到类的一些属性： 继承的接口，父类，函数信息，成员信息，类型等<br>//Demo7: 通过Java反射机制调用类中方法<br>//Demo8: 通过Java反射机制获得类加载器<br>反射机制的用途：<br>1.工厂模式：Factory类中用反射的话，添加了一个新的类之后，就不需要再修改工厂类Factory了<br>2.数据库JDBC中通过Class.forName(Driver).来获得数据库连接驱动<br>3.分析类文件：毕竟能得到类中的方法等等<br>4.访问一些不能访问的变量或属性：破解别人代码</p>
+<p>反射的缺点</p>
+<ul>
+<li>反射包括了一些动态类型，所以JVM无法对这些代码进行优化。因此，反射操作的效率要比那些非反射操作低得多。我们应该避免在经常被 执行的代码或对性能要求很高的程序中使用反射。</li>
+<li>使用反射技术要求程序必须在一个没有安全限制的环境中运行。如果一个程序必须在有安全限制的环境中运行，如Applet，那么这就是个问题了。。</li>
+<li>由于反射允许代码执行一些在正常情况下不被允许的操作（比如访问私有的属性和方法），所以使用反射可能会导致意料之外的副作用－－代码有功能上的错误，降低可移植性。反射代码破坏了抽象性，因此当平台发生改变的时候，代码的行为就有可能也随着变化。</li>
+</ul>
+<p>泛型<br>Java泛型（generics）是JDK 5中引入的一个新特性，允许在定义类和接口的时候使用类型参数（type parameter）。</p>
+<p>声明的类型参数在使用时用具体的类型来替换。泛型最主要的应用是在JDK 5中的新集合类框架中。</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
+<li>简单工厂（静态工厂）</li>
+<li>工厂方法</li>
+<li>抽象工厂  </li>
+</ul>
+<h3 id="简单工厂（静态工厂）"><a href="#简单工厂（静态工厂）" class="headerlink" title="简单工厂（静态工厂）"></a>简单工厂（静态工厂）</h3><h4 id="使用静态工厂方法创建对象有什么优点"><a href="#使用静态工厂方法创建对象有什么优点" class="headerlink" title="使用静态工厂方法创建对象有什么优点"></a>使用静态工厂方法创建对象有什么优点</h4><p>优点1: 静态工厂方法的名字是由我们自己命名，而构造方法必须与类同名。<br>优点2: 构造方法每次调用的时候都需要创建一个对象，而静态工厂方法每次调用的时候就不会创建一个新的对象，这对于一个要频繁创建对象的程序来说，可以极大的提高性能，单例模式就是这样实现的。<br>优点3: 静态工厂方法可以返回原返回类型的任何子类型的对象，这样使我们在选择返回对象的类时就有了更大的灵活性。<br>优点4: 静态工厂方法在创建参数化类型实例的时候，可以使代码变得更加简洁。</p>
+<h4 id="使用静态工厂方法创建对象有什么缺点"><a href="#使用静态工厂方法创建对象有什么缺点" class="headerlink" title="使用静态工厂方法创建对象有什么缺点"></a>使用静态工厂方法创建对象有什么缺点</h4><pre><code>缺点1: 如果一个类只能通过静态工厂方法来获得实例，那么该类的构造函数就不能是共有的或受保护的，那么该类就不会有子类，即该类不能被继承。单例模式中首先要私有化构造器。
+   缺点2：静态工厂方法和其他静态方法从名字上看无法区分，所以我们可以约定静态工厂方法名字使用valueOf或者getInstance。
+</code></pre><h3 id="工厂方法（Factory-Method）"><a href="#工厂方法（Factory-Method）" class="headerlink" title="工厂方法（Factory Method）"></a>工厂方法（Factory Method）</h3><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method使一个类的实例化延迟到其子类。<br>spring中的FactoryBean就是典型的工厂方法模式。</p>
+<h3 id="单例（Singleton）"><a href="#单例（Singleton）" class="headerlink" title="单例（Singleton）"></a>单例（Singleton）</h3><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br>spring中的单例模式完成了后半句话，即提供了全局的访问点BeanFactory。但没有从构造器级别去控制单例，这是因为spring管理的是是任意的java对象。 </p>
+<p>枚举单例的优点</p>
+<ul>
+<li>写法简单</li>
+<li>枚举单例自己处理序列化</li>
+<li>线程安全</li>
+</ul>
+<p>传统单例存在的另外一个问题是一旦你实现了序列化接口，那么它们不再保持单例了，因为readObject()方法一直返回一个新的对象就像java的构造方法一样，你可以通过使用readResolve()方法来避免此事发生</p>
+<h3 id="4-适配器（Adapter）"><a href="#4-适配器（Adapter）" class="headerlink" title="4.适配器（Adapter）"></a>4.适配器（Adapter）</h3><p>将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>spring中在对于aop的处理中有Adapter模式的例子，见如下图： </p>
+<p>由于Advisor链需要的是MethodInterceptor对象，所以每一个Advisor中的Advice都要适配成对应的MethodInterceptor对象。 </p>
+<h3 id="5-包装器（Decorator）"><a href="#5-包装器（Decorator）" class="headerlink" title="5.包装器（Decorator）"></a>5.包装器（Decorator）</h3><p>动态地给一个对象添加一些额外的职责。就增加功能来说，Decorator模式相比生成子类更为灵活。 </p>
+<p>spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。基本上都是动态地给一个对象添加一些额外的职责。 </p>
+<h3 id="6-代理（Proxy）"><a href="#6-代理（Proxy）" class="headerlink" title="6.代理（Proxy）"></a>6.代理（Proxy）</h3><p>为其他对象提供一种代理以控制对这个对象的访问。<br>从结构上来看和Decorator模式类似，但Proxy是控制，更像是一种对功能的限制，而Decorator是增加职责。 </p>
+<p>spring的Proxy模式在aop中有体现，比如JdkDynamicAopProxy和Cglib2AopProxy。 </p>
+<h3 id="7-观察者（Observer）"><a href="#7-观察者（Observer）" class="headerlink" title="7.观察者（Observer）"></a>7.观察者（Observer）</h3><p>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。 </p>
+<p>spring中Observer模式常用的地方是listener的实现。如ApplicationListener。 </p>
+<h3 id="8-策略（Strategy）"><a href="#8-策略（Strategy）" class="headerlink" title="8.策略（Strategy）"></a>8.策略（Strategy）</h3><p>定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。<br>spring中在实例化对象的时候用到Strategy模式，在SimpleInstantiationStrategy中有如下代码说明了策略模式的使用情况： </p>
+<h3 id="9-模板方法（Template-Method）"><a href="#9-模板方法（Template-Method）" class="headerlink" title="9.模板方法（Template Method）"></a>9.模板方法（Template Method）</h3><p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。 </p>
+<p>Template Method模式一般是需要继承的。这里想要探讨另一种对Template Method的理解。spring中的JdbcTemplate，在用这个类时并不想去继承这个类，因为这个类的方法太多，但是我们还是想用到JdbcTemplate已有的稳定的、公用的数据库连接，那么我们怎么办呢？我们可以把变化的东西抽出来作为一个参数传入JdbcTemplate的方法中。但是变化的东西是一段代码，而且这段代码会用到JdbcTemplate中的变量。怎么办？那我们就用回调对象吧。在这个回调对象中定义一个操纵JdbcTemplate中变量的方法，我们去实现这个方法，就把变化的东西集中到这里了。然后我们再传入这个回调对象到JdbcTemplate，从而完成了调用。这可能是Template Method不需要继承的另一种实现方式吧。 </p>
+<h3 id="spring-注入"><a href="#spring-注入" class="headerlink" title="spring 注入"></a>spring 注入</h3><p>设值注入和构造注入的对比<br>这两种方式，效果是一样的，注入的时机不同，设值注入是先调用无参的构造函数，创建出实例后然后调用set方法注入属性值。而构造输入是通过在调用构造函数初始化实例的同时完成了注入。</p>
+<ul>
+<li>设值注入的优点</li>
+</ul>
+<ul>
+<li>通过set的方式设定依赖关系显得更加直观，自然，和javabean写法类似。</li>
+<li>复杂的依赖关系，采用构造注入会造成构造器过于臃肿，spring 实例化的时候同时实例化其依赖的全部实例，导致性能下降，set方式可以避免这些问题。</li>
+<li>在成员变量可选的情况下，构造注入不够灵活。<br>构造注入的优点</li>
+</ul>
+<ul>
+<li>某些特定的情况下，构造注入比设值注入好一些。</li>
+</ul>
+<ul>
+<li>构造注入可以在构造器中决定依赖关系的注入顺序，优先依赖的优先注入，构造注入可以清楚的分清注入的顺序。</li>
+<li>组件的调用者无需知道组件内部的依赖关系，符合高内聚原则。</li>
+</ul>
+<h3 id="Spring容器中Bean的作用域"><a href="#Spring容器中Bean的作用域" class="headerlink" title="Spring容器中Bean的作用域"></a>Spring容器中Bean的作用域</h3><p>当Spring容器创建一个Bean实例的时候，不仅可以完成Bean实例的实例化，而且会指定他的作用域。Spring支持以下几种作用域。</p>
+<ol>
+<li>singleton:单例模式。Spring的容器中只生产一个这样的实例，调用的时候，从Spring的容器中取出即可。</li>
+<li>prototype：相当于多例，每次获取Bean的时候都会创建一个新的对象的实例。</li>
+<li>request：对于一次Http请求的话，request作用域的Bean将只生产一个实例，不同的Http请求产生的实例是不同的。</li>
+<li>session：对于一次Http请求，Session作用域的Bean只产生一个。</li>
+<li>global session ：每个全局的Http Session对应一个Bean实例。</li>
+</ol>
+<h3 id="让Bean获取到他的所在的Spring容器"><a href="#让Bean获取到他的所在的Spring容器" class="headerlink" title="让Bean获取到他的所在的Spring容器"></a>让Bean获取到他的所在的Spring容器</h3><p>可以让这个Bean去实现一个ApplicationContextAware接口，这个接口需要实现它的一个方法，就是：setApplicationContext(ApplicationContext context)方法。这个方法的赋值不是我们程序员为其赋值的，而是spring容器本身会为他赋值，在初始化这个bean的同时，检测到这个Bean实现了ApplicationContextAware这个接口，那么Spring容器就会直接将自身赋值给setApplicationContext这个方法。</p>
+<pre><code>@Override  
+public void setApplicationContext(ApplicationContext context)  
+throws BeansException {  
+this.service = context.getBean(&quot;messageService&quot;, MessageService.class);  
+}  
+</code></pre><h3 id="获取Bean的id"><a href="#获取Bean的id" class="headerlink" title="获取Bean的id"></a>获取Bean的id</h3><p>在某些情况下可能会需要提前知道Bean的id才行，那么下面这个例子会展示怎么利用BeanNameAware接口，拿到配置文件中配置的id。<br>在配置文件实例化Bean的时候，检测到某个类实现了BeanNameAware这个接口，那么会通过setBeanName方法将Bean的id作为参数beanName注入到这个类的属性中去。</p>
+<h3 id="Spring创建Bean的三种方式"><a href="#Spring创建Bean的三种方式" class="headerlink" title="Spring创建Bean的三种方式"></a>Spring创建Bean的三种方式</h3><p>Spring可以通过调用构造器来创建Bean、调用静态工厂方法创建Bean、调用实例工厂方法创建Bean。<a href="http://blog.csdn.net/wangyang1354/article/details/50775808" title="原文" target="_blank" rel="external"></a></p>
+<h3 id="AOP中的名词解释"><a href="#AOP中的名词解释" class="headerlink" title="AOP中的名词解释"></a>AOP中的名词解释</h3><ul>
+<li>Advice(通知)：定义了切面是什么，以及什么时候使用。主要包括:before、after、after-returning、after-throwing、aound(在被通知的方法调用之前和调用之后执行)。</li>
+<li>JoinPoint(连接点)：程序执行过程中明确的点，比如方法的调用，异常的抛出。可以利用这些点插入应用的正常流程之中，添加新的行为。</li>
+<li>PointCut(切入点)：其定义匹配通知所要织入的一个或多个连接点，通常用明确的类和方法名称来指定切点，或者利用正则表达式定义匹配的类和方法名称模式来指定这些切点。</li>
+<li>Aspect(切面)：切面是通知和切点的结合，通知和切点共同定义了关于切面的全部内容，包括是什么，在什么时候什么地方执行。</li>
+<li>引入：允许我们向现有的类中添加新的方法或者是属性，</li>
+<li>织入：将切面应用到目标对象来创建新的代理对象的过程。<br>* <h3 id="Spring中常用的注解"><a href="#Spring中常用的注解" class="headerlink" title="Spring中常用的注解"></a>Spring中常用的注解</h3></li>
+</ul>
+<ol>
+<li>@Controller:标注一个控制器组件的类。</li>
+<li>@Service：标注一个业务逻辑组件的类。</li>
+<li>@Repository:标注一个Dao组件的类。</li>
+<li>@Component:标注一个普通的类。<br>这几个注解主要用于标注Spring要进行实例化的类，一旦在某个类的上面标注了这样的注解，如果是单例模式的话，那么Spring在初始化的时候，就会将这些类实例化，而对于非单例模式的类，不取决于Spring容器本身，往往是客户端进行请求的时候，进行创建实例（Spring创建的），这些在之前的博文中已经进行过说明，请参考Spring进阶之路(7)-Bean的生命周期以及创建、销毁执行流程。</li>
+<li>@Resource:按照名称（name）进行注入。该注解属于jdk中的注解，但是在项目中使用比较广泛。</li>
+<li>@Autowired:按照类型匹配自动注入。<br>这里的两个注解主要用于为类中属性注入值。两个注解可以将(上面四个注解标注的类在Spring中实例化后的对象)注入到某些类的属性中。</li>
+<li>@Scope(“prototype”):默认的情况下是产生单例对象，在Scope的里面传了prototype的参数后，表明该类不是单例的，而是”多例的”，不知道这么解释标准不标准，读者可以纠正。</li>
+<li>@PostConstruct:指定bean的初始化方法与之前博文中配置文件指定的initMethod作用相同（Spring进阶之路(7)-Bean的生命周期以及创建、销毁执行流程），Spring会在Bean的依赖注入完成后回调这个方法。</li>
+<li><p>@PreDestroy:指定bean的销毁之前的方法与Spring进阶之路(7)-Bean的生命周期以及创建、销毁执行流程这篇博文中配置文件指定的destroyMethod的作用是一样的，他会在bean销毁之前调用。<br>另外：<br>10： @Lazy：用于指定该类是否取消预初始化。指定参数boolean型true即可，下面不在赘述，这个注解比较简单。<br>11： @DependsOn:可以修饰类或者方法，用于强制初始化一些bean,例如：@DependsOn({“wy”, “wangyang”}),这样在初始化之前会强制初始化里面的bean.</p>
+</li>
+<li><p>缓存是介于应用程序和物理数据源之间，其作用是为了降低应用程序对物理数据源访问的频次，从而提高了应用的运行性能。缓存内的数据是对物理数据源中的数据的复制，应用程序在运行时从缓存读写数据，在特定的时刻或事件会同步缓存和物理数据源的数据。  </p>
+</li>
+<li>　　缓存的介质一般是内存，所以读写速度很快。但如果缓存中存放的数据量非常大时，也会用硬盘作为缓存介质。缓存的实现不仅仅要考虑存储的介质，还要考虑到管理缓存的并发访问和缓存数据的生命周期。  </li>
+<li>　　Hibernate的缓存包括Session的缓存和SessionFactory的缓存，其中SessionFactory的缓存又可以分为两类：内置缓存和外置缓存。Session的缓存是内置的，不能被卸载，也被称为Hibernate的第一级缓存。SessionFactory的内置缓存和Session的缓存在实现方式上比较相似，前者是SessionFactory对象的一些集合属性包含的数据，后者是指Session的一些集合属性包含的数据。SessionFactory的内置缓存中存放了映射元数据和预定义SQL语句，映射元数据是映射文件中数据的拷贝，而预定义SQL语句是在Hibernate初始化阶段根据映射元数据推导出来，SessionFactory的内置缓存是只读的，应用程序不能修改缓存中的映射元数据和预定义SQL语句，因此SessionFactory不需要进行内置缓存与映射文件的同步。SessionFactory的外置缓存是一个可配置的插件。在默认情况下，SessionFactory不会启用这个插件。外置缓存的数据是数据库数据的拷贝，外置缓存的介质可以是内存或者硬盘。SessionFactory的外置缓存也被称为Hibernate的第二级缓存。  </li>
+<li>　　Hibernate的这两级缓存都位于持久化层，存放的都是数据库数据的拷贝，那么它们之间的区别是什么呢？为了理解二者的区别，需要深入理解持久化层的缓存的两个特性：缓存的范围和缓存的并发访问策略。  </li>
+<li>　　持久化层的缓存的范围  </li>
+<li>　　缓存的范围决定了缓存的生命周期以及可以被谁访问。缓存的范围分为三类。  </li>
+<li>　　1 事务范围：缓存只能被当前事务访问。缓存的生命周期依赖于事务的生命周期，当事务结束时，缓存也就结束生命周期。在此范围下，缓存的介质是内存。事务可以是数据库事务或者应用事务，每个事务都有独自的缓存，缓存内的数据通常采用相互关联的的对象形式。  </li>
+<li>　　2 进程范围：缓存被进程内的所有事务共享。这些事务有可能是并发访问缓存，因此必须对缓存采取必要的事务隔离机制。缓存的生命周期依赖于进程的生命周期，进程结束时，缓存也就结束了生命周期。进程范围的缓存可能会存放大量的数据，所以存放的介质可以是内存或硬盘。缓存内的数据既可以是相互关联的对象形式也可以是对象的松散数据形式。松散的对象数据形式有点类似于对象的序列化数据，但是对象分解为松散的算法比对象序列化的算法要求更快。  </li>
+<li>　　3 集群范围：在集群环境中，缓存被一个机器或者多个机器的进程共享。缓存中的数据被复制到集群环境中的每个进程节点，进程间通过远程通信来保证缓存中的数据的一致性，缓存中的数据通常采用对象的松散数据形式。  </li>
+<li>　　对大多数应用来说，应该慎重地考虑是否需要使用集群范围的缓存，因为访问的速度不一定会比直接访问数据库数据的速度快多少。  </li>
+<li>　　持久化层可以提供多种范围的缓存。如果在事务范围的缓存中没有查到相应的数据，还可以到进程范围或集群范围的缓存内查询，如果还是没有查到，那么只有到数据库中查询。事务范围的缓存是持久化层的第一级缓存，通常它是必需的；进程范围或集群范围的缓存是持久化层的第二级缓存，通常是可选的。  </li>
+<li>　　持久化层的缓存的并发访问策略  </li>
+<li>　　当多个并发的事务同时访问持久化层的缓存的相同数据时，会引起并发问题，必须采用必要的事务隔离措施。  </li>
+<li>　　在进程范围或集群范围的缓存，即第二级缓存，会出现并发问题。因此可以设定以下四种类型的并发访问策略，每一种策略对应一种事务隔离级别。  </li>
+<li>　　事务型：仅仅在受管理环境中适用。它提供了Repeatable Read事务隔离级别。对于经常被读但很少修改的数据，可以采用这种隔离类型，因为它可以防止脏读和不可重复读这类的并发问题。  </li>
+<li>　　读写型：提供了Read Committed事务隔离级别。仅仅在非集群的环境中适用。对于经常被读但很少修改的数据，可以采用这种隔离类型，因为它可以防止脏读这类的并发问题。  </li>
+<li>　　非严格读写型：不保证缓存与数据库中数据的一致性。如果存在两个事务同时访问缓存中相同数据的可能，必须为该数据配置一个很短的数据过期时间，从而尽量避免脏读。对于极少被修改，并且允许偶尔脏读的数据，可以采用这种并发访问策略。 　　只读型：对于从来不会修改的数据，如参考数据，可以使用这种并发访问策略。  </li>
+<li>　　事务型并发访问策略是事务隔离级别最高，只读型的隔离级别最低。事务隔离级别越高，并发性能就越低。  </li>
+<li>　　什么样的数据适合存放到第二级缓存中？  </li>
+<li>　　1、很少被修改的数据  </li>
+<li>　　2、不是很重要的数据，允许出现偶尔并发的数据  </li>
+<li>　　3、不会被并发访问的数据  </li>
+<li>　　4、参考数据  </li>
+<li>　　不适合存放到第二级缓存的数据？  </li>
+<li>　　1、经常被修改的数据  </li>
+<li>　　2、财务数据，绝对不允许出现并发  </li>
+<li>　　3、与其他应用共享的数据。  </li>
+<li>　　Hibernate的二级缓存  </li>
+<li>　　如前所述，Hibernate提供了两级缓存，第一级是Session的缓存。由于Session对象的生命周期通常对应一个数据库事务或者一个应用事务，因此它的缓存是事务范围的缓存。第一级缓存是必需的，不允许而且事实上也无法比卸除。在第一级缓存中，持久化类的每个实例都具有唯一的OID。  </li>
+<li>　　第二级缓存是一个可插拔的的缓存插件，它是由SessionFactory负责管理。由于SessionFactory对象的生命周期和应用程序的整个过程对应，因此第二级缓存是进程范围或者集群范围的缓存。这个缓存中存放的对象的松散数据。第二级对象有可能出现并发问题，因此需要采用适当的并发访问策略，该策略为被缓存的数据提供了事务隔离级别。缓存适配器用于把具体的缓存实现软件与Hibernate集成。第二级缓存是可选的，可以在每个类或每个集合的粒度上配置第二级缓存。  </li>
+<li>　　Hibernate的二级缓存策略的一般过程如下：  </li>
+<li>　　1) 条件查询的时候，总是发出一条select * from table_name where …. （选择所有字段）这样的SQL语句查询数据库，一次获得所有的数据对象。  </li>
+<li>　　2) 把获得的所有数据对象根据ID放入到第二级缓存中。  </li>
+<li>　　3) 当Hibernate根据ID访问数据对象的时候，首先从Session一级缓存中查；查不到，如果配置了二级缓存，那么从二级缓存中查；查不到，再查询数据库，把结果按照ID放入到缓存。  </li>
+<li>　　4) 删除、更新、增加数据的时候，同时更新缓存。  </li>
+<li>　　Hibernate的二级缓存策略，是针对于ID查询的缓存策略，对于条件查询则毫无作用。为此，Hibernate提供了针对条件查询的Query缓存。  </li>
+<li>　　Hibernate的Query缓存策略的过程如下：  </li>
+<li>　　1) Hibernate首先根据这些信息组成一个Query Key，Query Key包括条件查询的请求一般信息：SQL, SQL需要的参数，记录范围（起始位置rowStart，最大记录个数maxRows)，等。  </li>
+<li>　　2) Hibernate根据这个Query Key到Query缓存中查找对应的结果列表。如果存在，那么返回这个结果列表；如果不存在，查询数据库，获取结果列表，把整个结果列表根据Query Key放入到Query缓存中。  </li>
+<li>　　3) Query Key中的SQL涉及到一些表名，如果这些表的任何数据发生修改、删除、增加等操作，这些相关的Query Key都要从缓存中清空。  </li>
+</ol>
+<h3 id="mysql优化"><a href="#mysql优化" class="headerlink" title="mysql优化"></a>mysql优化</h3><ul>
+<li>使用索引</li>
+<li>使用别名</li>
+<li>不使用”*”</li>
+<li>优化where语句的顺序</li>
+<li>用union all 替换union</li>
+<li>用exists 替换 in</li>
+<li>避免在索引上使用计算</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库&lt;br&gt;使用和避免null&lt;br&gt;集合&lt;br&gt;不可变集合&lt;br&gt;当对象被不可信的库调用时，不可变形式是安全的；&lt;br&gt;不可变对象被多个线程调用时，不存在竞态条件问题&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java中的路径问题</title>
+    <link href="mulua6.github.io/2016/08/27/java%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"/>
+    <id>mulua6.github.io/2016/08/27/java中的路径问题/</id>
+    <published>2016-08-27T00:51:22.000Z</published>
+    <updated>2016-08-27T00:51:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<p>在普通的java程序中<br>    className.class.getClassloader().getResourse(“”);<br>    this.getClass().getResource(“”)<br>获取的是classPath的路径</p>
+<p>在maven的java web中<br>spring + mybatis</p>
+<p>首先是web.xml中配置spring的配置文件applicationContext.xml<br>方法一：配置文件在WEB-INF下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>/WEB-INF/applicationContext.xml</param-value><br>        <!--这里写WEB-INF/applicationContext.xml效果是一样的--><br>    </context-param></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在/WEB-INF/下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：/WEB-INF/spring/spring-dbcp-db.xml  </import></p>
+<p>方法二：配置文件在resources下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>classpath:applicationContext.xml</param-value><!--在多个项目中可以使用classpath*: 效果一样--><br>    </context-param></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在classes下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：WEB-INF/classes/spring/spring-dbcp-db.xml</import></p>
+<p>在其他的xml配置文件中：这两种写法都可以<br>    <bean id="jdbc" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"><br>       <property name="locations" value="/WEB-INF/jdbc.properties"><br>    或者<br>    <property name="locations" value="classpath\*:jdbc.properties"><br>    </property></property></bean></p>
+<p>但是在单元测试spring的时候：<br>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“applicationContext.xml”);<br>这段代码回去读class path下的文件，所以包含在applicationContext.xml里边的文件也是从class path下查找，所以一般会把配置文件放一份到resources下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;在普通的java程序中&lt;br&gt;    className.class.getClassloader().getResourse(“”);&lt;br&gt;    this.getClass().getResource(“”)&lt;br&gt;获取的是clas
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>包装类型的比较问题</title>
+    <link href="mulua6.github.io/2016/08/15/%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/"/>
+    <id>mulua6.github.io/2016/08/15/包装类型的比较问题/</id>
+    <published>2016-08-15T22:51:35.000Z</published>
+    <updated>2016-08-15T22:51:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<p><code>``java</code></p>
+<p>包装类型的值不能够直接用==比较<br>    if (new Integer(1) == new Integer(1)){<br>                System.out.println(“=”);<br>            }<br>            if (new Integer(1) &gt;new Integer(1)){<br>                System.out.println(“&gt;”);<br>            }<br>            if (new Integer(1) &lt;new Integer(1)){<br>                System.out.println(“&lt;”);<br>            }</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;code&gt;``java&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;包装类型的值不能够直接用==比较&lt;br&gt;    if (new Integer(1) == new Integer(1)){&lt;br&gt;                System.out
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Executors用法</title>
+    <link href="mulua6.github.io/2016/07/24/Executors%E7%94%A8%E6%B3%95/"/>
+    <id>mulua6.github.io/2016/07/24/Executors用法/</id>
+    <published>2016-07-24T01:27:47.000Z</published>
+    <updated>2016-07-24T01:27:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Executor框架包括：线程池，Executor，Executors，ExecutorService，CompletionService，Future，Callable等。<br><a id="more"></a></p>
+<h3 id="Executors提供了一系列工厂方法用于创先线程池，返回的线程池都实现了ExecutorService接口。"><a href="#Executors提供了一系列工厂方法用于创先线程池，返回的线程池都实现了ExecutorService接口。" class="headerlink" title="Executors提供了一系列工厂方法用于创先线程池，返回的线程池都实现了ExecutorService接口。"></a><strong>Executors提供了一系列工厂方法用于创先线程池，返回的线程池都实现了ExecutorService接口。</strong></h3><h3 id="newCachedThreadPool"><a href="#newCachedThreadPool" class="headerlink" title="newCachedThreadPool()"></a>newCachedThreadPool()</h3><ul>
+<li>缓存型池子，先查看池中有没有以前建立的线程，如果有，就 reuse.如果没有，就建一个新的线程加入池中</li>
+<li>缓存型池子通常用于执行一些生存期很短的异步型任务</li>
+<li>因此在一些面向连接的daemon型SERVER中用得不多。但对于生存期短的异步任务，它是Executor的首选。</li>
+<li>能reuse的线程，必须是timeout IDLE内的池中线程，缺省     timeout是60s,超过这个IDLE时长，线程实例将被终止及移出池。</li>
+<li>注意，放入CachedThreadPool的线程不必担心其结束，超过TIMEOUT不活动，其会自动被终止。</li>
+</ul>
+<h3 id="newFixedThreadPool-int"><a href="#newFixedThreadPool-int" class="headerlink" title="newFixedThreadPool(int)"></a>newFixedThreadPool(int)</h3><ul>
+<li>-newFixedThreadPool与cacheThreadPool差不多，也是能reuse就用，但不能随时建新的线程</li>
+<li>-其独特之处:任意时间点，最多只能有固定数目的活动线程存在，此时如果有新的线程要建立，只能放在另外的队列中等待，直到当前的线程中某个线程终止直接被移出池子</li>
+<li>-和cacheThreadPool不同，FixedThreadPool没有IDLE机制（可能也有，但既然文档没提，肯定非常长，类似依赖上层的TCP或UDP IDLE机制之类的），所以FixedThreadPool多数针对一些很稳定很固定的正规并发线程，多用于服务器</li>
+<li>-从方法的源代码看，cache池和fixed 池调用的是同一个底层 池，只不过参数不同:</li>
+<li>fixed池线程数固定，并且是0秒IDLE（无IDLE）    </li>
+<li>cache池线程数支持0-Integer.MAX_VALUE(显然完全没考虑主机的资源承受能力），60秒IDLE  </li>
+</ul>
+<h3 id="newScheduledThreadPool-int"><a href="#newScheduledThreadPool-int" class="headerlink" title="newScheduledThreadPool(int)"></a>newScheduledThreadPool(int)</h3><ul>
+<li>-调度型线程池</li>
+<li>-这个池子里的线程可以按schedule依次delay执行，或周期执行</li>
+</ul>
+<h3 id="SingleThreadExecutor"><a href="#SingleThreadExecutor" class="headerlink" title="SingleThreadExecutor()"></a>SingleThreadExecutor()</h3><ul>
+<li>-单例线程，任意时间池中只能有一个线程</li>
+<li>-用的是和cache池和fixed池相同的底层池，但线程数目是1-1,0秒IDLE（无IDLE）</li>
+</ul>
+<p>一般来说，CachedTheadPool在程序执行过程中通常会创建与所需数量相同的线程，然后在它回收旧线程时停止创建新线程，因此它是合理的Executor的首选，只有当这种方式会引发问题时（比如需要大量长时间面向连接的线程时），才需要考虑用FixedThreadPool。（该段话摘自《Thinking in Java》第四版）</p>
+<h3 id="ThreadPoolExecuror类的构造方法中各个参数的含义。"><a href="#ThreadPoolExecuror类的构造方法中各个参数的含义。" class="headerlink" title="ThreadPoolExecuror类的构造方法中各个参数的含义。"></a>ThreadPoolExecuror类的构造方法中各个参数的含义。</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span> <span class="params">(<span class="keyword">int</span> corePoolSize, <span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime, TimeUnit unit,BlockingQueue&lt;Runnable&gt; workQueue)</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>corePoolSize：线程池中所保存的核心线程数，包括空闲线程。</p>
+</li>
+<li><p>maximumPoolSize：池中允许的最大线程数。</p>
+</li>
+<li><p>keepAliveTime：线程池中的空闲线程所能持续的最长时间。</p>
+</li>
+<li><p>unit：持续时间的单位。</p>
+</li>
+<li><p>workQueue：任务执行前保存任务的队列，仅保存由execute方法提交的Runnable任务。</p>
+</li>
+</ul>
+<p>根据ThreadPoolExecutor源码前面大段的注释，我们可以看出，当试图通过excute方法讲一个Runnable任务添加到线程池中时，按照如下顺序来处理：</p>
+<pre><code>1、如果线程池中的线程数量少于corePoolSize，即使线程池中有空闲线程，也会创建一个新的线程来执行新添加的任务；
+
+2、如果线程池中的线程数量大于等于corePoolSize，但缓冲队列workQueue未满，则将新添加的任务放到workQueue中，按照FIFO的原则依次等待执行（线程池中有线程空闲出来后依次将缓冲队列中的任务交付给空闲的线程执行）；
+
+3、如果线程池中的线程数量大于等于corePoolSize，且缓冲队列workQueue已满，但线程池中的线程数量小于maximumPoolSize，则会创建新的线程来处理被添加的任务；
+
+4、如果线程池中的线程数量等于了maximumPoolSize，有4种才处理方式（该构造方法调用了含有5个参数的构造方法，并将最后一个构造方法为RejectedExecutionHandler类型，它在处理线程溢出时有4种方式，这里不再细说，要了解的，自己可以阅读下源码）。
+
+总结起来，也即是说，当有新的任务要处理时，先看线程池中的线程数量是否大于corePoolSize，再看缓冲队列workQueue是否满，最后看线程池中的线程数量是否大于maximumPoolSize。
+
+另外，当线程池中的线程数量大于corePoolSize时，如果里面有线程的空闲时间超过了keepAliveTime，就将其移除线程池，这样，可以动态地调整线程池中线程的数量。 
+</code></pre><h3 id="下面说说几种排队的策略："><a href="#下面说说几种排队的策略：" class="headerlink" title="下面说说几种排队的策略："></a>下面说说几种排队的策略：</h3><ol>
+<li><p>直接提交。缓冲队列采用 SynchronousQueue，它将任务直接交给线程处理而不保持它们。如果不存在可用于立即运行任务的线程（即线程池中的线程都在工作），则试图把任务加入缓冲队列将会失败，因此会构造一个新的线程来处理新添加的任务，并将其加入到线程池中。直接提交通常要求无界 maximumPoolSizes（Integer.MAX_VALUE） 以避免拒绝新提交的任务。newCachedThreadPool采用的便是这种策略。</p>
+</li>
+<li><p>无界队列。使用无界队列（典型的便是采用预定义容量的 LinkedBlockingQueue，理论上是该缓冲队列可以对无限多的任务排队）将导致在所有 corePoolSize 线程都工作的情况下将新任务加入到缓冲队列中。这样，创建的线程就不会超过 corePoolSize，也因此，maximumPoolSize 的值也就无效了。当每个任务完全独立于其他任务，即任务执行互不影响时，适合于使用无界队列。newFixedThreadPool采用的便是这种策略。</p>
+</li>
+<li><p>有界队列。当使用有限的 maximumPoolSizes 时，有界队列（一般缓冲队列使用ArrayBlockingQueue，并制定队列的最大长度）有助于防止资源耗尽，但是可能较难调整和控制，队列大小和最大池大小需要相互折衷，需要设定合理的参数。</p>
+</li>
+</ol>
+<hr>
+<h6 id="参考文章：http-blog-csdn-net-ns-code-article-details-17465497"><a href="#参考文章：http-blog-csdn-net-ns-code-article-details-17465497" class="headerlink" title="参考文章：http://blog.csdn.net/ns_code/article/details/17465497"></a>参考文章：<a href="http://blog.csdn.net/ns_code/article/details/17465497" target="_blank" rel="external">http://blog.csdn.net/ns_code/article/details/17465497</a></h6>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Executor框架包括：线程池，Executor，Executors，ExecutorService，CompletionService，Future，Callable等。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="mulua6.github.io/categories/java/"/>
+    
+    
+      <category term="java 多线程" scheme="mulua6.github.io/tags/java-%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>急救培训</title>
+    <link href="mulua6.github.io/2016/07/20/%E6%80%A5%E6%95%91%E5%9F%B9%E8%AE%AD/"/>
+    <id>mulua6.github.io/2016/07/20/急救培训/</id>
+    <published>2016-07-20T23:51:59.000Z</published>
+    <updated>2016-07-20T23:51:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>急救培训内容：</p>
+<ul>
+<li>心脏骤停与心肺复苏</li>
+<li>气道异物阻塞与急救方法</li>
+<li>创伤现场救护技术</li>
+<li>特殊损伤现场救护</li>
+</ul>
+<a id="more"></a>
+<p><strong>切记：保己救人</strong></p>
+<h4 id="心脏骤停与心肺复苏现场急救的程序"><a href="#心脏骤停与心肺复苏现场急救的程序" class="headerlink" title="心脏骤停与心肺复苏现场急救的程序"></a>心脏骤停与心肺复苏现场急救的程序</h4><ol>
+<li><p>确保环境安全</p>
+<p> 现场安全，进入救护，现场不安全，不进行救护</p>
+</li>
+<li>做好自我防护</li>
+<li><p>检查患者反应及呼吸</p>
+<p> 从患者脚所在的位置进入现场，轻拍重唤（轻拍肩膀，在患者两耳边分别询问一次），观察患者头，胸，腹部8秒看是否有呼吸（男：腹部，女：胸部）</p>
+</li>
+<li><p>启动应急程序</p>
+<p> <strong>上、下、我、你、大家。</strong><br> 救命啊，这里有人晕倒了，我是急救员，这位先生你去帮我拨打120，是否打通告诉我，这位先生你去找附近的AED，是否找到回来告诉我，大家有谁会急救请过来协助我，请大家为我作证。</p>
+</li>
+<li>心肺复苏患者应为仰卧体位</li>
+<li><p>胸外心脏按压</p>
+<p> 用腕痕纹上2指处按压胸骨中线与乳头连线交汇处（胸骨下二分之一断），按压深度：至少5cm不超过6cm，按压频率：每分钟至少100次，不超过120次，按压的时候用01，02，03 ……，30计数，30次心脏按压一组2次人工呼吸 </p>
+</li>
+<li><p>人工呼吸</p>
+<p> 开放气道，压额提颏（左手压住额头，肘部支撑地，右手用食指和中指提起患者下颚骨头），鼻孔朝天（成人90度，儿童60度，婴儿30度角），左手捏住鼻子，口对口哈气一次（1001）大约1秒，眼睛观察患者胸腔，胸腔变大即可，不可过度通气，2次人工呼吸为一组。<br> 有薄膜才可以进行人工呼吸。</p>
+</li>
+<li><p>胸外心脏按压30次加2次人工呼吸为一组（如果没有薄膜，直接按压心脏200次），一组用时大概2分钟，做完5组，重新评估患者，用食指和中指检查患者颈动脉8秒（同身同手同侧原则）</p>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li>按压位置必须正确</li>
+<li>避免向下冲击，手不能离开患者皮肤</li>
+<li>手臂与患者垂直，腰部用力</li>
+<li>每次按压要充分回弹</li>
+<li>按压过程中不能停止</li>
+</ul>
+</li>
+<li><p>心肺复苏终止条件</p>
+<ul>
+<li>患者恢复自主心跳和呼吸</li>
+<li>医务人员到达现场</li>
+<li>现场不安全</li>
+<li>救护者精疲力尽</li>
+</ul>
+</li>
+<li><p>AED（自动体外心脏除颤器）使用</p>
+</li>
+</ol>
+<p>AED越早使用越好，打开AED电源开关，解开患者胸前衣服，将AED两个电极片按照指示贴在患者左下胸和右上胸皮肤上，提醒现场所有人，不要接触患者，等待AED分析心率，若AED显示“建议点击”，再次提醒所有人，不要接触患者，按下点击键除颤，点击完成后立即对患者实施5个周期心肺复苏周期（约2分钟），有AED分析心率。</p>
+<ol>
+<li>完整流程参看流程图： <img src="http://7xwg0y.com1.z0.glb.clouddn.com/IMG_2005.JPG" alt=""></li>
+</ol>
+<h4 id="气道异物堵塞急救方法"><a href="#气道异物堵塞急救方法" class="headerlink" title="气道异物堵塞急救方法"></a>气道异物堵塞急救方法</h4><ul>
+<li><p>患者能呼吸时的处理方法</p>
+<ul>
+<li>应尽量鼓励患者用力咳嗽，并让患者弯腰，拍打患者背部</li>
+</ul>
+</li>
+<li><p>患者不能呼吸时的处理方法</p>
+<ul>
+<li>下腹部冲击法（海式法）- 成年人使用</li>
+<li>胸部冲击法（压胸法）- 针对孕妇使用</li>
+<li>拍背法 - 婴儿使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="创伤现场救护技术"><a href="#创伤现场救护技术" class="headerlink" title="创伤现场救护技术"></a>创伤现场救护技术</h4><ul>
+<li>先止血</li>
+</ul>
+<p>采用直接按压止血法</p>
+<ul>
+<li>抬高伤肢</li>
+</ul>
+<p>让让伤处高于心脏</p>
+<ul>
+<li><p>绷带包扎</p>
+<ul>
+<li><p>环形包扎</p>
+<p>  用于一般的小伤口</p>
+</li>
+<li><p>螺旋包扎</p>
+<p>  用于大一点的伤口</p>
+</li>
+<li><p>8字包扎</p>
+<p>  用于手心、手背上的伤口</p>
+</li>
+<li><p>人形包扎</p>
+<p>  用于肘关节伤口包扎</p>
+</li>
+</ul>
+</li>
+<li><p>三角巾包扎</p>
+<ul>
+<li><p>大悬臂挂</p>
+<p>  用于上臂、前臂、手腕处受伤包扎</p>
+</li>
+<li><p>三角悬臂挂</p>
+<p>  用于锁骨、手指、手掌处受伤包扎</p>
+</li>
+<li><p>头部包扎</p>
+<p>  用于头部受伤包扎</p>
+</li>
+<li><p>胸部包扎</p>
+<p>  用于胸部、心脏受伤包扎</p>
+</li>
+<li><p>下腹部包扎</p>
+<p>  用于腹部受伤包扎</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="特殊损伤的现场救护"><a href="#特殊损伤的现场救护" class="headerlink" title="特殊损伤的现场救护"></a>特殊损伤的现场救护</h4><ul>
+<li><p>烧伤、烫伤</p>
+<p>  用流水冲洗15分钟，不能包扎，不要涂抹牙膏等液体<br>  不能挑破水泡<br>  大面积烧伤应及时补充水分</p>
+</li>
+<li><p>异物插入体内</p>
+<p>  不要拔出异物，到医院救助</p>
+</li>
+<li><p>断肢处理</p>
+<p>  断离的肢体在6-8小时内可以再植成功，用赶紧的毛巾包裹断肢，外面用不透水的塑料袋包裹，放入冰水混合物中保存，同患者一同带到医院。<br>  <strong>切记：断肢体不要用水冲洗</strong></p>
+<p>  感谢思科公司ERT提供的机会，学会了不少急救知识</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;急救培训内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;心脏骤停与心肺复苏&lt;/li&gt;
+&lt;li&gt;气道异物阻塞与急救方法&lt;/li&gt;
+&lt;li&gt;创伤现场救护技术&lt;/li&gt;
+&lt;li&gt;特殊损伤现场救护&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="医疗" scheme="mulua6.github.io/categories/%E5%8C%BB%E7%96%97/"/>
+    
+    
+      <category term="First Aid, AED" scheme="mulua6.github.io/tags/First-Aid-AED/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>EnglishTopics</title>
+    <link href="mulua6.github.io/2016/07/16/EnglishTopics/"/>
+    <id>mulua6.github.io/2016/07/16/EnglishTopics/</id>
+    <published>2016-07-16T14:21:56.000Z</published>
+    <updated>2016-07-16T14:21:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>说说你对daily finance 的理解<br>Talk about your understanding of daily finance </p>
+<p>你从书中学到了什么?<br>what you leaned from this book” </p>
+<p>理财技巧<br>我门应该买一些能够增值的产品如房子，理财产品<br>We should buy some to value-added products such as house, wealth management products </p>
+<p>我们不能买会贬值的产品，如汽车<br>We can’t buy devaluation of the products, such as car </p>
+<p>汽车是负债，而房子是资产<br>The car is in debt, while the house is an asset.</p>
+<p>你是怎么花钱的<br>how do you spend your money? </p>
+<p>除了每个月需要的房租，我还会买一些生活必须品，给老婆买一些衣服，给儿子买玩具，然后把剩余的钱买一些银行理财产品<br>In addition to the monthly rent, I will buy some life must, to my wife to buy some clothes, to buy toys for my son, and put the rest of the money to buy some of the financial products</p>
+<p>这几天一直在下雨，我们待在家里，没有出门。<br>and put the rest of the money to buy some of the financial products</p>
+<a id="more"></a>
+<p>Eddie The eagle    eagle 鹰<br>I‘ve lost my sth.  (eg. I’ve lost my key!<br>indifference 不关心</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;说说你对daily finance 的理解&lt;br&gt;Talk about your understanding of daily finance &lt;/p&gt;
+&lt;p&gt;你从书中学到了什么?&lt;br&gt;what you leaned from this book” &lt;/p&gt;
+&lt;p&gt;理财技巧&lt;br&gt;我门应该买一些能够增值的产品如房子，理财产品&lt;br&gt;We should buy some to value-added products such as house, wealth management products &lt;/p&gt;
+&lt;p&gt;我们不能买会贬值的产品，如汽车&lt;br&gt;We can’t buy devaluation of the products, such as car &lt;/p&gt;
+&lt;p&gt;汽车是负债，而房子是资产&lt;br&gt;The car is in debt, while the house is an asset.&lt;/p&gt;
+&lt;p&gt;你是怎么花钱的&lt;br&gt;how do you spend your money? &lt;/p&gt;
+&lt;p&gt;除了每个月需要的房租，我还会买一些生活必须品，给老婆买一些衣服，给儿子买玩具，然后把剩余的钱买一些银行理财产品&lt;br&gt;In addition to the monthly rent, I will buy some life must, to my wife to buy some clothes, to buy toys for my son, and put the rest of the money to buy some of the financial products&lt;/p&gt;
+&lt;p&gt;这几天一直在下雨，我们待在家里，没有出门。&lt;br&gt;and put the rest of the money to buy some of the financial products&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="英语" scheme="mulua6.github.io/categories/%E8%8B%B1%E8%AF%AD/"/>
+    
+    
+      <category term="英语" scheme="mulua6.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小狗钱钱</title>
+    <link href="mulua6.github.io/2016/07/16/%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B1/"/>
+    <id>mulua6.github.io/2016/07/16/小狗钱钱/</id>
+    <published>2016-07-16T14:20:03.000Z</published>
+    <updated>2016-07-16T14:20:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="小狗钱钱"><a href="#小狗钱钱" class="headerlink" title="小狗钱钱"></a>小狗钱钱</h4><p>“并非困难使我们放弃，而是因为我们放弃，才显得如此困难。”</p>
+<a id="more"></a>
+<p>这正是许多没有钱的人爱犯的错误。他们总是有那么多紧急的事情要做，以至于没有时间来关注重要的事情。</p>
+<p>你干的活最多只值报酬的一半，另一半报酬源于你的想法和实施这个想法的勇气</p>
+<p>如果说运气是充分准备加上努力工作的结果，那我准备得越充分，工作得越努力，运气也就越好</p>
+<p>“我妈妈总说，金钱会使人的本性变坏。”我反驳道。<br>“金钱会暴露一个人的本性，”陶穆太太解释说，“金钱就像一个放大镜，它帮你更充分地展现出你本来的样子。好人可以用钱做很多好事。而如果你是盗贼，那你很可能会把钱挥霍在一些蠢事上。</p>
+<p>金钱能成为我们生活中非常强大的助推力。金钱可以在一定程度上提高我们的生活水平——生活的许多方面都是以钱为基础的。有了钱，我们就更容易实现我们的目标和梦想——当然，包括好的目标和梦想，也包括坏的目标和梦想。”</p>
+<p>最珍贵的礼物是我们自己争取来的。克服了丢面子的恐惧，世界就会向你敞开大门！</p>
+<p>“恐惧总是出现在我们设想事情会如何不顺的时候。我们对失败的可能性想得越多，就会越害怕。而当你看着自己的成功日记时，你就会注意到那些成功的事情，自然而然也就会想到应该怎样去做</p>
+<p>决定一件东西价值多少的唯一因素就是，你愿意为它支付多少钱</p>
+<p>不要为失去的东西而忧伤，而要对拥有它的时光心存感激。</p>
+<p>人们必须懂得每个人都要担负对这个世界的职责。如果不那样做的话就只会是一事无成。只有当你意识到并且履行了那份职责，你才能找到属于你自己的那块白色石头。那块石头上写有你新的名字，而这名字就是一个全新的幸福生活的标志</p>
+<p>避免被不公平的事捆住手脚。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;小狗钱钱&quot;&gt;&lt;a href=&quot;#小狗钱钱&quot; class=&quot;headerlink&quot; title=&quot;小狗钱钱&quot;&gt;&lt;/a&gt;小狗钱钱&lt;/h4&gt;&lt;p&gt;“并非困难使我们放弃，而是因为我们放弃，才显得如此困难。”&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="阅读" scheme="mulua6.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小狗钱钱2</title>
+    <link href="mulua6.github.io/2016/07/16/%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B12/"/>
+    <id>mulua6.github.io/2016/07/16/小狗钱钱2/</id>
+    <published>2016-07-16T14:19:57.000Z</published>
+    <updated>2016-07-16T14:19:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="养成优秀品格的7条准则"><a href="#养成优秀品格的7条准则" class="headerlink" title="养成优秀品格的7条准则"></a>养成优秀品格的7条准则</h3><pre><code>1．友好亲和 2．勇于承担 3．善待他人 4．帮助给予 5．感恩之心 6．勤学不辍 7．值得信赖 
+</code></pre><a id="more"></a>
+<h4 id="1-友好亲和"><a href="#1-友好亲和" class="headerlink" title="1. 友好亲和"></a>1. 友好亲和</h4><pre><code>●　我有一个强烈的愿望，希望其他人能够像我一样生活美好而幸福。
+●　我不会伤害任何人。我克制自己，不介入任何争端。
+●　我谦虚有礼，尊重他人。我并不是永远正确。
+</code></pre><h4 id="2-勇于承担"><a href="#2-勇于承担" class="headerlink" title="2. 勇于承担"></a>2. 勇于承担</h4><pre><code>●　遇事我能自我抉择。我能自行判断对某种情况应该作何反应。
+●　我不受不公平之事的影响，而是将注意力集中在我能做的事情、我知道的知识和我拥有的东西之上。
+●　我把责任推托给别人的同时，也把相应的权利转交给了对方。
+</code></pre><h4 id="3-善待他人"><a href="#3-善待他人" class="headerlink" title="3. 善待他人"></a>3. 善待他人</h4><pre><code>●　我只称赞他人。如果确实无法称赞他人，那就最好什么都不说。
+●　我尽量不批评他人。如果不得不批评，也要用非常礼貌和友善的方式。
+●　我将注意力集中在他人的优点和闪光点上。
+</code></pre><h4 id="4-帮助给予"><a href="#4-帮助给予" class="headerlink" title="4. 帮助给予"></a>4. 帮助给予</h4><pre><code>●　我祝愿自己遇到过的所有人都能一切顺利。
+●　我送给某人礼物，因为我想表达自己对他的好感。
+●　最美好的事情莫过于帮助他人。我总是在想自己能够帮助谁，没有什么比这更令人快乐。
+</code></pre><h4 id="5-感恩之心"><a href="#5-感恩之心" class="headerlink" title="5. 感恩之心"></a>5. 感恩之心</h4><pre><code>●　我总是心怀感恩，哪怕是对看似寻常的事情。
+●　即便遇到了困难，我还是会关注值得感激的事物。
+●　我对身边的人都充满感激之情，并非常享受和他们共度的美好时光。
+</code></pre><h4 id="6-勤学不辍"><a href="#6-勤学不辍" class="headerlink" title="6. 勤学不辍"></a>6. 勤学不辍</h4><pre><code>●　如果我骄傲自满，那无异于说自己不必再学任何东西了。因此我应该保持谦恭好学的态度。
+●　我不仅要阅读好的书籍、写成功日记和知识笔记，还要尽可能多地向他人学习。
+●　我不拿自己和别人比较，而是尽我所能做到最好。
+</code></pre><h4 id="7-值得信赖"><a href="#7-值得信赖" class="headerlink" title="7. 值得信赖"></a>7. 值得信赖</h4><pre><code>●　我能否成功总是取决于自身培养出的习惯。
+●　如果我是一个非常自律的人，我就能比那些虽有天赋但却懒惰散漫的人获得更多的成功。
+●　我总是很守时。我信守对他人作出的承诺。
+</code></pre><p>&emsp;生活始终向前行进。你可以暂时休息一下或者安静地聚集新的能量，但你永远也无法再回去了。<br>橘子的回答只与其自身有关，而不取决于它外在的事物。<br>如果有人想给你们一些东西，而你们却不接受，那么这些东西又是属于谁的呢？(如何看到别人的嘲笑/辱骂)<br>&emsp;最珍贵的礼物是我们自己争取来的。克服了丢面子的恐惧，世界就会向你敞开大门！<br>金钱能成为我们生活中非常强大的助推力。金钱可以在一定程度上提高我们的生活水平——生活的许多方面都是以钱为基础的。有了钱，我们就更容易实现我们的目标和梦想——当然，包括好的目标和梦想，也包括坏的目标和梦想<br>&emsp;“金钱会暴露一个人的本性，”陶穆太太解释说，“金钱就像一个放大镜，它帮你更充分地展现出你本来的样子。好人可以用钱做很多好事。而如果你是盗贼，那你很可能会把钱挥霍在一些蠢事上。<br>&emsp;如果说运气是充分准备加上努力工作的结果，那我准备得越充分，工作得越努力，运气也就越好</p>
+<p>“你与其把注意力只集中在损失上，倒不如为能拥有它这么长时间而感到高兴。”精明的老妇人回答道，“一旦我们坐船到达对岸，也就不再需要那只船了<br>生活始终向前行进。你可以暂时休息一下或者安静地聚集新的能量，但你永远也无法再回去了。<br>“这取决于你怎么想。如果你只想着自己将要失去一些东西，那就肯定会痛苦。但如果你更多地想到我们在一起经历过那么多美好的事情，快乐和感激之情就会占据上风。<br>关系账户真是一个不错的理念。<br>“看到支票的时候想要做什么？当然是得到它。但这又是为什么呢？因为它永远不会失去价值，它总是值100美元。在生活中我们总是爱抱怨，总会想生活是多么不公平呀。或者更为糟糕的是：我们觉得自己的存在没有价值。但其实对任何人来说都一样：没有人会失去自身的价值。我们总是为了那些喜欢我们的人无私地存在。人类的价值并不取决于能够达到什么目标或是拥有多少财富，而是取决于你到底是一个什么样的人</p>
+<p>不应该让自己受到不公平之事的影响。生活总是不公平的。与其抱怨，还不如把精力放到演讲本身上来。”</p>
+<p>橘子的回答只与其自身有关，而不取决于它外在的事物。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;养成优秀品格的7条准则&quot;&gt;&lt;a href=&quot;#养成优秀品格的7条准则&quot; class=&quot;headerlink&quot; title=&quot;养成优秀品格的7条准则&quot;&gt;&lt;/a&gt;养成优秀品格的7条准则&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1．友好亲和 2．勇于承担 3．善待他人 4．帮助给予 5．感恩之心 6．勤学不辍 7．值得信赖 
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="阅读" scheme="mulua6.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>树莓派搭梯</title>
+    <link href="mulua6.github.io/2016/07/16/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E6%A2%AF/"/>
+    <id>mulua6.github.io/2016/07/16/树莓派搭梯/</id>
+    <published>2016-07-16T14:19:50.000Z</published>
+    <updated>2016-07-16T14:19:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>安装shadowsocks</li>
+<li>下载python脚本</li>
+<li>设置crontab执行python脚本</li>
+<li>定时重启shadowsocks</li>
+<li>安装Supervisor: A Process Control System<a id="more"></a>
+</li>
+</ol>
+<p><a href="https://www.dropbox.com/s/i10pxwstgwuv3sm/config_pi_ss.py?dl=0" target="_blank" rel="external">python script</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;安装shadowsocks&lt;/li&gt;
+&lt;li&gt;下载python脚本&lt;/li&gt;
+&lt;li&gt;设置crontab执行python脚本&lt;/li&gt;
+&lt;li&gt;定时重启shadowsocks&lt;/li&gt;
+&lt;li&gt;安装Supervisor: A Process Control System
+    
+    </summary>
+    
+    
+      <category term="树莓派" scheme="mulua6.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>富爸爸穷爸爸</title>
+    <link href="mulua6.github.io/2016/07/16/%E5%AF%8C%E7%88%B8%E7%88%B8%E7%A9%B7%E7%88%B8%E7%88%B8/"/>
+    <id>mulua6.github.io/2016/07/16/富爸爸穷爸爸/</id>
+    <published>2016-07-16T14:19:40.000Z</published>
+    <updated>2016-07-16T14:19:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>富人之所以越来越富，穷人之所以越来越穷，中产阶级之所以总是在债务的泥潭中挣扎，其中一个主要原因就是，他们对金钱的认识不是来自学校，而是来自家庭。<br><a id="more"></a></p>
+<p>我的一个爸爸总是习惯说“我可付不起”，而另一个爸爸则禁止我们说这样的话，他坚持让我这样说：“我怎样才能付得起？”这两句话，一句是陈述句，另一句是疑问句。一句让你放弃，而另一句则促使你去想办法。<br>“贫穷和破产的区别是：破产是暂时的，而贫穷是永久的。”<br>他说，“如果你们放弃了，你们就只能是穷人了。最重要的是你们已经尝试了。大多数人只是夸夸其谈，梦想着发财致富，而你们已经付出了行动。我真为你们骄傲，我要再说一遍，继续努力，不要放弃。”</p>
+<p>“教东西一定要说或讲吗？”</p>
+<p>如果你认为是我的问题，你就会想改变我；如果你认为问题在你那儿，你就会改变自己，学习一些东西让自己变得更聪明。大多数人认为世界上除了自己外，其他人都应该改变。让我告诉你吧，改变自己比改变他人更容易。”</p>
+<p>大多数人从不研究这个问题，他们去上班，挣工资，平衡收支，仅此而已，他们不明白自己为什么老缺钱，于是以为多挣点钱就能解决问题，但几乎没有人意识到缺乏财商教育才是问题的关键。”</p>
+<p>“对钱的无知导致了恐惧和贪婪，”</p>
+<p>“要学会让感情跟随你的思想，而不要让思想跟随你的感情。当你们控制了感情，同意免费干活时，我就知道你们还有希望。当我用更多的钱诱惑你们时，你们又一次控制住了感情，你们在学习用头脑思考而不是任由感情控制你们。这是第一步。”</p>
+<p>我会教你们选择一种思想，而不是条件反射式地去行动，就像匆忙喝完早餐咖啡就跑出去工作一样。</p>
+<p>工作只是面对长期问题的一种暂时的解决办法。大多数人心里只有一个问题，并且亟待解决，那就是月末要付账了，账单就像那个柏油孩子。钱控制了他们的生活，或者确切地说是，对钱的无知和恐惧控制了他们的生活。</p>
+<p>只有知识才能解决问题并创造财富，那些不是靠财务知识挣来的钱也不会长久。</p>
+<p>从长远来看，重要的不是你挣了多少钱，而是你能留下多少钱，以及能够留住多久。</p>
+<p>“富人获得资产，而穷人和中产阶级获得负债，只不过他们以为那些负债就是资产。”</p>
+<p>资产就是能把钱放进你口袋里的东西。”<br>负债是把钱从你口袋里取走的东西。</p>
+<p>由于学生们在学校时并没有获得财务技能，所以成千上万受过良好教育的人虽然取得了事业上的成功，却发现自己仍在财务问题中挣扎。他们努力工作，却并无进展，他们的教育中缺少的不是如何挣钱，而是如何花钱，即挣了钱后该怎么办？它被称为“理财态度”，即在你赚了钱之后如何处理这些钱，又怎样防止别人从你手中拿走这些钱？你能拥有这些钱多久？你如何让钱为你工作？大多数人不明白自己为什么会遭遇财务困境，这是因为他们不明白现金流。一个受过高等教育且事业有成的人，同时也可能是财务上的文盲。这种人往往太过努力地工作，因为他们只知道努力工作，却不知道如何让钱为他们工作。</p>
+<p>日本人注重3种力量：剑、宝石和镜子。</p>
+<p>剑象征着武器的力量。美国人在武器上已经花了上千亿美元，是世界上的超级军事大国。<br>宝石象征着金钱的力量。有句格言很有道理：“记住黄金规则：有黄金的人制定规则。” 镜子象征着自知的力量。从日本的传奇故事中我们得知，自知是3种力量中最宝贵的。</p>
+<p>财富就是支撑一个人生存多长时间的能力，或者说，如果我今天停止工作，我还能活多久？</p>
+<p>财富是将资产项产生的现金与支出项流出的现金进行比较而定的。</p>
+<p>富人买入资产。<br>穷人只有支出。<br>中产阶级购买自以为是资产的负债。</p>
+<p>你的职业和你的事业有很大的差别。我经常问人们：“你的事业是什么？”他们会说：“我在银行工作。”接着我问他们是否拥有一家银行，他们通常回答：“不是的，我只在那儿工作。”</p>
+<p>从事你所学的专业的可怕后果在于，它会让你忘记关注自己的事业。人们耗尽一生去关注别人的事业并使他人致富。</p>
+<p>富人关心的焦点是资产而其他人关心的是收入。</p>
+<p>只有你把额外的收入用来购买可产生收入的资产，你才能获得真正的财务安全。</p>
+<p>如果没有这些被我称为财商（理财智商，Financial I. Q.）的知识——我的财务自由之路将会困难得多。我在研讨班上把这些知识教给其他人，是希望别人能和我一起分享这些知识。只要我谈到这些知识，我就会提醒人们：财商是由4个方面的专门知识构成的：<br>第一是会计，也就是我说的财务知识。如果你想建立一个自己的商业帝国，财务知识是非常重要的。你管理的钱越多，就越要精确，否则这幢大厦就会倒塌。这需要左脑来处理，是细节的部分。财务知识能帮助你读懂财务报表，还能让你辨别一项生意的优势和劣势。<br>第二是投资，我把它称为钱生钱的科学。投资涉及策略和方案，这要右脑来做，是属于创造的部分。<br>第三是了解市场，它是供给与需求的科学。这要求了解受感情驱动的市场的“技术面”。1996年圣诞节的搔痒娃娃大获成功就是一个受技术与感情影响的市场的最佳佐证。市场的另一个因素是“基本面”，或者说是一项投资的经济意义。一项投资究竟有无意义最终取决于当前的市场状况。</p>
+<p>第四是法律。例如：利用一个具有会计、投资和市场运营的企业会使你的财富实现爆炸性地增长。了解减税优惠政策和公司法的人会比雇员和小业主更快致富。这就像一个人在走，而另一个人却在飞，久而久之这种差距就更大了。</p>
+<p>1．减税优惠。公司可以做许多个人无法做的事，例如：用税前收入支付开支。这是一个如此令人激动的专业领域，但在你没有足够的资产或业务之前不能进入。<br>雇员挣钱、纳税，并靠剩下的钱为生；企业挣钱、花钱，并只为剩下来的钱缴税。这是富人钻的最大的法律的空子。如果你有能带来现金流入的投资，你就可以轻松、廉价地使用这些漏洞。例如，假如你拥有自己的公司，在夏威夷召开的董事会就是你的假期，买车以及随之而来的车险和修理费也可以算是企业的支出，健身俱乐部的会员费是企业支出，大部分的餐饮费也算是企业的支出，如此等等，但要注意在税前合法支付它们。<br>2．在诉讼中获得保护。我们生活在一个爱打官司的社会中。有太多人想占你的便宜。富人用公司和信托来隐藏部分财富以免被债主发现，当一些人起诉富人时，他们经常遇到法律对富人的保护，发现这些富人其实没有财产。他们控制着一切，却一无所有。穷人和中产阶级尽力去拥有一切，但最后却不得不把劳动所得都给了政府和那些乐于起诉有钱人的小市民，这些小市民们是从罗宾汉的故事中学到劫富济贫的。</p>
+<p>共同点：我们都拥有巨大的潜能——这是上天赏赐的礼物。然而，我们都或多或少地存在着某种自我怀疑的心理，从而阻碍前进的步伐。这种障碍很少是缺乏某种技术性的东西，更多的是缺乏自信。有些人更容易受到外界的影响。</p>
+<p>1．财务知识。即阅读理解数字的能力。<br>2．投资策略。即以钱生钱的科学。<br>3．市场、供给与需求。</p>
+<p>风险总是无处不在，要学会驾驭风险，而别总想回避风险。</p>
+<p>相反，我劝告年轻人在找工作时要看能从中学到什么，而不是只看能挣多少钱。在选择某种职业或陷入“老鼠赛跑”的陷阱之前，要仔细看看脚下的路，弄清楚自己到底想获得什么技能。</p>
+<p>一旦人们陷入为支付账单而整天疲于奔命的陷阱，就和那些蹬着小铁笼不停转圈的小老鼠一样了。它们的小毛腿蹬得飞快，小铁笼也转得飞快，可到了第二天早上，它们发现自己依然被困在笼子里，就像你被你的工作困住一样。</p>
+<p>。许多才华横溢的人之所以贫穷，就是因为他们只是专心于做好产品，而对商业体系却知之甚少。</p>
+<p>我从未遇见喜欢亏钱的人，但在我的一生中，从未遇见一位没亏过钱的富人，却遇见许多从未亏掉一毛钱的穷人——我是说在投资活动中。</p>
+<p>胜利意味着不害怕失败。”</p>
+<p>90％以上的美国人财务困难的主要原因就在于，他们是为了避免损失而理财，而不是为了赢利而理财。</p>
+<p>我认为疑虑和愤世嫉俗的心态使大多数人安于贫困。生活等着你去致富，可就是这些疑虑使人们无法摆脱贫穷。正如我曾说的，摆脱“老鼠赛跑”的生活在技术上讲十分容易，不需要接受太多的教育，可那些疑虑使大多数人寸步难行。</p>
+<p>愤世者抱怨现实，而成功者分析现实,这是富爸爸最喜欢说的另一句话。富爸爸解释，抱怨蒙蔽人的头脑，而分析使人心明眼亮。通过分析能使成功者看到那些愤世者无法看到的东西，发现被其他人都忽视的机会，而发现机会的能力正是取得成功的关键</p>
+<p>每当我听到人们执迷于“我不想要”，而不去注意他们想要的东西时，我就知道他们脑子里的“噪音”一定很响。“小鸡”控制了他们的思维，叫喊着“天要塌下来了，厕所坏了”。于是，他们避开了自己的“不想要”，却为此付出了巨大的代价——他们可能永远得不到自己想要的。</p>
+<p>我经常遇到那些过分忙于工作而不关心自己的财富的人。还有一些人过分地忙于工作而不照顾自己的身体。使这两种人如此忙碌的原因是一样的，他们把忙碌作为逃避问题的借口。没有人告诉他们这些，但他们心里其实很明白。事实上，如果你去提醒他们，他们往往还会很不高兴。</p>
+<p>当然，就像任何事情都要有“度”一样，过于贪婪就不好了。但要记住迈克尔·道格拉斯在电影《华尔街》中说的话：“欲望是好事。”富爸爸用另一种方式进行解释：“负罪感比欲望要糟，因为负罪感抢走了灵魂。”对我来说，埃莉诺·罗斯福说的最好：“做你内心认为正确的事情因为你不管怎么做总会受到批评。如果你做，会受到指责；而你不做，还是会受到指责。”</p>
+<p>1．我需要一个超现实的理由——精神的力量。<br>2．每天作出自己的选择——选择的力量。<br>如果想学习某些新东西，那你就要犯些错误，只有这样才能充分理解你所学习的知识。<br>3．慎重地选择朋友——关系的力量。</p>
+<p>注意：不要听贫穷的或是胆小的人的话。我有这样的朋友，我也非常喜欢他们，但他们过的是“小鸡”式的生活。一旦涉及金钱，特别是投资时，“天就要塌下来了”，他们总会告诉你一件事为什么不可行。问题是如果听了他们的话，盲目地接受这种杞人忧天的信息，你最终也会成为“小鸡”式的人。就像一句古老的谚语所说的：“物以类聚，人以群分。”</p>
+<p>4．掌握一种模式，然后再学习一种新的模式——快速学习的力量。</p>
+<p>5．首先支付自己——自律的力量。</p>
+<p>能否自律是将富人、穷人和中产阶级区分开来的首要因素。</p>
+<p>在我教过的企业家培训班中，我经常提醒人们，不要仅将注意力集中在产品、服务或生产设备上，而要集中精力开发管理才能。开创事业所必备的最重要的3种管理技能是：<br>1．现金流管理。<br>2．人事管理。<br>3．个人时间管理。</p>
+<p>穷人有一些不好的习惯，其中一个普遍的坏习惯就是随便动用储蓄。富人知道储蓄只能用于创造更多的收入，而不是用来支付账单。</p>
+<p>许多穷人和中产阶级宁愿为餐馆糟糕的服务支付15％～20％的小费，却不愿给经纪人支付3％～7％的佣金。他们在支出项上慷慨地支付小费，却在资产项上对人极为吝啬，这样做在理财上显然是不明智的。</p>
+<p>人事管理是重要的管理技能之一。许多人只会管理不如自己聪明的人或是能力不如自己的人，比如下属。许多中层管理人员一直停留在中层，就是因为他们只知道如何与职位低于自己的人一起工作，却不善于和比自己职位高的人一起工作。真正的技能是在某些技术领域能够管理比你更聪明的人并给他们提供优厚的报酬。这也是为什么公司要拥有一个董事会的原因，你应该有这种顾问，而这也是你的财商。</p>
+<p>7．做一个“印第安给予者”——无私的力量。<br>当第一批白人移民抵达美洲时，他们对印第安人的文化习惯感到十分惊讶。例如，当看到一个白人很冷时，印第安人会给他一条毯子，可白人误以为这是一份礼物，因此当印第安人要回毯子时，他就感到十分不快。<br>印第安人也会感到失望，因为他们发现白人移民竟然无意归还自己的毛毯。这就是“印第安给予者”一语的由来，是指一种简单的文化误读。</p>
+<p>8．用资产来购买奢侈品——专注的力量。</p>
+<p>因此明智的投资者不只看到投资回报率，而且还能看到，一旦收回投资，就能额外得到的资产。这也是财商。</p>
+<p>9．对英雄的崇拜——神话的力量。<br>10．先予后取——给予的力量。<br>上帝不需要得到，但人类需要付出”。</p>
+<p>我首先寻找想买进的人，然后才去找想卖出的人。一位朋友想买一片地，他有钱，但没时间去找。我发现了一处地产，比我朋友想要的面积大一些。我打电话给朋友，他说想要其中一片，于是我买下了土地，然后把那一片卖给了他。我一直没有卖掉剩余的土地，它一直为我带来收益。这个故事的中心是：买下馅饼并把它切成小块。大部分人寻找的只是自己能付得起的东西，所以他们只看到较小的东西。他们只买一小块馅饼，却总是付出更高的价格。只盯着小生意的人是不会有大突破的。你如果想致富，就要首先考虑较大的生意。</p>
+<p>零售商喜欢提供数量折扣，就是因为大部分商人都喜欢大额购买的人。<br>学习前人经验。</p>
+<p>行动的人总会击败不行动的人。</p>
+<p>上天赐予我们每个人两样伟大的礼物：思想和时间。你可以运用这两件礼物去做你愿意做的事情。每一美元钞票到了你的手中，你，且只有你，才有权决定自己的前途。愚蠢地用掉它，你就选择了贫困；把钱用在负债项上，你就会成为中产阶级；投资于你的头脑，学习如何获取资产，富有将成为你的目标和你的未来。选择只能由你作出。每一天，面对每一美元，你都在作出自己是成为一个富人、穷人还是中产阶级的抉择。</p>
+<h4 id="多学点知识也是必须的"><a href="#多学点知识也是必须的" class="headerlink" title="多学点知识也是必须的"></a>多学点知识也是必须的</h4><ul>
+<li>A: 如果想要创业最好了解以下四方面知识<ul>
+<li>会计</li>
+<li>投资</li>
+<li>了解市场</li>
+<li>法律</li>
+</ul>
+</li>
+<li>B: 花些时间提高你的财商</li>
+<li>C: 成功必要的管理素质：<ul>
+<li>对现金流的管理</li>
+<li>对系统的管理（包括对家人、时间及家庭的管理）</li>
+<li>对人员的管理</li>
+</ul>
+</li>
+<li>D: 创造事业必备的能力<ul>
+<li>现金流量管理</li>
+<li>人事管理</li>
+<li>个人时间管理<h4 id="摆脱穷人观念"><a href="#摆脱穷人观念" class="headerlink" title="摆脱穷人观念"></a>摆脱穷人观念</h4>在一件奢侈品面前，不要时刻总想着，我买不起，而是要想“我如何才能拥有它”戒掉“买不起”的口头语。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;富人之所以越来越富，穷人之所以越来越穷，中产阶级之所以总是在债务的泥潭中挣扎，其中一个主要原因就是，他们对金钱的认识不是来自学校，而是来自家庭。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="阅读" scheme="mulua6.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>输出2016年7月</title>
+    <link href="mulua6.github.io/2016/07/02/%E8%BE%93%E5%87%BA2016%E5%B9%B47%E6%9C%88/"/>
+    <id>mulua6.github.io/2016/07/02/输出2016年7月/</id>
+    <published>2016-07-02T22:44:00.000Z</published>
+    <updated>2016-07-30T03:41:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前哨-会飞的汽车-王煜全（2016-6-29）"><a href="#前哨-会飞的汽车-王煜全（2016-6-29）" class="headerlink" title="前哨 会飞的汽车 王煜全（2016/6/29）"></a><strong>前哨 会飞的汽车 王煜全（2016/6/29）</strong></h3><p>不要害怕我们前面人生的路上出现一堵墙，似乎无法逾越，其实墙只是考验我们决心的工具。<br><a id="more"></a></p>
+<h3 id="在有些行业，人们更相信个人品牌-李翔商业内参-2016-7-1"><a href="#在有些行业，人们更相信个人品牌-李翔商业内参-2016-7-1" class="headerlink" title="在有些行业，人们更相信个人品牌 李翔商业内参(2016/7/1)"></a><strong>在有些行业，人们更相信个人品牌 李翔商业内参(2016/7/1)</strong></h3><ul>
+<li>资源正在从机构转移到个体身上是一个大确实。</li>
+<li>规范的工作习惯有助于创造力的发挥和养成。</li>
+<li>我们需要的不仅仅是只能的机器，而是可理解的机器；不是人工智能，而是共生智能。</li>
+<li>人工智能技术是要能够理解人类，而人类也必须能够理解机器</li>
+<li>VR领域的机会 <ol>
+<li>硬件平台的机会</li>
+<li>内容娱乐的机会</li>
+<li>垂直业务的机会</li>
+</ol>
+</li>
+</ul>
+<h3 id="谨慎的企业家和冒险的企业家"><a href="#谨慎的企业家和冒险的企业家" class="headerlink" title="谨慎的企业家和冒险的企业家 "></a><strong>谨慎的企业家和冒险的企业家 </strong></h3><ul>
+<li>企业的危机本质是债务危机 </li>
+</ul>
+<p>&emsp;&emsp;公司愿意承担大量的债务，本质是想用金钱换时间或者空间，迅速做大规模，但危险就在于紧绷的资金链</p>
+<ul>
+<li><p>未来的两大趋势：云化和生态化  </p>
+<p>&emsp;云其实也是一种分享经济，想交通出行，房屋以及快递等领域，是把我们社会中的服务能力共享出来，分享出去。<br>&emsp;生产力的云化，就是把每一个企业，每一个人拥有的生产力放到云端，给需要这个能力的人共享。<br>&emsp;另外就是社会化分工的精细化给个企业不可能是万能的，每个企业都在自己最擅长的领域，然后进行上下游合作。</p>
+</li>
+<li><p>沟通越多，沟通越困难</p>
+<p>&emsp;创业公司里，注意力是一种稀缺资源，不如用开会的时间去做点别的事情。<br>&emsp;一个好的回忆的三个标准：</p>
+<pre><code>1. 需要有人负债
+2.    需要有明确的主题和讨论主题的底线
+3. 需要有讨论的结果
+</code></pre><p>&emsp;最重要的结论不要等着开会时再做</p>
+</li>
+<li><p>相比做错的事情，人们更会为没有做的是后悔</p>
+</li>
+</ul>
+<p>&emsp;做错事带来的懊恼会随着时间淡忘，而没有做一件事的后悔会随着时间增强，因为人们在潜意识里倾向于强化自己的能力。 </p>
+<ul>
+<li>照亮我们的光芒取决于我们选择的阅读内容以及阅读方式 </li>
+</ul>
+<p>&emsp;面对科技的进步，始终有人嫉妒悲观，有人嫉妒乐观，但其实乐观悲观都没有用，科技会训话人让人最终适应科技。</p>
+<p>&emsp;我们的记忆力肯定不如印刷谁出现以前，但是我们能看到更多的东西。 </p>
+<h3 id="传统公司的诺基亚化阴影-李翔商业内参-2016-7-8"><a href="#传统公司的诺基亚化阴影-李翔商业内参-2016-7-8" class="headerlink" title="传统公司的诺基亚化阴影 李翔商业内参(2016/7/8) "></a><strong>传统公司的诺基亚化阴影 李翔商业内参(2016/7/8) </strong></h3><ul>
+<li>人们更愿意同合作成本低的人一起工作</li>
+<li><p>汽车巨头，软件巨头，创业公司，谁会赢得”自动驾驶”比赛</p>
+<ul>
+<li>汽车巨头有大量的数据</li>
+<li>软件巨头有算法和数据</li>
+<li>创业公司没有优势</li>
+</ul>
+</li>
+</ul>
+<p>&emsp;创业公司可以瞄准一些更细化精细的领域或者垂直行业来建立自己的数据和算法。比如做某种局部算法的提供商，不做整个系统，整辆车，而是把一个关键的零件做的比别人都好。</p>
+<h3 id="关注有多少回头客，而不在意用户绝对数量的增长"><a href="#关注有多少回头客，而不在意用户绝对数量的增长" class="headerlink" title="关注有多少回头客，而不在意用户绝对数量的增长"></a><strong>关注有多少回头客，而不在意用户绝对数量的增长</strong></h3><p>要想知道产品是否能够与市场需求相匹配，就要考虑PMF（product-Market Fit），你应该关注有多少回头客，而不用太在意用户绝对数量的增长。PMF是指产品能否让目标用户喜欢，让他们感觉到价值远远大于购买所付出的价格，从而增强用户粘性，还能让用户主动去推广。</p>
+<p>去做能让100个人爱上的产品，而不是100人觉得还凑合的产品。</p>
+<p>强调产品本身对特定用户的黏性。对一部分用户超出预期的价值，而不是其实并不关心你的产品的更大的流量</p>
+<p>创业公司打出两记漂流的重拳后，还得具备有竞争力的防御措施，否则后来只就会赢得比赛</p>
+<p>一家公司碰上麻烦的一个标志：对位高管短期内离职</p>
+<h3 id="如何改在传统行业"><a href="#如何改在传统行业" class="headerlink" title="如何改在传统行业"></a><strong>如何改在传统行业</strong></h3><ul>
+<li><p>互联网+应用在传统产业上，最核心的两点：</p>
+<ol>
+<li>用户体验</li>
+<li>用信息技术提升效率</li>
+</ol>
+</li>
+<li><p>一个人最大的失败是别人对你没有信心</p>
+<p>  中国制造过去三十年最大的成就是极大降低了成本，所以能够卖到全世界。最大的失败则是给人留下了质量低劣的印象，而且连中国人自己都这么认为。从这个角度讲，雷军和董明珠追求的目标其实是相同的是重新塑造中国制造的形 象，价格不高，但质量也可以 很高</p>
+</li>
+<li><p>train the trainer 从关键问题入手，可以起到事半功倍的效果</p>
+<p>马云认为校长没有经过训练，缺乏领导力和管理学校的方法，是乡村教师离职和乡村教育落后的一个重要原 因，”等他自己摸出一条路，聪明 一点5年,不聪明一点，15年还没摸出来，这个学校就烂掉了。”他说，”我们觉得train the trainer很重要.</p>
+</li>
+<li><p>并购后遗症：要么失控, 要么控制过度</p>
+<p>以”买买买”的方式拓展国际业务会有后遗症，”很难管控这个公司的管理部分，尤其是它的内容产出环节。你在管理方面的话语权最终只会产生两种情况：要么你失控，要么你控制过度”</p>
+</li>
+<li><p>初创企业难以掌握短期收 益与长期投资之间的平衡</p>
+<p>初创企业和巨头们在科技领 域的投资，让科技创新的门槛被不 断推高。但对初创企业来说，很难 掌握短期收益与长期投资之间的平 衡，因此，寻找买家才是最可靠的 解决方案</p>
+<p>Facebook、Google这样的大公司已经把人工智能方面的人才的价格提升到让人吃惊的水准。这让小公司很难在这些领域具备竞争力。这方面他是悲观者。不过他忽略了两方面，第一是风险资本的支持让创业公司没有大家想得那么穷；第二是大公司本身也有很多问题。</p>
+</li>
+<li><p>自己和自己斗争的状态</p>
+<p>在现实生活中，很多时候都可能妥协，可在运动场上，你一旦妥协，就意 味着放弃。”所以你明知道自己运动状态不好，明知道臝不了对手，可是仍然不能一上场就弃权或者消极比赛。”    –李娜</p>
+<h3 id="密度效应和规模效应-李翔商业内参-2016-7-13"><a href="#密度效应和规模效应-李翔商业内参-2016-7-13" class="headerlink" title="密度效应和规模效应  李翔商业内参(2016/7/13)"></a><strong>密度效应和规模效应  李翔商业内参(2016/7/13)</strong></h3></li>
+</ul>
+<h5 id="规模效应分为三级："><a href="#规模效应分为三级：" class="headerlink" title="规模效应分为三级："></a>规模效应分为三级：</h5><ol>
+<li>第一级三平方公里规模效应</li>
+<li>第二级是同城规模效应</li>
+<li>第三级是全国规模效应</li>
+</ol>
+<p>第一级是三平方公里规 模效应，比如外卖送面条，超出三公里要不就 凉了，要不面糊在一起没有了口感。第二级是同城规模效应，像租房子，北京规模做得很 大，对上海市场一点影响没有。第三级是全国规模效应，比如淘宝和京东的电子商务。</p>
+<h5 id="与规模效应相对的是密度效应。"><a href="#与规模效应相对的是密度效应。" class="headerlink" title="与规模效应相对的是密度效应。"></a>与规模效应相对的是密度效应。</h5><p>“把物流成本和广告成本压缩到一笔交易里尽可能低的比 例。然后做密度。一个快递在一栋楼里送10碗面，你给他两块钱一单他就干。但你让他整个浦东送10碗面，必须给他8块。因为他一个中午只能送那么几单。这就是密度效应。</p>
+<p>一个相对成熟的市场上，如果你提供的 服务和产品，只是比对手好一点，那对 用户而言其实是无感的。</p>
+<h5 id="人们变得更相信朋友圈而不是专家"><a href="#人们变得更相信朋友圈而不是专家" class="headerlink" title="人们变得更相信朋友圈而不是专家"></a>人们变得更相信朋友圈而不是专家</h5><p>我们正在脱离垂直信任体系（在这个体系里我们会信任那些 看起来比自己权威的人），转向水平信任体系 (在这个体系里我们听取同类人的建议）。</p>
+<p>其实是两个趋势的同时发生，一个趋势 是因为种种原因，权威在朋塌；另一个 趋势是，移动互联网放大了社交网络中 存在的信任。</p>
+<h5 id="自控力是—种有限的、会被损耗的资源"><a href="#自控力是—种有限的、会被损耗的资源" class="headerlink" title="自控力是—种有限的、会被损耗的资源"></a>自控力是—种有限的、会被损耗的资源</h5><p>自控力是一种有限的、会被损耗的资源。”我们一边对抗诱惑，一边损耗着自控力，连续拒绝了几个诱惑之后，我们的自控能力就会显著下降”，但不同的人，损耗自控力的速度不同。”那些被自己内在目标和需求驱动的人，比较不容易损耗自控力”。</p>
+<h3 id="理财七步"><a href="#理财七步" class="headerlink" title="理财七步"></a>理财七步</h3><h5 id="资产分配的四部分："><a href="#资产分配的四部分：" class="headerlink" title="资产分配的四部分："></a>资产分配的四部分：</h5><ul>
+<li>现金–现金流规划</li>
+<li>保险–家庭保障规划</li>
+<li>消费–消费及短期投资规划</li>
+<li>理财–长期理财规划</li>
+</ul>
+<h5 id="定投的经验"><a href="#定投的经验" class="headerlink" title="定投的经验"></a>定投的经验</h5><p>坚持定期定额<br>坚持止盈不止损策略</p>
+<p>七部定投操作</p>
+<ol>
+<li>全面统计财务状况</li>
+<li>完成风险偏好测试</li>
+<li>做好资产配置方案</li>
+<li>确定存量资金定投标的周期以及节奏</li>
+<li>坚持定期不定额，止盈不止损的定投策略</li>
+<li>完成存量资金定投布局后，进行投资动态再平衡，并开始增量资金的长期定投布局</li>
+<li>每年对财务状况进行统计，不断对进行投资动态再平衡</li>
+</ol>
+<h3 id="为什么80-的财富聚集在20-人-的手中？-幂律揭示生活规律"><a href="#为什么80-的财富聚集在20-人-的手中？-幂律揭示生活规律" class="headerlink" title="为什么80%的财富聚集在20%人 的手中？ -幂律揭示生活规律"></a><strong>为什么80%的财富聚集在20%人 的手中？</strong> -幂律揭示生活规律</h3><p>泊松分布的形状类似倒扣的钟，是离散数 据的一种分布类型。对应泊松分布的连续类型 叫正态分布，当泊松分布的样本超过15个以 后可以用正态分布的计算方法对泊松分布进行 估值。</p>
+<p>幂律分布的图形<br>title: 输出2016年7月<br>date: Jul 2, 2016 10:44 PM<br>categories:<br>tags:</p>
+<h2 id="original-true"><a href="#original-true" class="headerlink" title="original: true"></a>original: true</h2><h3 id="前哨-会飞的汽车-王煜全（2016-6-29）-1"><a href="#前哨-会飞的汽车-王煜全（2016-6-29）-1" class="headerlink" title="前哨 会飞的汽车 王煜全（2016/6/29）"></a><strong>前哨 会飞的汽车 王煜全（2016/6/29）</strong></h3><p>不要害怕我们前面人生的路上出现一堵墙，似乎无法逾越，其实墙只是考验我们决心的工具。<br><!-- more --></p>
+<h3 id="在有些行业，人们更相信个人品牌-李翔商业内参-2016-7-1-1"><a href="#在有些行业，人们更相信个人品牌-李翔商业内参-2016-7-1-1" class="headerlink" title="在有些行业，人们更相信个人品牌 李翔商业内参(2016/7/1)"></a><strong>在有些行业，人们更相信个人品牌 李翔商业内参(2016/7/1)</strong></h3><ul>
+<li>资源正在从机构转移到个体身上是一个大确实。</li>
+<li>规范的工作习惯有助于创造力的发挥和养成。</li>
+<li>我们需要的不仅仅是只能的机器，而是可理解的机器；不是人工智能，而是共生智能。</li>
+<li>人工智能技术是要能够理解人类，而人类也必须能够理解机器</li>
+<li>VR领域的机会 <ol>
+<li>硬件平台的机会</li>
+<li>内容娱乐的机会</li>
+<li>垂直业务的机会</li>
+</ol>
+</li>
+</ul>
+<h3 id="谨慎的企业家和冒险的企业家-1"><a href="#谨慎的企业家和冒险的企业家-1" class="headerlink" title="谨慎的企业家和冒险的企业家 "></a><strong>谨慎的企业家和冒险的企业家 </strong></h3><ul>
+<li>企业的危机本质是债务危机 </li>
+</ul>
+<p>&emsp;&emsp;公司愿意承担大量的债务，本质是想用金钱换时间或者空间，迅速做大规模，但危险就在于紧绷的资金链</p>
+<ul>
+<li><p>未来的两大趋势：云化和生态化  </p>
+<p>&emsp;云其实也是一种分享经济，想交通出行，房屋以及快递等领域，是把我们社会中的服务能力共享出来，分享出去。<br>&emsp;生产力的云化，就是把每一个企业，每一个人拥有的生产力放到云端，给需要这个能力的人共享。<br>&emsp;另外就是社会化分工的精细化给个企业不可能是万能的，每个企业都在自己最擅长的领域，然后进行上下游合作。</p>
+</li>
+<li><p>沟通越多，沟通越困难</p>
+<p>&emsp;创业公司里，注意力是一种稀缺资源，不如用开会的时间去做点别的事情。<br>&emsp;一个好的回忆的三个标准：</p>
+<pre><code>1. 需要有人负债
+2.    需要有明确的主题和讨论主题的底线
+3. 需要有讨论的结果
+</code></pre><p>&emsp;最重要的结论不要等着开会时再做</p>
+</li>
+<li><p>相比做错的事情，人们更会为没有做的是后悔</p>
+</li>
+</ul>
+<p>&emsp;做错事带来的懊恼会随着时间淡忘，而没有做一件事的后悔会随着时间增强，因为人们在潜意识里倾向于强化自己的能力。 </p>
+<ul>
+<li>照亮我们的光芒取决于我们选择的阅读内容以及阅读方式 </li>
+</ul>
+<p>&emsp;面对科技的进步，始终有人嫉妒悲观，有人嫉妒乐观，但其实乐观悲观都没有用，科技会训话人让人最终适应科技。</p>
+<p>&emsp;我们的记忆力肯定不如印刷谁出现以前，但是我们能看到更多的东西。 </p>
+<h3 id="传统公司的诺基亚化阴影-李翔商业内参-2016-7-8-1"><a href="#传统公司的诺基亚化阴影-李翔商业内参-2016-7-8-1" class="headerlink" title="传统公司的诺基亚化阴影 李翔商业内参(2016/7/8) "></a><strong>传统公司的诺基亚化阴影 李翔商业内参(2016/7/8) </strong></h3><ul>
+<li>人们更愿意同合作成本低的人一起工作</li>
+<li><p>汽车巨头，软件巨头，创业公司，谁会赢得”自动驾驶”比赛</p>
+<ul>
+<li>汽车巨头有大量的数据</li>
+<li>软件巨头有算法和数据</li>
+<li>创业公司没有优势</li>
+</ul>
+</li>
+</ul>
+<p>&emsp;创业公司可以瞄准一些更细化精细的领域或者垂直行业来建立自己的数据和算法。比如做某种局部算法的提供商，不做整个系统，整辆车，而是把一个关键的零件做的比别人都好。</p>
+<h3 id="关注有多少回头客，而不在意用户绝对数量的增长-1"><a href="#关注有多少回头客，而不在意用户绝对数量的增长-1" class="headerlink" title="关注有多少回头客，而不在意用户绝对数量的增长"></a><strong>关注有多少回头客，而不在意用户绝对数量的增长</strong></h3><p>要想知道产品是否能够与市场需求相匹配，就要考虑PMF（product-Market Fit），你应该关注有多少回头客，而不用太在意用户绝对数量的增长。PMF是指产品能否让目标用户喜欢，让他们感觉到价值远远大于购买所付出的价格，从而增强用户粘性，还能让用户主动去推广。</p>
+<p>去做能让100个人爱上的产品，而不是100人觉得还凑合的产品。</p>
+<p>强调产品本身对特定用户的黏性。对一部分用户超出预期的价值，而不是其实并不关心你的产品的更大的流量</p>
+<p>创业公司打出两记漂流的重拳后，还得具备有竞争力的防御措施，否则后来只就会赢得比赛</p>
+<p>一家公司碰上麻烦的一个标志：对位高管短期内离职</p>
+<h3 id="如何改在传统行业-1"><a href="#如何改在传统行业-1" class="headerlink" title="如何改在传统行业"></a><strong>如何改在传统行业</strong></h3><ul>
+<li><p>互联网+应用在传统产业上，最核心的两点：</p>
+<ol>
+<li>用户体验</li>
+<li>用信息技术提升效率</li>
+</ol>
+</li>
+<li><p>一个人最大的失败是别人对你没有信心</p>
+<p>  中国制造过去三十年最大的成就是极大降低了成本，所以能够卖到全世界。最大的失败则是给人留下了质量低劣的印象，而且连中国人自己都这么认为。从这个角度讲，雷军和董明珠追求的目标其实是相同的是重新塑造中国制造的形 象，价格不高，但质量也可以 很高</p>
+</li>
+<li><p>train the trainer 从关键问题入手，可以起到事半功倍的效果</p>
+<p>马云认为校长没有经过训练，缺乏领导力和管理学校的方法，是乡村教师离职和乡村教育落后的一个重要原 因，”等他自己摸出一条路，聪明 一点5年,不聪明一点，15年还没摸出来，这个学校就烂掉了。”他说，”我们觉得train the trainer很重要.</p>
+</li>
+<li><p>并购后遗症：要么失控, 要么控制过度</p>
+<p>以”买买买”的方式拓展国际业务会有后遗症，”很难管控这个公司的管理部分，尤其是它的内容产出环节。你在管理方面的话语权最终只会产生两种情况：要么你失控，要么你控制过度”</p>
+</li>
+<li><p>初创企业难以掌握短期收 益与长期投资之间的平衡</p>
+<p>初创企业和巨头们在科技领 域的投资，让科技创新的门槛被不 断推高。但对初创企业来说，很难 掌握短期收益与长期投资之间的平 衡，因此，寻找买家才是最可靠的 解决方案</p>
+<p>Facebook、Google这样的大公司已经把人工智能方面的人才的价格提升到让人吃惊的水准。这让小公司很难在这些领域具备竞争力。这方面他是悲观者。不过他忽略了两方面，第一是风险资本的支持让创业公司没有大家想得那么穷；第二是大公司本身也有很多问题。</p>
+</li>
+<li><p>自己和自己斗争的状态</p>
+<p>在现实生活中，很多时候都可能妥协，可在运动场上，你一旦妥协，就意 味着放弃。”所以你明知道自己运动状态不好，明知道臝不了对手，可是仍然不能一上场就弃权或者消极比赛。”    –李娜</p>
+<h3 id="密度效应和规模效应-李翔商业内参-2016-7-13-1"><a href="#密度效应和规模效应-李翔商业内参-2016-7-13-1" class="headerlink" title="密度效应和规模效应  李翔商业内参(2016/7/13)"></a><strong>密度效应和规模效应  李翔商业内参(2016/7/13)</strong></h3></li>
+</ul>
+<h5 id="规模效应分为三级：-1"><a href="#规模效应分为三级：-1" class="headerlink" title="规模效应分为三级："></a>规模效应分为三级：</h5><ol>
+<li>第一级三平方公里规模效应</li>
+<li>第二级是同城规模效应</li>
+<li>第三级是全国规模效应</li>
+</ol>
+<p>第一级是三平方公里规 模效应，比如外卖送面条，超出三公里要不就 凉了，要不面糊在一起没有了口感。第二级是同城规模效应，像租房子，北京规模做得很 大，对上海市场一点影响没有。第三级是全国规模效应，比如淘宝和京东的电子商务。</p>
+<h5 id="与规模效应相对的是密度效应。-1"><a href="#与规模效应相对的是密度效应。-1" class="headerlink" title="与规模效应相对的是密度效应。"></a>与规模效应相对的是密度效应。</h5><p>“把物流成本和广告成本压缩到一笔交易里尽可能低的比 例。然后做密度。一个快递在一栋楼里送10碗面，你给他两块钱一单他就干。但你让他整个浦东送10碗面，必须给他8块。因为他一个中午只能送那么几单。这就是密度效应。</p>
+<p>一个相对成熟的市场上，如果你提供的 服务和产品，只是比对手好一点，那对 用户而言其实是无感的。</p>
+<h5 id="人们变得更相信朋友圈而不是专家-1"><a href="#人们变得更相信朋友圈而不是专家-1" class="headerlink" title="人们变得更相信朋友圈而不是专家"></a>人们变得更相信朋友圈而不是专家</h5><p>我们正在脱离垂直信任体系（在这个体系里我们会信任那些 看起来比自己权威的人），转向水平信任体系 (在这个体系里我们听取同类人的建议）。</p>
+<p>其实是两个趋势的同时发生，一个趋势 是因为种种原因，权威在朋塌；另一个 趋势是，移动互联网放大了社交网络中 存在的信任。</p>
+<h5 id="自控力是—种有限的、会被损耗的资源-1"><a href="#自控力是—种有限的、会被损耗的资源-1" class="headerlink" title="自控力是—种有限的、会被损耗的资源"></a>自控力是—种有限的、会被损耗的资源</h5><p>自控力是一种有限的、会被损耗的资源。”我们一边对抗诱惑，一边损耗着自控力，连续拒绝了几个诱惑之后，我们的自控能力就会显著下降”，但不同的人，损耗自控力的速度不同。”那些被自己内在目标和需求驱动的人，比较不容易损耗自控力”。</p>
+<h3 id="理财七步-1"><a href="#理财七步-1" class="headerlink" title="理财七步"></a>理财七步</h3><h5 id="资产分配的四部分：-1"><a href="#资产分配的四部分：-1" class="headerlink" title="资产分配的四部分："></a>资产分配的四部分：</h5><ul>
+<li>现金–现金流规划</li>
+<li>保险–家庭保障规划</li>
+<li>消费–消费及短期投资规划</li>
+<li>理财–长期理财规划</li>
+</ul>
+<h5 id="定投的经验-1"><a href="#定投的经验-1" class="headerlink" title="定投的经验"></a>定投的经验</h5><p>坚持定期定额<br>坚持止盈不止损策略</p>
+<p>七部定投操作</p>
+<ol>
+<li>全面统计财务状况</li>
+<li>完成风险偏好测试</li>
+<li>做好资产配置方案</li>
+<li>确定存量资金定投标的周期以及节奏</li>
+<li>坚持定期不定额，止盈不止损的定投策略</li>
+<li>完成存量资金定投布局后，进行投资动态再平衡，并开始增量资金的长期定投布局</li>
+<li>每年对财务状况进行统计，不断对进行投资动态再平衡</li>
+</ol>
+<h3 id="为什么80-的财富聚集在20-人-的手中？-卓老板聊科技7-19"><a href="#为什么80-的财富聚集在20-人-的手中？-卓老板聊科技7-19" class="headerlink" title="为什么80%的财富聚集在20%人 的手中？ 卓老板聊科技7.19"></a><strong>为什么80%的财富聚集在20%人 的手中？</strong> 卓老板聊科技7.19</h3><p>–幂律揭示生活规律</p>
+<p>泊松分布的形状类似倒扣的钟，是离散数 据的一种分布类型。对应泊松分布的连续类型 叫正态分布，当泊松分布的样本超过15个以 后可以用正态分布的计算方法对泊松分布进行 估值。</p>
+<p>幂律分布的图形<br><img src="http://7xwg0y.com1.z0.glb.clouddn.com/2016-07-20-14690253791801.jpg" alt=""><br>互联网运营用户的关键是持续让人与人之间增加互相影响，而不是做一些非常态化的突</p>
+<p>现在正在凸显的现象：社群化</p>
+<ul>
+<li>罗辑思维社群</li>
+<li>樊登读书社群</li>
+<li>新生大学社群</li>
+<li>大狗熊社群</li>
+<li>卓老板社群</li>
+<li>吴晓波社群</li>
+</ul>
+<p>都是社群成员之间有着或多或少的联系，有着某种组织，才有更大的粘性。</p>
+<p>样本间相互不独立是幂律生成的重要条件</p>
+<p>生活中的泊松分布和幂律分布</p>
+<p>1、    罐头进货，如果按每月平均数进货会经常 造成积压或者不足，因为买金枪鱼罐头这件事 在老小区中并不是完全独立，每个人吃罐头的 概率也不稳定，所以会呈现幂律分布的特征， 而平均数只能反应泊松分布的性质。<br>2、    超市中的盐和糖的需求量满足泊松分布， 因为消耗它们的概率稳定，购买他们的决策几 乎不受外界影响。<br>3、    互联网运营用户的关键是持续让人与人之 间增加互相影响，而不是做一些非常态化的突</p>
+<h4 id="没有总部，而是”联邦’"><a href="#没有总部，而是”联邦’" class="headerlink" title="没有总部，而是”联邦’"></a>没有总部，而是”联邦’</h4><p>网易在中国的互联网公司里以 产品见长，虽然这家公司很少 出现在媒体上，但它的市值已 经超过250亿美元，仅次于 BAT和京东。网易的这种联邦 理念，可能是能够出好产品的 原因。当然了，也会有人指摘 说，这也是网易所有产品缺乏 一个大的统一战略的原因。不 过，至少从结果看，网易是少 有的不受BAT影响且根基稳固 的互联网公司。</p>
+<h4 id="要让用户发现新世界，而-不仅仅是更好地理解旧世界"><a href="#要让用户发现新世界，而-不仅仅是更好地理解旧世界" class="headerlink" title="要让用户发现新世界，而 不仅仅是更好地理解旧世界"></a>要让用户发现新世界，而 不仅仅是更好地理解旧世界</h4><p>A.    开发一款用户熟悉的产品是致命 的错误。在Google工作期间，泰勒 和团队开发出比竞争对手”雅虎黄 页”功能更强大的产品Google Local (网上搜索本地信息），但 从外表看，两者很相似。用户已经 习惯了在雅虎黄页上搜索，而且他 们很难识别哪个产品更 棒。”Google Loca丨的失败证明，在 强大的竞争产品和用户的使用习惯 面前，好产品也是会失败的。竞争 对手定义了产品的形态，你试图去 做差异化竞争，但通常情况下用户 根本发现不了。”<br>B.    用户使用产品时要有一点不适 应，这样他们才会有探索感。 Google Maps与当时市场上的产品 完全不同，这会让用户有一点不 适，但全新的界面鼓励用户去做各 种周边探索。”你必须开发一个能 让用户发现新世界的产品，而不仅 仅是开发一些帮助用户更好地了解 旧世界的功能。”</p>
+<h4 id="关于公司烧钱"><a href="#关于公司烧钱" class="headerlink" title="关于公司烧钱"></a>关于公司烧钱</h4><p>按照刘 强东的说法，”也许20、30亿就有一个覆盖全 国的物流网络”。但因为租不到京东要求的大 的物流中心，京东选择自建，买土地建库房成 为最大的投资，”一年可能上百亿 “但这些本身都是公司的资产，并不是烧掉 了。不是现在互联网公司真正烧掉的，补贴， 我们其实没有。真正烧钱的很少，都变成公司 有价值的资产放在那儿。<br><strong>任何一家公司只要烧 出核心竞争力就能成功，如果烧钱没有建立任 何竞争壁垒，没有核心竞争门槛，钱烧得没有 任何价值和意义</strong></p>
+<h4 id="两类社交产品"><a href="#两类社交产品" class="headerlink" title="两类社交产品"></a>两类社交产品</h4><p>社交产品分为两类：一类是现象级，主流 的、每个人都在用的社交产品；一类是细分领 域的社交产品，比如领英做的职场社交。现象 级社交产品的特点是，起来得非常快，下去得 也非常快。”长远看，一个好的社交产品要能 把线下的关系更好地反映到线上。<br>时髦的做法和实用的做法，这个还是应 该分清楚。此外，沈博阳对现象级和细 分市场的两分法很有启发。细分市场因 为起来得慢，需要深入挖掘行业，反而 更能经得起时间的折腾，不像很多现象 级的产品只是昙花一现。</p>
+<h4 id="即兴发言“12-字方针”"><a href="#即兴发言“12-字方针”" class="headerlink" title="即兴发言“12 字方针”"></a>即兴发言“12 字方针”</h4><ul>
+<li>我发现 XXXXXXX；</li>
+<li>我认为 XXXXXXX；</li>
+<li>我建议 XXXXXXX；</li>
+<li>我相信 XXXXXXX。</li>
+</ul>
+<h4 id="出售时间之前你要牢记的三条铁律"><a href="#出售时间之前你要牢记的三条铁律" class="headerlink" title="出售时间之前你要牢记的三条铁律"></a>出售时间之前你要牢记的三条铁律</h4><p>铁律一：成长才是根本关键</p>
+<p>为了成长，你必须选择<br>选择的标准有一个：我选择的事能不能让我积累更多的能力</p>
+<p>这里有个陷阱：很多人在做选择的时候，考虑的是，在这个选择之后，我过往的能力能否用得上？<br>这还是”终点式思维”，不是”里程碑式思维”。 正是因为这样想了，所以大多数人习得新能力 的可能性越来越低。因为他们不知不觉已被自 己的已有能力禁锢了。<br>真正正确的思考方式应该是：在这个选择之 后，能帮我完善那个已有能力，能让我获得什 么新能力。</p>
+<p>所谓的个人财富自由，指的就是某个人再也用 不着为了满足生活必需而出售自己的时间了。</p>
+<p>财富自由根本不是终点站，那只是一个里程 碑，那之后还有很长的路（名字叫作成长）要走…<br>等你过了那个里程碑之后，卖什么都不卖自己 的时间。</p>
+<p>铁律二：重视价值忽估值</p>
+<p>因为当你在意估值的时候，你就会忘记你的价值，你就会不由自主做那些提高你估值的事， 而不是去想办法提高你的价值。长期来看，估值是虚幻的，虽有波动，却实际上锚定在价值上，价值不增长，长期来看估值一定长不上 去，而且既然有极度高估，那么就不但随时有 低估，还随时会有极度低估。</p>
+<p>铁律三：耐心比什么都重要</p>
+<p>耐心的力量，相当于交易中的复利效应，并且 一定会通过复利效应展现出来。</p>
+<p>做不到当下自己喜欢的那件事，是几乎所有人的常态。越是这种时候越需要耐心，耐心之所 以宝贵也体现于此。宗教里说，在看不见的时 候才要动用信仰。天生相貌平平的人，永远放 弃了自己可以通过自我提升变好看的可能性， 这显然是不明智的。每个人都不是生来就在某 个领域掌握了极好的条件，这不该是你没有耐 心的理由，否则无异于成为被外界条件操控的 傀儡，而你的上限，就只有手里握有的筹码 了。更明智的做法是，用心智的力量去时刻告 诉自己，觉得困难的阶段不过是必经之路– 而这正是耐心的真谛。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前哨-会飞的汽车-王煜全（2016-6-29）&quot;&gt;&lt;a href=&quot;#前哨-会飞的汽车-王煜全（2016-6-29）&quot; class=&quot;headerlink&quot; title=&quot;前哨 会飞的汽车 王煜全（2016/6/29）&quot;&gt;&lt;/a&gt;&lt;strong&gt;前哨 会飞的汽车 王煜全（2016/6/29）&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;不要害怕我们前面人生的路上出现一堵墙，似乎无法逾越，其实墙只是考验我们决心的工具。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>学习能力的进阶</title>
+    <link href="mulua6.github.io/2016/07/02/%E5%AD%A6%E4%B9%A0%E8%83%BD%E5%8A%9B%E7%9A%84%E8%BF%9B%E9%98%B6/"/>
+    <id>mulua6.github.io/2016/07/02/学习能力的进阶/</id>
+    <published>2016-07-02T15:16:00.000Z</published>
+    <updated>2016-07-09T03:14:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>学习能力的进阶，无非三个阶段：</strong></p>
+<ol>
+<li>学会有人手把手教的东西</li>
+<li>学会书本上所教授的技能</li>
+<li>学会没有人能教授的技能<a id="more"></a>
+</li>
+</ol>
+<p>若是在成年之后竟然还有“手把手教”的机会，请珍惜。什么叫珍惜？珍惜的意思是说，在这个过程中，一定要认真观察，认真思考，反复琢磨：</p>
+<ol>
+<li>这个技能点的重点在哪里？</li>
+<li>做好的人为什么能做好？</li>
+<li>做不好的人为什么做不好？</li>
+<li>还有哪些地方可以改进？</li>
+<li>有哪些刻意练习是必不可缺的？</li>
+</ol>
+<p>这世界上有半数的人，即便有人手把手教，也学不会 —— 只因为自己不动脑子……<br>若是无论什么都需要别人手把手教，这辈子进步的可能性有多小……</p>
+<p>这就是为什么你必须想办法进入第二个阶段（学会书本上所教授的技能）才有可能大幅度进步的根本原因。虽然书、教程，也有质量差异，也有胡说八道的，但这就是考验你能力的地方：</p>
+<ol>
+<li>你有没有心思去寻找、阅读大量的相关书籍和教程；</li>
+<li>你有没有能力甄别书籍、教程的质量好坏；</li>
+<li>你有没有能力在实践中运用书本中的知识……</li>
+</ol>
+<p>但若是非要简单说，也不是不行（看读者悟性了，因为真只看字面的话，就好像是谁都会的事儿一样）：</p>
+<p>你不仅能学会没人能手把手教你的东西，甚至能学会连书本中都找不到的东西……</p>
+<ol>
+<li>确定自己有强烈的欲望搞定这个技能；</li>
+<li>寻找最少必要知识，反复问自己：这事儿最关键的地方在哪里？</li>
+<li>马上开始运用、马上开始践行；</li>
+<li>相信自己一定能够学会，相信自己一定会通过践行而进步；</li>
+<li>通过记录，量化自己的刻意练习进程；</li>
+<li>不断总结，不断整理，不断让那些新技能、新概念，在自己的脑子里有清晰的组织与关联；</li>
+<li>绝对不能跟笨蛋斗气，要珍惜自己的时间与生命……</li>
+</ol>
+<p>如果你是个持续学习者，过了三十岁之后会开始经常不好意思的 —— 因为你总是觉得过去的自己实在太笨了…… 偶尔教教亲戚高中数学、物理什么的，就会发现，这么简单的东西，多年前咋就真觉得那么难呢？其实，这是学习能力进步造成的错觉 —— 那个时候，那东西确实就是那么难。</p>
+<p>摘自 李笑来老师的<a href="http://mp.weixin.qq.com/s?__biz=MzAxNzI4MTMwMw==&amp;mid=2651629962&amp;idx=1&amp;sn=b1f4d6a5573d0181a6dfd34944f76e51#rd" target="_blank" rel="external">《给自己一个“开挂”的人生!》</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;学习能力的进阶，无非三个阶段：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;学会有人手把手教的东西&lt;/li&gt;
+&lt;li&gt;学会书本上所教授的技能&lt;/li&gt;
+&lt;li&gt;学会没有人能教授的技能
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Let it go</title>
+    <link href="mulua6.github.io/2016/06/26/Let%20it%20go/"/>
+    <id>mulua6.github.io/2016/06/26/Let it go/</id>
+    <published>2016-06-26T22:27:00.000Z</published>
+    <updated>2016-06-26T14:31:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Let it go, let it go<br>Turn away and slam the door<br>I don’t care<br>what they’re going to say<br>Let the storm rage on.<br>The cold never bothered me anyway<br><a id="more"></a><br>It’s funny how some distance<br>Makes everything seem small<br>And the fears that once controlled me<br>Can’t get to me at all</p>
+<p>It’s time to see what I can do<br>To test the limits and break through<br>No right, no wrong, no rules for me,<br>I’m free!</p>
+<p>Let it go, let it go<br>I am one with the wind and sky<br>Let it go, let it go<br>You’ll never see me cry<br>Here I stand<br>And here I’ll stay<br>Let the storm rage on1</p>
+<p>My power flurries through the air into the ground<br>My soul is spiraling in frozen fractals all around<br>And one thought crystallizes like an icy blast<br>I’m never going back, the past is in the past</p>
+<p>Let it go, let it go<br>And I’ll rise like the break of dawn<br>Let it go, let it go<br>That perfect girl is gone<br>Here I stand<br>In the light of day<br>Let the storm rage on</p>
+<p>The cold never bothered me anyway!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Let it go, let it go&lt;br&gt;Turn away and slam the door&lt;br&gt;I don’t care&lt;br&gt;what they’re going to say&lt;br&gt;Let the storm rage on.&lt;br&gt;The cold never bothered me anyway&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>人人都能用英语</title>
+    <link href="mulua6.github.io/2016/06/26/%E4%BA%BA%E4%BA%BA%E9%83%BD%E8%83%BD%E7%94%A8%E8%8B%B1%E8%AF%AD/"/>
+    <id>mulua6.github.io/2016/06/26/人人都能用英语/</id>
+    <published>2016-06-26T14:43:43.000Z</published>
+    <updated>2016-06-26T14:43:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>朗读能够提高记忆力</li>
+<li>尽管不是每个人都能做到，但，“能”或起码“有可能”这个事实，会改变一切的，至少可以改变一些人的一切。这就好像总是有一小部分人会真正明白：1和99之间的差别再大，也不如0和1之间的差别大。</li>
+<li>一个想法必须足够简单才可能被植入；越是简单的想法，在植入之后越是根深蒂固；因为拥有这个想法的人无法分辨这个想法是自己的还是被植入的……同样的道理，高考词汇大纲就是以这种方式，把那个极为简单的想法悄悄地“植入”到我们的大脑之中，进而使其根深蒂固，影响我们一生……</li>
+<li>很多的时候，人傻是被教出来的。教育这东西，从来都是在失败中发挥作用──所以成功必然是偶然<a id="more"></a></li>
+<li>第一分钟：词汇（Vocabulary） 最好换个角度重新认识词汇。名词是干什么的？名词是用来记录你所能够感知的事物——管它是抽象的还是具体的。形容词是干什么的？你用形容词来记录你对你能够感知的那个事物的感知。动词呢？动词用来记录你能够感知的那个事物所发出的动作。那么最后，副词呢？副词修饰动词的时候，是用来记录你对你能够感知的那个事物所发出之动作的感知；副词用来修饰形容词的时候，是用来记录你对你能够感知的那个事物的感知的感知。（这一分钟的内容看起来比较拗口，只要能做到对这些文字断句准确，理解无误，那么仅在一分钟之后就已经脱胎换骨——你对文字的感知已经大不相同。 第二分钟：语法（Grammar） 你不一定要成为语法学家，但你起码要知道基本规则。这就好像投资股市不一定非要先成为林奇或者巴菲特，享受电影不一定要先成为徐克或者斯皮尔伯格；但起码要学习最基本的游戏规则。中文也好英文也罢，语法书一本就够。了解基本规则之后，就开始动手写字，把语法书当作地图，需要什么就去查什么，查多了就全记住了——就好像一个地方去了好几次之后就再也用不着查地图了一样。千万不要相信那些鬼话，说什么“不用学语法”——人家发疯是人家的事儿，你情愿当傻子相信疯子，那是你的问题。 第三分钟：逻辑（Logic） 逻辑应该是所有生物中人类所特有的得之不易的工具。亚里士多德的三段论是最基础的东西。但是，生活中运用逻辑时所要面对的是“不确定性”、“复杂性”。必然成立的三段论——比如，大前提：人都要死的；小前提：苏格拉底是人；结论：苏格拉底必然会死的——往往没有什么实际意义。生活中要处理的更可能是这样的情形：大前提：政客通常都不可靠；小前提：奥巴马当然是政客；结论是不确定的、分析是复杂的：奥巴马到底有多可靠？追求逻辑上的准确所有的挑战基本上都来自于一个人是否勇于面对“不确定性”与“复杂性”。 第四分钟：文风（Style） 常见的文章起码可以如此二分：文艺类文章与说理类文章。这两类文章很不相同。基本上，文艺类的文章可能更注重修辞、更考究措辞、更华丽更天马行空。然而，说理类文章的根本目的是为了让人看懂，传递信息，积累知识，交流经验；因此说理类文章的文字最好“简洁、朴素、有效、准确、具体”。当然，这不是铁律，如果有能力用华丽的文字说清楚道理也不是不行；反过来，用朴素的语言叙述动人的故事也未尝不可。但是所有希望自己的思考结果能够有效表达的人都最好牢记这十个字的标准——仅仅十个字而已，却已经足够。 第五分钟：修辞（Rhetoric） 修辞的力量不言而喻。所有的修辞之中也许只有“类比”是不可或缺的。类比的本质是“为了说清楚大家不熟悉的X，先去找一个1) 大家都熟悉的2) 与X（至少某一方面）最相似最接近的A，最终做到X对大家来说不言而明”。小学老师说“地球的构造就跟鸡蛋的构造差不多”；中学老师说“原子内部的构造与太阳系的构造如出一辙”；对那些拿一两个“反例”试图反对某一观点的人我们说“随便哪一只破烂钟表都能一天对两次呢”……这些都是类比，类比的力量就在于此：它是我们作为人类从无知跨越到有知必须的桥梁。其它的修辞手段，有空就学，没空就算——大不了更朴素一点没有什么不好。 第六分钟：知识（Knowledge） 字、词、句、语法、风格、修辞等等，都是表达手段。没有米，无论是谁再巧做不出饭吃。“求知”这个词的意味实在是太过理想化，还不如用比较朴素的另外一个说法“做功课”。做好任何事情，都要提前做好功课。写小说也好、写教程也罢，都需要做功课；功课做得多了，知道的就多了，能够用来思考的也多了，这些东西多到一定程度，写出来的东西必然厚重、有质感。肤浅的文字之所以肤浅，一句话：作者没做功课。知识改变命运，只因为一个人获得新的知识之后，他的整个世界都会因此发生变化。相信我，功课无止境。 第七分钟：沟通（Communication） 有效表达只是最基本的层次，有效沟通才是真正的目标。从多个角度出发思考已非易事，从反对自己观点之人的角度出发思考问题难上加难。但如若做不到这一点，就无法做一个好的听众、好的读者。输出取决于输入，是不变的真理；不吃草的话牛是挤不出奶的。沟通不仅仅是为了说服，更多是为了获取反馈。沟通的技巧最重要的只有一个：不要认为自己与自己的观点是一回事儿。做到这点，就很容易看到种种反馈之中的宝贵之处。对做不到这点的人来说，逆耳的不仅仅是忠言，甚至就没有听着顺耳看着顺眼的东西——可怜、可悲。 第八分钟：实践（Practice） 经验需要积累，而积累只能通过实践。所谓“下笔如有神”一看就是不会写文章的人才可能相信的痴心妄想。好的文章从来都不是一蹴而就的，好的文章从来都是改出来的。所谓的“灵感”也更可能在实践中闪现，而不大可能凭空而出。作者写字就好像司机开车一样。司机要积累到一定的驾驶里程，才可能遇到所有可能遇到的安全问题，于是终究有一天经验足够到有可能回避一切危险。作者也一样，写字多到一定程度才可能知道文字的种种属性——不大可能通过某一本写作教程就理解所有文字的属性。不仅要多写，还要为了写好而做更多的功课，这是良性循环的起点。 第九分钟：技巧（Skill） 技巧这东西要等到明白究竟可以在哪里用得上的时候才容易学会。当前这篇“十分钟教程”里所提到的十个方面之中，个个都需要技巧。通过一定的实践，无论是谁也都会自然而然地掌握一些技巧。但有一个方面的技巧是应该最先打磨的——获得知识的技巧：从观察到聆听，从阅读到反刍，从读书到笔记，从使用图书馆到使用搜索引擎，一切获得知识的手段需要技巧，并且还需要不停地打磨这些基本技巧。其次是逻辑思考的技巧，再次之是沟通的技巧。这三项是应该排在其他技巧之前，因为打磨任何一项技巧都需要时间，时间有限的情况下，只能划分轻重而为之。 第十分钟：修正（Rectification） 没有人从一开始就能做到完美。正如一篇好文章是要反复修改才能成为好文章一样，一个作者也要反复修正自己才能成为好作者。几乎一切都需要修正，并且需要反复修正——只要时间允许。前一分钟说每一项技巧都需要打磨，这一分钟要说的是连技巧都要反复修正。甚至，还有些时候要把一切都完全推翻从头再来，这需要的不仅是勇气，还需要耐心与智慧。让自己的心智保持开放，知易行难的原因在于其中蕴含着痛苦——打破牙齿和血吞（曾国藩语）的痛苦。</li>
+<li>Beyond Feelings: A Guide to Critical Thinking，作者是Vincent Ruggiero，此书于2007年发行第八版。</li>
+<li>“The brick walls are there for a reason. They’re not there to keep us out. The brick walls are there to give us a chance to show how badly we want something…”——</li>
+<li>挣扎着搞清楚每一句话的确切含义。运用一切可以运用的手段——查词典，查语法书，甚至去查Google。“自己动手”比“花钱让别人替自己干活”（比如，报班上课听讲）在这方面不知道要有效多少倍。 理解每句话之间、每个段落之间的关系。处理段落还有另外一个任务——概括。 整理词汇。要知道，读完一篇文章之后，自己动手整理词汇，远比背单词书效率高出许多——可惜，大多数人并不相信。 反复阅读若干遍。读着读着就可能发现很多第一次读并没有注意到的东西。 复述文章。能够书面或者口头复述刚刚读过的文章，实际上需要很多综合能力：记忆力、逻辑能力、转述能力、重新组织能力、再理解能力等等。 养成相隔若干天后复习的习惯。</li>
+<li>逐页浏览； 仔细阅读每一个例句（而那些语法概念能不能完全理解，能不能一次就记住倒在其次）； 判断这个例句的英文表达与中文表达是否相当地“非一一对应”？如果是，则做出标记（要是有“呀，让我用英语表达这个意思，可能说出来的就不是这样了！”的念头的话，就应该做标记了）； 积累到一定数量，就把这类句子摘录出来，做成替换练习模板，反复造句并朗读，直至熟练； 继续浏览； 通读一遍之后，如此这般再反复几次……</li>
+<li>仔细阅读每一个例句（而那些语法概</li>
+<li>把这个于我来讲“非一一对应”的句子做个标记； 把它摘抄到笔记本上； 再想想这个句子能否当作替换练习模板——即，看看我能不能把这个句子变成这样一个“填空”句型：</li>
+<li>有这么一个句子我曾印象深刻：“The impact that technologies have had on our daily life and society in general, is undeniable.”</li>
+<li>而是“Excuse me, is this seat taken?”；“如果我没有记错的话……”不是“If I didn’t remember wrong, …”，而可能是“If my memory serves, …”</li>
+<li>新编英语阅读手册》</li>
+<li>当然，我见过最多的，也最可悲的是那些人—— 他们永远不相信自己所有的问题就出在自己从来都不肯耐心把最基础的东西弄清楚弄明白。</li>
+<li>《剑桥中级英语语法》</li>
+<li>语法书</li>
+<li>应该给自己买一本以上的语法书 6.1 《朗文英语语法》和《朗文高级英语语法参考及练习》</li>
+<li>绝大多数人水平不高的原因并非是用的工具不好，而是不会用工具，甚至干脆只拥有工具而从不使用工具。</li>
+<li>遇到弄不明白“爱情”与“婚姻”不是一回事儿的异性，最好敬而远之，否则痛苦的一生“就在不远处等着你”…… 遇到搞不清“政府”与“国家”之间区别的人，轻易不要与之沟通，否则你可能会因此发现麻烦不断祸患无穷…… 不知道“目标”与“计划”并非一回事的人，并不知道他们自己可能会因为“死守计划”（Stick to the plan）而最终无法达成目标…… 没搞清楚“科学”与“科普”与“科普作者”之间相去甚远的人们会骂来骂去——手段比泼妇还不科学…… 不知道“上学”和“学习”不是一回事儿的人，其中一些可能会因为自己有博士学位就瞧不起中专毕业的人；反过来，另外一些可能会因为自己只有中专文凭而憎恨那些有博士学位的人…… 不知道“一个人”和“一个人的看法”之间的区别的人，要么可能迷信权威，要么可能把自己当作绝对权威…… 不知道“Action”和“Reaction”之间的差异的人，弄不好一辈子都是周遭环境的奴隶而已却又完全处于无意识状态…… 很多学生讨厌历史课，其实只不过是没弄明白“历史”与“历史书”之间的重要差异……</li>
+<li>“every disease and condition”相当于说“不管大病小病”。</li>
+<li>你们要尽快摆脱对老师的依赖”的重要原因，你必须做你自己的“明师”，否则就做一辈子蝾螈吧——弄不好下辈子还是，因为尽管智商并不一定遗传，但习惯几乎必然会被下一代继承。对于人来讲，</li>
+<li>朗读训练会提高一个人的表达能力，无论是说还是写。大量的朗读会使你不知不觉记住大量的表达法。</li>
+<li>朗读训练会提高一个人的语言文字模式识别能力</li>
+<li>：记住的东西越多，记得住的东西就越多。一个人记忆力的发展空间取决于他现有的记忆力。而理解力也是如此，已经理解的东西越多，能够进一步理解的东西就越多，一个人的理解力的发展空间同样取决于他现有的理解力。</li>
+<li>每个元音长短都要恰当 语流中的强读弱读词汇要分清 在合适的位置要停顿 声调模式恰当 位于意群之首的重音音节带有相对更高的音调 有了这样的把握，再加上对这个系列文章中所详细讲解的各个重点音素（辅音/t/、/d/、/s/、/l/、/θ/、/ð/、/v/，以及/ʒ/；元音/ʌ/、/æ/，以及各个双元音）的深入理解，重塑自己的语音，已经具备足够条件。做自己的明师，也没那么难。</li>
+<li>总结一下/t/ /t/是所有英语音素当中学生最需要时间精力去学习、老师最应该耐心解释说明的一个。 英文/t/的舌尖起始位置与中文[t]不同，英文/t/的舌尖起始位置在牙龈上； /t/如果被夹在两个元音之间（且之前的元音所在的音节是重音音节的话），那么要轻微浊化； /t/在后面接着一个辅音的情况下，往往会产生所谓的失爆现象；/d/也是如此； 如果后面接的辅音是/s/，那么便要演化出/ts/的音；而/d/则演化出/dz/的音； /d/在/p/和/sh/之后会被读成/t/； /t + j/可能会变成/ʧ/；而/d + j/可能会变成/ʤ/（这就是所谓的同化现象）。</li>
+<li>Community service is an important component of education here at our university. We encourage all students to volunteer for at least one community activity before they graduate. …</li>
+<li>很多英文单词是多音节的。一个英文单词如果由多个音节构成，那么其中至少有一个音节是重音；</li>
+<li>常见的音节结构有以下几种（以下单词都是单音节单词）： 元音：a /eɪ/, eye /aɪ/ 辅音+元音：tea /tiː/, bay /beɪ/ 辅音+辅音+元音：fly /flaɪ/, sky /skaɪ/ 元音+辅音：ebb /eb/, odd /ɔd/ 辅音+元音+辅音：beep /biːp/, big /bɪg/ 元音+辅音+辅音：east /iːst/，axe /æks/ 辅音+辅音+元音+辅音：stop /stɔp/, bleed /bliːd/ 辅音+元音+辅音+辅音：last /læst/, lapse /læps/ 辅音+辅音+元音+辅音+辅音：blast /blæst/, frost /frɔːst/ 而多音节单词，就用以上的模式去套，看看能够划分出多少个合乎以上模式的音节出来——辅助原则很简单：多音节的单词，除了最后一个音节之外，基本上是以上9种之中的前5种居多。</li>
+<li>一个音节必须有、且只有一个元音。</li>
+<li>学习英式发音及其音标，可以用牛津大学出版社香港中文站的Flash教程《Guide to English Phonetc Symbols》 学习美式发音及其音标，可以使用爱荷华大学的美国音标在线学习程序《 Phonetics: The Sound of American English》</li>
+<li>Kuhl教授的研究结果启发我们，其实英语幼教是可以不花钱的：父母不会说英语没关系，只要在孩子活动的环境里不停地播放各种英语语音（童谣、小说、电视剧等等），并长期持续。只要这么做，小孩子根本就不需要上什么培训班，到小学入学的时候，孩子的“双语语音过滤器”早就应该固化了。事实上，我很怀疑各种英语幼教占用了太多原本可以用来习得其它技能的时间，进而限制了幼儿大脑的发展。不过，不能指望只听听录音看看电视，孩子就可以学会外语——刚刚已经说过，语音学习和语言学习是两回事儿。语言学习还需要很多其它方面的刺激和努力。对于成年人来说也一样，大幅度提高听觉输入量是为了迅速重建自己的语音过滤器。在此之后，想要获得进步，“听得懂”就非常重要了。因为只有听得懂才可以注意力集中，而注意力集中是一切学习的根本前提。</li>
+<li>真的不要意来自他人的嘲弄。如果犯了错，改了就好。如果改不了，只要没有伤害他人就好</li>
+<li>日常生活中，一个人只要多少有点基础就可以分辨出别人的外语发音好不好，无论自己的发音怎么样。有趣的是，大部分的嘲弄恰恰来自于这种“宽于律己、严于律人”的感受而已，本质上来看毫无价值，即便是发出嘲弄的人获得的也只不过是虚假的幻觉而已。</li>
+<li>但“不好”的这个状态从未成为我使用英语的障碍或者负担。外语用得不好是正常的——无论对谁来讲都是如此。但用的不好并不意味着说“不能用”或者“不该用”。换个角度来说，恰恰是因为用得不好才应该多用勤用。多用一点就比原来用得更好一点——这其实就是所有工具的特点。</li>
+<li>有几本书，建议所有想获得正确思考能力，进而表达清晰的人阅读。 Thought and Knowledge: An Introduction to Critical Thinking 4th edition, by Diane F. Halpern Thinking and Deciding, 4th edition, by Jonathan Baron Argumentation: The Study of Effective Reasoning by Zarefsky David (Audiobook) Craft of Research, by Wayne C. Booth, Gregory G. Colomb, Joseph M. Williams Good Reasoning Matters!: A Constructive Approach to Critical Thinking 3rd edition, by Leo A. Groarke, Christopher W. Tindale 另外，还有三本关于文风（Style）的书籍也一定要看： A Plain English Handbook (1998), from Security and Exchange Commission, Prefaced by Warren E. Buffett (<a href="http://www.plainlanguage.gov" target="_blank" rel="external">http://www.plainlanguage.gov</a>) On Writing: A Memoir of The Craft by Stephen King (with audiobook) Style: Toward Clarity and Grace by Joseph M. Williams 另外，还有一个TTC (The Teaching Company)的视频教程，是我所见过最好的写作课程： Building Great Sentences</li>
+<li>有几本书，建议所有想获得正确思考能力，进而表达清晰的人阅读。 Thought and Knowledge: An Introduction to Critical Thinking 4th edition, by Diane F. Halpern Thinking and Deciding, 4th edition, by Jonathan Baron Argumentation: The Study of Effective Reasoning by Zarefsky David (Audiobook) Craft of Research, by Wayne C. Booth, Gregory G. Colomb, Joseph M. Williams Good Reasoning Matters!: A Constructive Approach to Critical Thinking 3rd edition, by Leo A. Groarke, Christopher W. Tindale 另外，还有三本关于文风（Style）的书籍也一定要看： A Plain English Handbook (1998), from Security and Exchange Commission, Prefaced by Warren E. Buffett (<a href="http://www.plainlanguage.gov" target="_blank" rel="external">http://www.plainlanguage.gov</a>) On Writing: A Memoir of The Craft by Stephen King (with audiobook) Style: Toward Clarity and Grace by Joseph M. Williams 另外，还有一个TTC (The Teaching Company)的视频教程，是我所见过最好的写作课程：</li>
+<li>最常犯的错误： 单词拼写错误：未按照单词的正确拼写方式书写单词，但不包括由于英式英语和美式英语差异所带来的单词拼写差异。 名词单复数形式错误：错误地使用了名词的数，包括：使用了不可数名词的“复数”形式，使用了集合名词的“复数”形式，在应该使用复数的地方使用了单数名词（或反之）等。 单数可数名词未受限定：句子中出现的单数可数名词之前没有使用限定词，包括冠词、不定代词、指示代词、名词或代词所有格、数词与某些形容词性的物主代词。 词性错误：在选择词汇的过程中忽略了英文词性的特性，仅按照含义来使用词汇，从而发生了词性使用错误的现象。 修饰关系错误：违反了词汇修饰的规则，采用了不恰当的修饰关系。包括用* 形容词修饰动词、形容词修饰形容词，副词修饰名词等。 搭配错误：句子中出现了不合适的词汇修饰、限制、说明现象，或者错误地使用了固有的词汇搭配形式。 词序错误：未使用正确的、符合习惯的表述语序来对内容进行陈述。其中包括修饰词顺序错误，该倒装时没有倒装等。 非谓语动词使用错误：错误地使用了现在分词、过去分词、或动词的不定式。其中包括： 现在分词和过去分词误用：作者没有保证逻辑主语与分词的一致性，即当逻辑主语发出动作时使用了过去分词，而在承受动作或状态时使用了现在分词。 不定式与动名词误用：动名词表达的是“状态，性质，心境，抽象，经常性，已发生的”；不定式表达的是“目的，结果，原因，具体，一次性，将发生的”。 介词误用：错误地使用了介词。 连词误用：错误地使用了连词。 关系代词误用：在定语从句中错误地使用了关系代词。 冠词误用：没有分清楚定冠词和不定冠词的区别，或对两个不定冠词的用法不清楚而错误的使用了冠词。 代词误用或指代不明：作者使用的代词的数或者性与名词不匹配，或者读者无法直接判断作者使用的代词所指代的对象。 句子不完整：句子中某成分，尤其是构成句子的主干成分残缺。 主谓不一致：句子的主语和谓语在”数”上不满足一致关系。 违反主句专一原则：当一个句子由多个分句组成非简单句时，作者没有确保有且仅有一个主句，即所有从句必须有连词、关系代词或者分号等引导或隔离，但必须保证有唯一的主句。犯此类错误的句子叫做”流水句（run-on sentences）”或”逗号拼凑句（comma splice）”。 比较句错误：包括作者在比较句中的比较主体不一致，即在一个比较句中，作者所引入的两个比较对象不具备同样的本质和属性，即”不可比”，或比较级使用错误等。 并列主体不一致：在并列成分中，作者没有做到并列双方在结构、功能、性质方面完全对等。 时态错误：句子谓语动词所使用的时态与句子所在的上下文环境不一致。 语态错误：句子谓语动词所使用的语态（主动/被动）与主语不一致。 语气错误：句子没有根据上下文采用正确的实语气或虚拟语气。</li>
+<li>Why waste time and energy to produce nothing?</li>
+<li>你的问题也许不在于你不会说，而在于你没什么话可说。</li>
+<li>在国内，卖得最好的口语教材，实际上是北京外国语大学的专业教材，作者是北外教授吴桢福老师：一共三本，《英语初级口语》、《英语中级口语》、《英语高级口语》，多年来多次再版，印数均超过100万本</li>
+<li>不知道并不可怕，可怕的是自己不知道“自己不知道”。</li>
+<li>父母期望孩子学好任何一样东西，都是天经地义的。可是，仅仅出于好意是不够的。如果仅靠“一番好意”就可以成就事情，那这世界该多美好！可惜，现实并非如此。</li>
+<li>如果，这位父亲是一位喜欢书法，每天都在精练书法，也经常因此常常被人夸奖的人，那么他的女儿可能无需他“有意启发”，早就开始自愿天天练字了。可事实是相反的：这位父亲自己并不练书法，而女儿也看到父亲书法不怎样也无所谓（却让我练书法──不公平！），这种“无声的事实”是很强大的，强大到绝不可掩盖的地步。</li>
+<li>只有不断地“用”，才能真正地“学”，因为所有技能的习得，都要靠试错（Trial and Error）。很多人宁愿“学一辈子”，却坚持“一辈子不用”的原因就在于害怕犯错。儿时犯错往往招致惩罚，成年之后，就算没有来自他人的惩罚，还有因为犯错而导致自己自卑和尴尬，所以，很多人是“不惜一切代价”避免出错的。然而，要知道知识的习得过程离不开试错，没有试错，就不可能有全面而真实的进步。所以，要知道犯错是正常的，甚至是不可或缺的。做事的时候，出错是必然的，如果正在做事却一点错都没有，那不是做事──那是在做梦。</li>
+<li>罗伯特•莫顿教授发现了这个现象，为这类现象取了个名字叫做“自证预言”（Self-fulfilling prophecy）。 当人们相信某件事情会发生（事实上那件事情原本并不见得一定会发生），那么此事最终真的会发生。</li>
+<li>这就是观念的力量。如果你不知道TOEFL考试的存在，你甚至没机会去参加那个考试。如果你不认为那是个有可能获得高分的考试，那你甚至可能根本不会尝试去努力。仅仅因为你知道了它的存在，你就有可能开始努力；仅仅因为你看到“甚至还不如你的人”（尽管这很可能干脆就是个幻觉）获得了高分，你就没有理由不去努力，最终你也有可能获得高分……</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;朗读能够提高记忆力&lt;/li&gt;
+&lt;li&gt;尽管不是每个人都能做到，但，“能”或起码“有可能”这个事实，会改变一切的，至少可以改变一些人的一切。这就好像总是有一小部分人会真正明白：1和99之间的差别再大，也不如0和1之间的差别大。&lt;/li&gt;
+&lt;li&gt;一个想法必须足够简单才可能被植入；越是简单的想法，在植入之后越是根深蒂固；因为拥有这个想法的人无法分辨这个想法是自己的还是被植入的……同样的道理，高考词汇大纲就是以这种方式，把那个极为简单的想法悄悄地“植入”到我们的大脑之中，进而使其根深蒂固，影响我们一生……&lt;/li&gt;
+&lt;li&gt;很多的时候，人傻是被教出来的。教育这东西，从来都是在失败中发挥作用──所以成功必然是偶然
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java自动拆箱导致的空指针</title>
+    <link href="mulua6.github.io/2016/06/24/java%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E5%AF%BC%E8%87%B4%E7%9A%84%E7%A9%BA%E6%8C%87%E9%92%88/"/>
+    <id>mulua6.github.io/2016/06/24/java自动拆箱导致的空指针/</id>
+    <published>2016-06-24T21:33:00.000Z</published>
+    <updated>2016-06-25T07:16:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天遇到一个奇怪的问题，代码中莫名抛出一个空指针。<br><a id="more"></a><br>出问题的代码如下:<br><img src="/img/autoboxing.png" alt="autoboxing NPE" title="demoCode"><br>student中id属性为Integer，一般情况下用int接受，会触发自动拆箱，没有问题，但是当student的id为null时，#1处用null给int赋值，就会抛出空指针。  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天遇到一个奇怪的问题，代码中莫名抛出一个空指针。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="mulua6.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>天下没有免费的午餐</title>
+    <link href="mulua6.github.io/2016/06/14/%E5%A4%A9%E4%B8%8B%E6%B2%A1%E6%9C%89%E5%85%8D%E8%B4%B9%E7%9A%84%E5%8D%88%E9%A4%90/"/>
+    <id>mulua6.github.io/2016/06/14/天下没有免费的午餐/</id>
+    <published>2016-06-14T15:12:51.000Z</published>
+    <updated>2016-06-14T15:12:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="罗辑思维-（魔鬼经济学-NO。172-173）"><a href="#罗辑思维-（魔鬼经济学-NO。172-173）" class="headerlink" title="罗辑思维 （魔鬼经济学 NO。172-173）"></a>罗辑思维 （魔鬼经济学 NO。172-173）</h4><p>天下没有免费的午餐</p>
+<ul>
+<li>现在的人的 机会成本是越来越大，你有所选择，就等于放弃了其他所有的可能。所也就没有免费的东西。</li>
+<li>任何东西都事实和本质<ul>
+<li>我们不能凭借个人感觉去只认事实，而忽略了本质</li>
+<li>认清问题的本质，不要带个人感情色彩</li>
+</ul>
+</li>
+<li>现在的互联网时代，唯一能够阻止一个人成功的，就只有他的认知，一个人的认知能力有限，他所观察的层次就越少越低，无法看清楚世间万物的复杂关系，就没有办法找到规律，更不要说用理工科思维去探索事情的本质了。井底之蛙</li>
+<li></li>
+</ul>
+<p>\&lt;!– more –></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;罗辑思维-（魔鬼经济学-NO。172-173）&quot;&gt;&lt;a href=&quot;#罗辑思维-（魔鬼经济学-NO。172-173）&quot; class=&quot;headerlink&quot; title=&quot;罗辑思维 （魔鬼经济学 NO。172-173）&quot;&gt;&lt;/a&gt;罗辑思维 （魔鬼经济学 NO。17
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>学习学习再学习</title>
+    <link href="mulua6.github.io/2016/05/31/%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E5%86%8D%E5%AD%A6%E4%B9%A0/"/>
+    <id>mulua6.github.io/2016/05/31/学习学习再学习/</id>
+    <published>2016-05-31T13:44:39.000Z</published>
+    <updated>2016-05-31T13:44:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>学习意识 - 拿开车做个类比，一个人就算买来最贵的车，拥有最高级、最完善的安全设备，可如若他没有“安全意识”的话，那些外在的东西其实统统没用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;学习意识 - 拿开车做个类比，一个人就算买来最贵的车，拥有最高级、最完善的安全设备，可如若他没有“安全意识”的话，那些外在的东西其实统统没用。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>狗熊阅读马拉松</title>
+    <link href="mulua6.github.io/2016/02/09/%E7%8B%97%E7%86%8A%E9%98%85%E8%AF%BB%E9%A9%AC%E6%8B%89%E6%9D%BE/"/>
+    <id>mulua6.github.io/2016/02/09/狗熊阅读马拉松/</id>
+    <published>2016-02-09T09:47:07.000Z</published>
+    <updated>2016-06-05T13:22:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;终于在艰难中完成了本次半程阅读马拉松（3小时42分钟），同时也结束了《三体》第一本的阅读，自从遇到了狗熊有话说节目，便对阅读产生了浓厚的兴趣，2015年底我梳理了一下，发现2015年一共才读了10本书，真的是太少了，于是决定2016年多读一些，从2016年开始，决定实践GTD，所以都得第一本书是《尽管去做–无压工作地艺术》，由于一些原因，在1月的最后一周阅读完成了这本书的阅读，从2月开始得加快脚步，截至到2月4号就完成了《凭海临风》和《岛上书店》两本书。在我买kindle之前就在微信阅读购买了三体合集了，但是一直没有时间看，这次正好有机会，便选了《三体》，在参赛前就开始阅读了，参赛时已经阅读了将近50%，我选择的时间是大年初一，（真是太不可思议了，之前从来没有在这一天看过书，感谢大狗熊）初一的事情还是比较多的，比较琐碎的，早上6点30便设置定时器开始了，中间断断续续的最终还是完成了，用了4个小时多一点时间完成了《三体》的余下部分，好了，第一次写文章，废话有点多，下面是我在阅读的过程中觉得精彩的部分。<br><a id="more"></a></p>
+<p>&emsp;&emsp;《三体》中终疯狂年代部分在介绍叶文洁背景的时候，所描写的文革时期的场景非常有画面感，没有科幻的感觉，完全像是在描述真是的事情，给我留下了很深的印象，叶文洁以及他的父亲在文化大革命终做遭遇的一切就奠定了叶问洁的性格基础，为之后她杀死雷志成和杨卫宁，并最终成为地球三体组织的统帅埋下了伏笔。</p>
+<p>&emsp;&emsp;多年以后，在叶文洁重新找到当年就在她面前打死她父亲的那几个红卫兵的时候，有一段描述：独臂女人说：”最近有一部电影，叫《枫》，不知你看过没有？结尾处，一个大人和一个小孩儿站在死于武斗的红卫兵墓前，那孩子问大人:他们是烈士吗？大人说不是；孩子又问:他们是敌人吗？大人说也不是；孩子再问：那他们是什么？大人说：是历史。” 作为今天的我们回头去看文化大革命，我们固然可以用各种理由去批判，去评价，但是，毕竟我们没有经历过那个时代，一开始我也非常不理解甚至痛恨一些近乎疯狂的红卫兵，但是当我读到这里时，我仿佛有了新的见解，那些死于武斗的红卫兵既不是烈士，也不是敌人，他们就是历史，历史没有对于错，历史只有摆在我们面前是事实。</p>
+<p>&emsp;&emsp;在阅读三体星人在讨论用质子来阻止人类科学发展的时候，我也一度对人类的未来陷入了绝望，就目前已知的三体文明而言，它们竟可以用如此简单的方法来阻止人类，并最终达到消灭人类的目的，更何况还可能会有更多的更高级的外星文明呢？但在本书的最后，史强把汪淼和丁仪带到老家附近看到满地的蝗虫之后讲的一段话，使我又对人类文明重新燃起了希望。是啊，是地球人与三体人的技术水平差距大呢，还是蝗虫与咱们人的技术水平差距大，三体星人看人类是虫子，人类看蝗虫是虫子，这就是虫子，它们的技术与人类的差距，远大于我们与三体文明的差距。人类竭尽全力消灭它们，用尽各种毒剂，用飞机喷撒，引进和培养它们的天敌，搜寻并毁掉它们的卵，用基因改造使它们绝育；用火烧它们，用水淹它们，每个家庭都有对付它们的灭害灵，每个办公桌下都有像苍蝇拍这种击杀它们的武器……这场漫长的战争伴随着整个人类文明，现在仍然胜负末定，虫子并没有被灭绝，它们照样傲行于天地之间，它们的数量也并不比人类出现前少，把人类看做虫子的三体人似乎忘记了一个事实：虫子从来就没有被真正战胜过。我想这便是人类文明的希望所在了。</p>
+<p>&emsp;&emsp;书中有意思的一点是，就连地球三体组织也分成了不同的派别，可真是有人的地方就有政治，不知道高级一点的三体文明，有没有政治呢？</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;终于在艰难中完成了本次半程阅读马拉松（3小时42分钟），同时也结束了《三体》第一本的阅读，自从遇到了狗熊有话说节目，便对阅读产生了浓厚的兴趣，2015年底我梳理了一下，发现2015年一共才读了10本书，真的是太少了，于是决定2016年多读一些，从2016年开始，决定实践GTD，所以都得第一本书是《尽管去做–无压工作地艺术》，由于一些原因，在1月的最后一周阅读完成了这本书的阅读，从2月开始得加快脚步，截至到2月4号就完成了《凭海临风》和《岛上书店》两本书。在我买kindle之前就在微信阅读购买了三体合集了，但是一直没有时间看，这次正好有机会，便选了《三体》，在参赛前就开始阅读了，参赛时已经阅读了将近50%，我选择的时间是大年初一，（真是太不可思议了，之前从来没有在这一天看过书，感谢大狗熊）初一的事情还是比较多的，比较琐碎的，早上6点30便设置定时器开始了，中间断断续续的最终还是完成了，用了4个小时多一点时间完成了《三体》的余下部分，好了，第一次写文章，废话有点多，下面是我在阅读的过程中觉得精彩的部分。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="读书笔记" scheme="mulua6.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo workflow失效问题</title>
+    <link href="mulua6.github.io/2016/01/30/hexo-workflow%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/"/>
+    <id>mulua6.github.io/2016/01/30/hexo-workflow失效问题/</id>
+    <published>2016-01-30T09:52:09.000Z</published>
+    <updated>2016-01-30T02:35:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>   由于之前的电脑重新安装了一次系统（10.11），hexo是重新安装的，都装好之后发现alfred 中的hexo worlflow 不能用了，通过debug发现是hexo commond cannot found 和 env：node can not found(错误信息大概是这样，记不清出了)
+原因是OSX 10.11中启用了sip 功能，导致nodejs安装室无法在/usr/bin目录下创建link，所以系统找不到node的命令，解决办法就是关闭sip功能，然后重新安装nodejs 和hexo就可以了，如果是nvm找不到把下面的命令加入.zshrc中即可
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ -s $HOME/.nvm/nvm.sh ] &amp;&amp; . $HOME/.nvm/nvm.sh  # This loads NVM</div></pre></td></tr></table></figure>
+
+OSX 10.11 关闭sip办法：
+    重启电脑 同时按着command和R 进入恢复模式，打开terminal 输入csrutil disable即可关闭 
+
+    常用参数
+    clear：清除配置设置，等同于完全开启SIP(仅在恢复模式下有效)
+    disable：关闭SIP(仅在恢复模式下有效)
+    enable：开启SIP(仅在恢复模式下有效)
+    status：查询SIP状态
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;   由于之前的电脑重新安装了一次系统（10.11），hexo是重新安装的，都装好之后发现alfred 中的hexo worlflow 不能用了，通过debug发现是hexo commond cannot found 和 env：node can not f
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>yes命令导致的out of memory</title>
+    <link href="mulua6.github.io/2016/01/29/yes%E5%91%BD%E4%BB%A4%E5%AF%BC%E8%87%B4%E7%9A%84out-of-memory/"/>
+    <id>mulua6.github.io/2016/01/29/yes命令导致的out-of-memory/</id>
+    <published>2016-01-29T21:46:55.000Z</published>
+    <updated>2016-01-29T14:54:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>今天遇到一个问题，一个方法一运行就会出现out of memory,而在之前是没有问题的，没办法，只能重新研究了，通过jConsole查看了一下，在代码运行到某个点时，内存会从100M迅速上升到2G+，从而导致内存溢出，接着就是通过debug找到了“元凶”代码。
+在这里先简述一下代码，在java中会通过Jsch在linux服务器上执行shell命令，这里另外启动了一个线程去接受返回值，然后调用join方法，问题就出在了这里，由于library重构后，调用的地方传递的参数没有改变，导致将“yes”传到服务器执行,结果就是不停的返回“y”，（你可以自己动手试一试）最终在执行join的时候导致大量的数据加载到当前线程，从而导致内存溢出。
+当然这里还有一个问题，既然library进行了重构，那么为什么调用的代码没有报错呢？
+问题就出在了，这个method是个不定参数，so……
+</code></pre><p>经验教训：不定参数使用需谨慎。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;今天遇到一个问题，一个方法一运行就会出现out of memory,而在之前是没有问题的，没办法，只能重新研究了，通过jConsole查看了一下，在代码运行到某个点时，内存会从100M迅速上升到2G+，从而导致内存溢出，接着就是通过debug找到了“元凶”代
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,836 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>归档：2016 | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        
+
+<div class="article">
+
+<h2 class="article-title ">2016</h2>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/08/28/java面试复习大纲/"><span>java面试复习大纲</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/08/28/java面试复习大纲/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-08-28T01:12:08.000Z">
+          2016 Aug 28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <a id="more"></a>
+<p>Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库<br>使用和避免null<br>集合<br>不可变集合<br>当对象被不可信的库调用时，不可变形式是安全的；<br>不可变对象被多个线程调用时，不存在竞态条件问题<br>不可变集合不需要考虑变化，因此可以节省时间和空间。所有不可变的集合都比它们的可变形式有更好的内存利用率（分析和测试细节）；<br>不可变对象因为有固定不变，可以作为常量来安全使用。</p>
+<p>新集合类型<br>multisite   不是map<br>multimap    not map<br>集合工具类<br>静态工厂方法<br>Iterables</p>
+<p>扩展工具类<br>缓存<br>    01  LoadingCache<key, graph=""> graphs = CacheBuilder.newBuilder()<br>    02     .maximumSize(1000)<br>    03<br>            .expireAfterWrite(10, TimeUnit.MINUTES)<br>    04<br>            .removalListener(MY_LISTENER)<br>    05<br>            .build(<br>    06<br>                new CacheLoader<key, graph="">() {<br>    07<br>                    public Graph load(Key key) throws AnyException {<br>    08<br>                        return createExpensiveGraph(key);<br>    09<br>                    }<br>    10<br>            });</key,></key,></p>
+<p><a href="http://www.zuidaima.com/share/1759689106541568.htm" target="_blank" rel="external">待超轻量级DI容器框架Google Guice与Spring框架的区别教程详解及其demo代码片段分享</a></p>
+<p>反射<br>Java 反射API的第一个主要作用是获取程序在运行时刻的内部结构。<br>通俗地说,反射机制就是可以把一个类,类的成员(函数,属性),当成一个对象来操作,希望读者能理解,也就是说,类,类的成员,我们在运行的时候还可以动态地去操作他们.</p>
+<p>//Demo1.  通过Java反射机制得到类的包名和类名<br>//Demo2.  验证所有的类都是Class类的实例对象<br>//Demo3.  通过Java反射机制，用Class 创建类对象<a href="">这也就是反射存在的意义所在</a>，无参构造<br>//Demo4:  通过Java反射机制得到一个类的构造函数，并实现构造带参实例对象<br>//Demo5:  通过Java反射机制操作成员变量, set 和 get<br>//Demo6: 通过Java反射机制得到类的一些属性： 继承的接口，父类，函数信息，成员信息，类型等<br>//Demo7: 通过Java反射机制调用类中方法<br>//Demo8: 通过Java反射机制获得类加载器<br>反射机制的用途：<br>1.工厂模式：Factory类中用反射的话，添加了一个新的类之后，就不需要再修改工厂类Factory了<br>2.数据库JDBC中通过Class.forName(Driver).来获得数据库连接驱动<br>3.分析类文件：毕竟能得到类中的方法等等<br>4.访问一些不能访问的变量或属性：破解别人代码</p>
+<p>反射的缺点</p>
+<ul>
+<li>反射包括了一些动态类型，所以JVM无法对这些代码进行优化。因此，反射操作的效率要比那些非反射操作低得多。我们应该避免在经常被 执行的代码或对性能要求很高的程序中使用反射。</li>
+<li>使用反射技术要求程序必须在一个没有安全限制的环境中运行。如果一个程序必须在有安全限制的环境中运行，如Applet，那么这就是个问题了。。</li>
+<li>由于反射允许代码执行一些在正常情况下不被允许的操作（比如访问私有的属性和方法），所以使用反射可能会导致意料之外的副作用－－代码有功能上的错误，降低可移植性。反射代码破坏了抽象性，因此当平台发生改变的时候，代码的行为就有可能也随着变化。</li>
+</ul>
+<p>泛型<br>Java泛型（generics）是JDK 5中引入的一个新特性，允许在定义类和接口的时候使用类型参数（type parameter）。</p>
+<p>声明的类型参数在使用时用具体的类型来替换。泛型最主要的应用是在JDK 5中的新集合类框架中。</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
+<li>简单工厂（静态工厂）</li>
+<li>工厂方法</li>
+<li>抽象工厂  </li>
+</ul>
+<h3 id="简单工厂（静态工厂）"><a href="#简单工厂（静态工厂）" class="headerlink" title="简单工厂（静态工厂）"></a>简单工厂（静态工厂）</h3><h4 id="使用静态工厂方法创建对象有什么优点"><a href="#使用静态工厂方法创建对象有什么优点" class="headerlink" title="使用静态工厂方法创建对象有什么优点"></a>使用静态工厂方法创建对象有什么优点</h4><p>优点1: 静态工厂方法的名字是由我们自己命名，而构造方法必须与类同名。<br>优点2: 构造方法每次调用的时候都需要创建一个对象，而静态工厂方法每次调用的时候就不会创建一个新的对象，这对于一个要频繁创建对象的程序来说，可以极大的提高性能，单例模式就是这样实现的。<br>优点3: 静态工厂方法可以返回原返回类型的任何子类型的对象，这样使我们在选择返回对象的类时就有了更大的灵活性。<br>优点4: 静态工厂方法在创建参数化类型实例的时候，可以使代码变得更加简洁。</p>
+<h4 id="使用静态工厂方法创建对象有什么缺点"><a href="#使用静态工厂方法创建对象有什么缺点" class="headerlink" title="使用静态工厂方法创建对象有什么缺点"></a>使用静态工厂方法创建对象有什么缺点</h4><pre><code>缺点1: 如果一个类只能通过静态工厂方法来获得实例，那么该类的构造函数就不能是共有的或受保护的，那么该类就不会有子类，即该类不能被继承。单例模式中首先要私有化构造器。
+   缺点2：静态工厂方法和其他静态方法从名字上看无法区分，所以我们可以约定静态工厂方法名字使用valueOf或者getInstance。
+</code></pre><h3 id="工厂方法（Factory-Method）"><a href="#工厂方法（Factory-Method）" class="headerlink" title="工厂方法（Factory Method）"></a>工厂方法（Factory Method）</h3><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method使一个类的实例化延迟到其子类。<br>spring中的FactoryBean就是典型的工厂方法模式。</p>
+<h3 id="单例（Singleton）"><a href="#单例（Singleton）" class="headerlink" title="单例（Singleton）"></a>单例（Singleton）</h3><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br>spring中的单例模式完成了后半句话，即提供了全局的访问点BeanFactory。但没有从构造器级别去控制单例，这是因为spring管理的是是任意的java对象。 </p>
+<p>枚举单例的优点</p>
+<ul>
+<li>写法简单</li>
+<li>枚举单例自己处理序列化</li>
+<li>线程安全</li>
+</ul>
+<p>传统单例存在的另外一个问题是一旦你实现了序列化接口，那么它们不再保持单例了，因为readObject()方法一直返回一个新的对象就像java的构造方法一样，你可以通过使用readResolve()方法来避免此事发生</p>
+<h3 id="4-适配器（Adapter）"><a href="#4-适配器（Adapter）" class="headerlink" title="4.适配器（Adapter）"></a>4.适配器（Adapter）</h3><p>将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>spring中在对于aop的处理中有Adapter模式的例子，见如下图： </p>
+<p>由于Advisor链需要的是MethodInterceptor对象，所以每一个Advisor中的Advice都要适配成对应的MethodInterceptor对象。 </p>
+<h3 id="5-包装器（Decorator）"><a href="#5-包装器（Decorator）" class="headerlink" title="5.包装器（Decorator）"></a>5.包装器（Decorator）</h3><p>动态地给一个对象添加一些额外的职责。就增加功能来说，Decorator模式相比生成子类更为灵活。 </p>
+<p>spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。基本上都是动态地给一个对象添加一些额外的职责。 </p>
+<h3 id="6-代理（Proxy）"><a href="#6-代理（Proxy）" class="headerlink" title="6.代理（Proxy）"></a>6.代理（Proxy）</h3><p>为其他对象提供一种代理以控制对这个对象的访问。<br>从结构上来看和Decorator模式类似，但Proxy是控制，更像是一种对功能的限制，而Decorator是增加职责。 </p>
+<p>spring的Proxy模式在aop中有体现，比如JdkDynamicAopProxy和Cglib2AopProxy。 </p>
+<h3 id="7-观察者（Observer）"><a href="#7-观察者（Observer）" class="headerlink" title="7.观察者（Observer）"></a>7.观察者（Observer）</h3><p>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。 </p>
+<p>spring中Observer模式常用的地方是listener的实现。如ApplicationListener。 </p>
+<h3 id="8-策略（Strategy）"><a href="#8-策略（Strategy）" class="headerlink" title="8.策略（Strategy）"></a>8.策略（Strategy）</h3><p>定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。<br>spring中在实例化对象的时候用到Strategy模式，在SimpleInstantiationStrategy中有如下代码说明了策略模式的使用情况： </p>
+<h3 id="9-模板方法（Template-Method）"><a href="#9-模板方法（Template-Method）" class="headerlink" title="9.模板方法（Template Method）"></a>9.模板方法（Template Method）</h3><p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。 </p>
+<p>Template Method模式一般是需要继承的。这里想要探讨另一种对Template Method的理解。spring中的JdbcTemplate，在用这个类时并不想去继承这个类，因为这个类的方法太多，但是我们还是想用到JdbcTemplate已有的稳定的、公用的数据库连接，那么我们怎么办呢？我们可以把变化的东西抽出来作为一个参数传入JdbcTemplate的方法中。但是变化的东西是一段代码，而且这段代码会用到JdbcTemplate中的变量。怎么办？那我们就用回调对象吧。在这个回调对象中定义一个操纵JdbcTemplate中变量的方法，我们去实现这个方法，就把变化的东西集中到这里了。然后我们再传入这个回调对象到JdbcTemplate，从而完成了调用。这可能是Template Method不需要继承的另一种实现方式吧。 </p>
+<h3 id="spring-注入"><a href="#spring-注入" class="headerlink" title="spring 注入"></a>spring 注入</h3><p>设值注入和构造注入的对比<br>这两种方式，效果是一样的，注入的时机不同，设值注入是先调用无参的构造函数，创建出实例后然后调用set方法注入属性值。而构造输入是通过在调用构造函数初始化实例的同时完成了注入。</p>
+<ul>
+<li>设值注入的优点</li>
+</ul>
+<ul>
+<li>通过set的方式设定依赖关系显得更加直观，自然，和javabean写法类似。</li>
+<li>复杂的依赖关系，采用构造注入会造成构造器过于臃肿，spring 实例化的时候同时实例化其依赖的全部实例，导致性能下降，set方式可以避免这些问题。</li>
+<li>在成员变量可选的情况下，构造注入不够灵活。<br>构造注入的优点</li>
+</ul>
+<ul>
+<li>某些特定的情况下，构造注入比设值注入好一些。</li>
+</ul>
+<ul>
+<li>构造注入可以在构造器中决定依赖关系的注入顺序，优先依赖的优先注入，构造注入可以清楚的分清注入的顺序。</li>
+<li>组件的调用者无需知道组件内部的依赖关系，符合高内聚原则。</li>
+</ul>
+<h3 id="Spring容器中Bean的作用域"><a href="#Spring容器中Bean的作用域" class="headerlink" title="Spring容器中Bean的作用域"></a>Spring容器中Bean的作用域</h3><p>当Spring容器创建一个Bean实例的时候，不仅可以完成Bean实例的实例化，而且会指定他的作用域。Spring支持以下几种作用域。</p>
+<ol>
+<li>singleton:单例模式。Spring的容器中只生产一个这样的实例，调用的时候，从Spring的容器中取出即可。</li>
+<li>prototype：相当于多例，每次获取Bean的时候都会创建一个新的对象的实例。</li>
+<li>request：对于一次Http请求的话，request作用域的Bean将只生产一个实例，不同的Http请求产生的实例是不同的。</li>
+<li>session：对于一次Http请求，Session作用域的Bean只产生一个。</li>
+<li>global session ：每个全局的Http Session对应一个Bean实例。</li>
+</ol>
+<h3 id="让Bean获取到他的所在的Spring容器"><a href="#让Bean获取到他的所在的Spring容器" class="headerlink" title="让Bean获取到他的所在的Spring容器"></a>让Bean获取到他的所在的Spring容器</h3><p>可以让这个Bean去实现一个ApplicationContextAware接口，这个接口需要实现它的一个方法，就是：setApplicationContext(ApplicationContext context)方法。这个方法的赋值不是我们程序员为其赋值的，而是spring容器本身会为他赋值，在初始化这个bean的同时，检测到这个Bean实现了ApplicationContextAware这个接口，那么Spring容器就会直接将自身赋值给setApplicationContext这个方法。</p>
+<pre><code>@Override  
+public void setApplicationContext(ApplicationContext context)  
+throws BeansException {  
+this.service = context.getBean(&quot;messageService&quot;, MessageService.class);  
+}  
+</code></pre><h3 id="获取Bean的id"><a href="#获取Bean的id" class="headerlink" title="获取Bean的id"></a>获取Bean的id</h3><p>在某些情况下可能会需要提前知道Bean的id才行，那么下面这个例子会展示怎么利用BeanNameAware接口，拿到配置文件中配置的id。<br>在配置文件实例化Bean的时候，检测到某个类实现了BeanNameAware这个接口，那么会通过setBeanName方法将Bean的id作为参数beanName注入到这个类的属性中去。</p>
+<h3 id="Spring创建Bean的三种方式"><a href="#Spring创建Bean的三种方式" class="headerlink" title="Spring创建Bean的三种方式"></a>Spring创建Bean的三种方式</h3><p>Spring可以通过调用构造器来创建Bean、调用静态工厂方法创建Bean、调用实例工厂方法创建Bean。<a href="http://blog.csdn.net/wangyang1354/article/details/50775808" title="原文" target="_blank" rel="external"></a></p>
+<h3 id="AOP中的名词解释"><a href="#AOP中的名词解释" class="headerlink" title="AOP中的名词解释"></a>AOP中的名词解释</h3><ul>
+<li>Advice(通知)：定义了切面是什么，以及什么时候使用。主要包括:before、after、after-returning、after-throwing、aound(在被通知的方法调用之前和调用之后执行)。</li>
+<li>JoinPoint(连接点)：程序执行过程中明确的点，比如方法的调用，异常的抛出。可以利用这些点插入应用的正常流程之中，添加新的行为。</li>
+<li>PointCut(切入点)：其定义匹配通知所要织入的一个或多个连接点，通常用明确的类和方法名称来指定切点，或者利用正则表达式定义匹配的类和方法名称模式来指定这些切点。</li>
+<li>Aspect(切面)：切面是通知和切点的结合，通知和切点共同定义了关于切面的全部内容，包括是什么，在什么时候什么地方执行。</li>
+<li>引入：允许我们向现有的类中添加新的方法或者是属性，</li>
+<li>织入：将切面应用到目标对象来创建新的代理对象的过程。<br>* <h3 id="Spring中常用的注解"><a href="#Spring中常用的注解" class="headerlink" title="Spring中常用的注解"></a>Spring中常用的注解</h3></li>
+</ul>
+<ol>
+<li>@Controller:标注一个控制器组件的类。</li>
+<li>@Service：标注一个业务逻辑组件的类。</li>
+<li>@Repository:标注一个Dao组件的类。</li>
+<li>@Component:标注一个普通的类。<br>这几个注解主要用于标注Spring要进行实例化的类，一旦在某个类的上面标注了这样的注解，如果是单例模式的话，那么Spring在初始化的时候，就会将这些类实例化，而对于非单例模式的类，不取决于Spring容器本身，往往是客户端进行请求的时候，进行创建实例（Spring创建的），这些在之前的博文中已经进行过说明，请参考Spring进阶之路(7)-Bean的生命周期以及创建、销毁执行流程。</li>
+<li>@Resource:按照名称（name）进行注入。该注解属于jdk中的注解，但是在项目中使用比较广泛。</li>
+<li>@Autowired:按照类型匹配自动注入。<br>这里的两个注解主要用于为类中属性注入值。两个注解可以将(上面四个注解标注的类在Spring中实例化后的对象)注入到某些类的属性中。</li>
+<li>@Scope(“prototype”):默认的情况下是产生单例对象，在Scope的里面传了prototype的参数后，表明该类不是单例的，而是”多例的”，不知道这么解释标准不标准，读者可以纠正。</li>
+<li>@PostConstruct:指定bean的初始化方法与之前博文中配置文件指定的initMethod作用相同（Spring进阶之路(7)-Bean的生命周期以及创建、销毁执行流程），Spring会在Bean的依赖注入完成后回调这个方法。</li>
+<li><p>@PreDestroy:指定bean的销毁之前的方法与Spring进阶之路(7)-Bean的生命周期以及创建、销毁执行流程这篇博文中配置文件指定的destroyMethod的作用是一样的，他会在bean销毁之前调用。<br>另外：<br>10： @Lazy：用于指定该类是否取消预初始化。指定参数boolean型true即可，下面不在赘述，这个注解比较简单。<br>11： @DependsOn:可以修饰类或者方法，用于强制初始化一些bean,例如：@DependsOn({“wy”, “wangyang”}),这样在初始化之前会强制初始化里面的bean.</p>
+</li>
+<li><p>缓存是介于应用程序和物理数据源之间，其作用是为了降低应用程序对物理数据源访问的频次，从而提高了应用的运行性能。缓存内的数据是对物理数据源中的数据的复制，应用程序在运行时从缓存读写数据，在特定的时刻或事件会同步缓存和物理数据源的数据。  </p>
+</li>
+<li>　　缓存的介质一般是内存，所以读写速度很快。但如果缓存中存放的数据量非常大时，也会用硬盘作为缓存介质。缓存的实现不仅仅要考虑存储的介质，还要考虑到管理缓存的并发访问和缓存数据的生命周期。  </li>
+<li>　　Hibernate的缓存包括Session的缓存和SessionFactory的缓存，其中SessionFactory的缓存又可以分为两类：内置缓存和外置缓存。Session的缓存是内置的，不能被卸载，也被称为Hibernate的第一级缓存。SessionFactory的内置缓存和Session的缓存在实现方式上比较相似，前者是SessionFactory对象的一些集合属性包含的数据，后者是指Session的一些集合属性包含的数据。SessionFactory的内置缓存中存放了映射元数据和预定义SQL语句，映射元数据是映射文件中数据的拷贝，而预定义SQL语句是在Hibernate初始化阶段根据映射元数据推导出来，SessionFactory的内置缓存是只读的，应用程序不能修改缓存中的映射元数据和预定义SQL语句，因此SessionFactory不需要进行内置缓存与映射文件的同步。SessionFactory的外置缓存是一个可配置的插件。在默认情况下，SessionFactory不会启用这个插件。外置缓存的数据是数据库数据的拷贝，外置缓存的介质可以是内存或者硬盘。SessionFactory的外置缓存也被称为Hibernate的第二级缓存。  </li>
+<li>　　Hibernate的这两级缓存都位于持久化层，存放的都是数据库数据的拷贝，那么它们之间的区别是什么呢？为了理解二者的区别，需要深入理解持久化层的缓存的两个特性：缓存的范围和缓存的并发访问策略。  </li>
+<li>　　持久化层的缓存的范围  </li>
+<li>　　缓存的范围决定了缓存的生命周期以及可以被谁访问。缓存的范围分为三类。  </li>
+<li>　　1 事务范围：缓存只能被当前事务访问。缓存的生命周期依赖于事务的生命周期，当事务结束时，缓存也就结束生命周期。在此范围下，缓存的介质是内存。事务可以是数据库事务或者应用事务，每个事务都有独自的缓存，缓存内的数据通常采用相互关联的的对象形式。  </li>
+<li>　　2 进程范围：缓存被进程内的所有事务共享。这些事务有可能是并发访问缓存，因此必须对缓存采取必要的事务隔离机制。缓存的生命周期依赖于进程的生命周期，进程结束时，缓存也就结束了生命周期。进程范围的缓存可能会存放大量的数据，所以存放的介质可以是内存或硬盘。缓存内的数据既可以是相互关联的对象形式也可以是对象的松散数据形式。松散的对象数据形式有点类似于对象的序列化数据，但是对象分解为松散的算法比对象序列化的算法要求更快。  </li>
+<li>　　3 集群范围：在集群环境中，缓存被一个机器或者多个机器的进程共享。缓存中的数据被复制到集群环境中的每个进程节点，进程间通过远程通信来保证缓存中的数据的一致性，缓存中的数据通常采用对象的松散数据形式。  </li>
+<li>　　对大多数应用来说，应该慎重地考虑是否需要使用集群范围的缓存，因为访问的速度不一定会比直接访问数据库数据的速度快多少。  </li>
+<li>　　持久化层可以提供多种范围的缓存。如果在事务范围的缓存中没有查到相应的数据，还可以到进程范围或集群范围的缓存内查询，如果还是没有查到，那么只有到数据库中查询。事务范围的缓存是持久化层的第一级缓存，通常它是必需的；进程范围或集群范围的缓存是持久化层的第二级缓存，通常是可选的。  </li>
+<li>　　持久化层的缓存的并发访问策略  </li>
+<li>　　当多个并发的事务同时访问持久化层的缓存的相同数据时，会引起并发问题，必须采用必要的事务隔离措施。  </li>
+<li>　　在进程范围或集群范围的缓存，即第二级缓存，会出现并发问题。因此可以设定以下四种类型的并发访问策略，每一种策略对应一种事务隔离级别。  </li>
+<li>　　事务型：仅仅在受管理环境中适用。它提供了Repeatable Read事务隔离级别。对于经常被读但很少修改的数据，可以采用这种隔离类型，因为它可以防止脏读和不可重复读这类的并发问题。  </li>
+<li>　　读写型：提供了Read Committed事务隔离级别。仅仅在非集群的环境中适用。对于经常被读但很少修改的数据，可以采用这种隔离类型，因为它可以防止脏读这类的并发问题。  </li>
+<li>　　非严格读写型：不保证缓存与数据库中数据的一致性。如果存在两个事务同时访问缓存中相同数据的可能，必须为该数据配置一个很短的数据过期时间，从而尽量避免脏读。对于极少被修改，并且允许偶尔脏读的数据，可以采用这种并发访问策略。 　　只读型：对于从来不会修改的数据，如参考数据，可以使用这种并发访问策略。  </li>
+<li>　　事务型并发访问策略是事务隔离级别最高，只读型的隔离级别最低。事务隔离级别越高，并发性能就越低。  </li>
+<li>　　什么样的数据适合存放到第二级缓存中？  </li>
+<li>　　1、很少被修改的数据  </li>
+<li>　　2、不是很重要的数据，允许出现偶尔并发的数据  </li>
+<li>　　3、不会被并发访问的数据  </li>
+<li>　　4、参考数据  </li>
+<li>　　不适合存放到第二级缓存的数据？  </li>
+<li>　　1、经常被修改的数据  </li>
+<li>　　2、财务数据，绝对不允许出现并发  </li>
+<li>　　3、与其他应用共享的数据。  </li>
+<li>　　Hibernate的二级缓存  </li>
+<li>　　如前所述，Hibernate提供了两级缓存，第一级是Session的缓存。由于Session对象的生命周期通常对应一个数据库事务或者一个应用事务，因此它的缓存是事务范围的缓存。第一级缓存是必需的，不允许而且事实上也无法比卸除。在第一级缓存中，持久化类的每个实例都具有唯一的OID。  </li>
+<li>　　第二级缓存是一个可插拔的的缓存插件，它是由SessionFactory负责管理。由于SessionFactory对象的生命周期和应用程序的整个过程对应，因此第二级缓存是进程范围或者集群范围的缓存。这个缓存中存放的对象的松散数据。第二级对象有可能出现并发问题，因此需要采用适当的并发访问策略，该策略为被缓存的数据提供了事务隔离级别。缓存适配器用于把具体的缓存实现软件与Hibernate集成。第二级缓存是可选的，可以在每个类或每个集合的粒度上配置第二级缓存。  </li>
+<li>　　Hibernate的二级缓存策略的一般过程如下：  </li>
+<li>　　1) 条件查询的时候，总是发出一条select * from table_name where …. （选择所有字段）这样的SQL语句查询数据库，一次获得所有的数据对象。  </li>
+<li>　　2) 把获得的所有数据对象根据ID放入到第二级缓存中。  </li>
+<li>　　3) 当Hibernate根据ID访问数据对象的时候，首先从Session一级缓存中查；查不到，如果配置了二级缓存，那么从二级缓存中查；查不到，再查询数据库，把结果按照ID放入到缓存。  </li>
+<li>　　4) 删除、更新、增加数据的时候，同时更新缓存。  </li>
+<li>　　Hibernate的二级缓存策略，是针对于ID查询的缓存策略，对于条件查询则毫无作用。为此，Hibernate提供了针对条件查询的Query缓存。  </li>
+<li>　　Hibernate的Query缓存策略的过程如下：  </li>
+<li>　　1) Hibernate首先根据这些信息组成一个Query Key，Query Key包括条件查询的请求一般信息：SQL, SQL需要的参数，记录范围（起始位置rowStart，最大记录个数maxRows)，等。  </li>
+<li>　　2) Hibernate根据这个Query Key到Query缓存中查找对应的结果列表。如果存在，那么返回这个结果列表；如果不存在，查询数据库，获取结果列表，把整个结果列表根据Query Key放入到Query缓存中。  </li>
+<li>　　3) Query Key中的SQL涉及到一些表名，如果这些表的任何数据发生修改、删除、增加等操作，这些相关的Query Key都要从缓存中清空。  </li>
+</ol>
+<h3 id="mysql优化"><a href="#mysql优化" class="headerlink" title="mysql优化"></a>mysql优化</h3><ul>
+<li>使用索引</li>
+<li>使用别名</li>
+<li>不使用”*”</li>
+<li>优化where语句的顺序</li>
+<li>用union all 替换union</li>
+<li>用exists 替换 in</li>
+<li>避免在索引上使用计算</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/08/28/java面试复习大纲/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/08/27/java中的路径问题/"><span>java中的路径问题</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/08/27/java中的路径问题/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-08-27T00:51:22.000Z">
+          2016 Aug 27
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <a id="more"></a>
+<p>在普通的java程序中<br>    className.class.getClassloader().getResourse(“”);<br>    this.getClass().getResource(“”)<br>获取的是classPath的路径</p>
+<p>在maven的java web中<br>spring + mybatis</p>
+<p>首先是web.xml中配置spring的配置文件applicationContext.xml<br>方法一：配置文件在WEB-INF下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>/WEB-INF/applicationContext.xml</param-value><br>        <!--这里写WEB-INF/applicationContext.xml效果是一样的--><br>    </context-param></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在/WEB-INF/下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：/WEB-INF/spring/spring-dbcp-db.xml  </import></p>
+<p>方法二：配置文件在resources下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>classpath:applicationContext.xml</param-value><!--在多个项目中可以使用classpath*: 效果一样--><br>    </context-param></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在classes下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：WEB-INF/classes/spring/spring-dbcp-db.xml</import></p>
+<p>在其他的xml配置文件中：这两种写法都可以<br>    <bean id="jdbc" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"><br>       <property name="locations" value="/WEB-INF/jdbc.properties"><br>    或者<br>    <property name="locations" value="classpath\*:jdbc.properties"><br>    </property></property></bean></p>
+<p>但是在单元测试spring的时候：<br>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“applicationContext.xml”);<br>这段代码回去读class path下的文件，所以包含在applicationContext.xml里边的文件也是从class path下查找，所以一般会把配置文件放一份到resources下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/08/27/java中的路径问题/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/08/15/包装类型的比较问题/"><span>包装类型的比较问题</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/08/15/包装类型的比较问题/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-08-15T22:51:35.000Z">
+          2016 Aug 15
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <a id="more"></a>
+<p><code>``java</code></p>
+<p>包装类型的值不能够直接用==比较<br>    if (new Integer(1) == new Integer(1)){<br>                System.out.println(“=”);<br>            }<br>            if (new Integer(1) &gt;new Integer(1)){<br>                System.out.println(“&gt;”);<br>            }<br>            if (new Integer(1) &lt;new Integer(1)){<br>                System.out.println(“&lt;”);<br>            }</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/08/15/包装类型的比较问题/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/24/Executors用法/"><span>Executors用法</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/24/Executors用法/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-24T01:27:47.000Z">
+          2016 Jul 24
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>Executor框架包括：线程池，Executor，Executors，ExecutorService，CompletionService，Future，Callable等。<br>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/java/">java</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/java-多线程/">java 多线程</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/24/Executors用法/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/20/急救培训/"><span>急救培训</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/20/急救培训/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-20T23:51:59.000Z">
+          2016 Jul 20
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>急救培训内容：</p>
+<ul>
+<li>心脏骤停与心肺复苏</li>
+<li>气道异物阻塞与急救方法</li>
+<li>创伤现场救护技术</li>
+<li>特殊损伤现场救护</li>
+</ul>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/医疗/">医疗</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/First-Aid-AED/">First Aid, AED</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/20/急救培训/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/16/EnglishTopics/"><span>EnglishTopics</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/16/EnglishTopics/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-16T14:21:56.000Z">
+          2016 Jul 16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>说说你对daily finance 的理解<br>Talk about your understanding of daily finance </p>
+<p>你从书中学到了什么?<br>what you leaned from this book” </p>
+<p>理财技巧<br>我门应该买一些能够增值的产品如房子，理财产品<br>We should buy some to value-added products such as house, wealth management products </p>
+<p>我们不能买会贬值的产品，如汽车<br>We can’t buy devaluation of the products, such as car </p>
+<p>汽车是负债，而房子是资产<br>The car is in debt, while the house is an asset.</p>
+<p>你是怎么花钱的<br>how do you spend your money? </p>
+<p>除了每个月需要的房租，我还会买一些生活必须品，给老婆买一些衣服，给儿子买玩具，然后把剩余的钱买一些银行理财产品<br>In addition to the monthly rent, I will buy some life must, to my wife to buy some clothes, to buy toys for my son, and put the rest of the money to buy some of the financial products</p>
+<p>这几天一直在下雨，我们待在家里，没有出门。<br>and put the rest of the money to buy some of the financial products</p>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/英语/">英语</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/英语/">英语</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/16/EnglishTopics/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/16/小狗钱钱/"><span>小狗钱钱</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/16/小狗钱钱/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-16T14:20:03.000Z">
+          2016 Jul 16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="小狗钱钱"><a href="#小狗钱钱" class="headerlink" title="小狗钱钱"></a>小狗钱钱</h4><p>“并非困难使我们放弃，而是因为我们放弃，才显得如此困难。”</p>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/阅读/">阅读</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/16/小狗钱钱/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/16/小狗钱钱2/"><span>小狗钱钱2</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/16/小狗钱钱2/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-16T14:19:57.000Z">
+          2016 Jul 16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="养成优秀品格的7条准则"><a href="#养成优秀品格的7条准则" class="headerlink" title="养成优秀品格的7条准则"></a>养成优秀品格的7条准则</h3><pre><code>1．友好亲和 2．勇于承担 3．善待他人 4．帮助给予 5．感恩之心 6．勤学不辍 7．值得信赖 
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/阅读/">阅读</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/16/小狗钱钱2/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/16/树莓派搭梯/"><span>树莓派搭梯</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/16/树莓派搭梯/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-16T14:19:50.000Z">
+          2016 Jul 16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <ol>
+<li>安装shadowsocks</li>
+<li>下载python脚本</li>
+<li>设置crontab执行python脚本</li>
+<li>定时重启shadowsocks</li>
+<li>安装Supervisor: A Process Control System
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/树莓派/">树莓派</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/16/树莓派搭梯/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/07/16/富爸爸穷爸爸/"><span>富爸爸穷爸爸</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/07/16/富爸爸穷爸爸/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-07-16T14:19:40.000Z">
+          2016 Jul 16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>富人之所以越来越富，穷人之所以越来越穷，中产阶级之所以总是在债务的泥潭中挣扎，其中一个主要原因就是，他们对金钱的认识不是来自学校，而是来自家庭。<br>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/阅读/">阅读</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2016/07/16/富爸爸穷爸爸/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+  <nav class="pagination">
+  
+  
+  <a href="/archives/2016/page/2/" class="pagination-next">下一页</a>
+  
+</nav>
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

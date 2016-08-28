@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mamcache | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        
+
+<div class="article">
+
+<h2 class="article-title  tag">mamcache</h2>
+
+
+  
+    <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2015/01/25/memcache的安装与启动/"><span>memcache的安装与启动</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/01/25/memcache的安装与启动/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-01-25T16:20:06.000Z">
+          2015 Jan 25
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p> 为了在内存中提供数据的高速查找能力,memcache 使用 key-value 形式存储和访问数据, 在内存中维护一张巨大的 HashTable,使得对数据查询的时间复杂度降低到 O(1),保证了对数 据的高性能访问。内存的空间总是有限的,当内存没有更多的空间来存储新的数据时,memcache 就会使用 LRU(Least Recently Used)算法,将最近不常访问的数据淘汰掉,以腾出空间来存放 新的数据。memcache 存储支持的数据格式也是灵活多样的,通过对象的序列化机制,可以将更 高层抽象的对象转换成为二进制数据,存储在缓存服务器中,当前端应用需要时,又可以通过 二进制内容反序列化,将数据还原成原有对象。</p>
+<ol>
+<li>memcache的安装<br>由于 memcache 使用了 libevent 来进行高效的网络连接处理,因此在安装 memcache 之前,<br>需要先安装 libevent。<br>下载 libevent3,这里采用的是 1.4.14 版本的 libevent。<br>   wget <a href="https://github.com/downloads/libevent/libevent/libevent-1.4.14b-" target="_blank" rel="external">https://github.com/downloads/libevent/libevent/libevent-1.4.14b-</a><br>   stable.tar.gz<br>1 memcache项目地址为<a href="http://memcached.org。" target="_blank" rel="external">http://memcached.org。</a> 2 LiveJournal,<a href="http://www.livejournal.com。" target="_blank" rel="external">http://www.livejournal.com。</a><br>3 libevent,<a href="http://libevent.org。" target="_blank" rel="external">http://libevent.org。</a><br>￼￼<br>解压:<br>tar –xf libevent-1.4.14b-stable.tar.gz<br>配置、编译、安装 libevent: ./configure<br>make<br>￼￼￼￼￼<br>sudo make install<br>￼￼下载 memcache,并解压:<br>wget <a href="http://www.memcached.org/files/memcached-1.4.17.tar.gz" target="_blank" rel="external">http://www.memcached.org/files/memcached-1.4.17.tar.gz</a><br>￼tar –xf memcached-1.4.17.tar.gz<br>配置、编译、安装 memcache: ./configure<br>￼<br>make<br>￼￼￼sudo make install<br>￼<br>￼2. 启动与关闭 memcache 启动 memcache 服务:<br>/usr/local/bin/memcached -d -m 10 -u root -l 192.168.136.135 -p 11211 -c 32 -P /tmp/memcached.pid<br>参数的含义如下:<br> -d表示启动的是一个守护进程;<br> -m指定分配给memcache的内存数量,单位是MB,这里指定的是10MB。<br> -u指定运行memcache的用户,这里指定的是root;<br> -l指定监听的服务器的IP地址;<br> -p设置memcache监听的端口,这里指定的是11211;<br> -c指定最大允许的并发连接数,这里设置为32;<br> -P指定memcache的pid文件保存的位置。<br>关闭 memcache 服务:<br>kill <code>cat /tmp/memcached.pid</code></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/mamcache/">mamcache</a>
+  </span>
+
+
+        </div>
+        
+        <div class="article-meta pull-right">
+          <span>
+            <i class="icon-comments"></i>
+            <span>
+              <a href="mulua6.github.io/2015/01/25/memcache的安装与启动/#comment">评论</a>
+            </span>
+          </span>
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+  <nav class="pagination">
+  
+  
+</nav>
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

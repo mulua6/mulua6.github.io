@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>树莓派2使用小米wifi | mulu | walk with my life</title>
+  <meta name="author" content="mulu">
+  
+  <meta name="description" content="walk with my life">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="树莓派2使用小米wifi"/>
+  <meta property="og:site_name" content="mulu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="mulu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">mulu</a>
+  </h1>
+  <p class="site-description">walk with my life</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="https://github.com/mulua6">Github</a></li>
+    
+      <li><a href="https://twitter.com/mulua6">Twitter</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>树莓派2使用小米wifi</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/06/28/树莓派2使用小米wifi/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-06-28T19:05:33.000Z">
+          2015 Jun 28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>我的硬件及环境：树莓派2 升级完后 内核是4.0.6  gcc4.6都需要gcc4.8  小米wifi<br> <a id="more"></a></p>
+<p>####首先，更新你的树莓派（避免编译出来版本不对导致不能insert）：</p>
+<p>sudo apt-get update<br>sudo apt-get upgrade<br>sudo apt-get dist-upgrade<br>sudo rpi-update</p>
+<p>更新完后查看内核：uname -r<br>为4.0.6-v7+</p>
+<p>####这里请先不要跟新gcc 使用系统自带的4.6 不然会报错</p>
+<p>下载<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/raspberrypi/linux/archive/rpi-4.0.y.tar.gz</div></pre></td></tr></table></figure></p>
+<p>（这一步时间比较长，耐心等待）</p>
+<p>解压<br>tar xvfz rpi-4.0.y.tar.gz<br>取得root权限</p>
+<p>sudo su</p>
+<p>将源码移至/usr/src目录<br>mv linux-rpi-4.0.y /usr/src</p>
+<p>建立内核模块库目录的链接<br>ln -s /usr/src/linux-rpi-4.0.y /lib/modules/4.0.6-v7+/build<br>cd /lib/modules/4.0.6-v7+/build<br>make mrproper 可以看作更加强劲的 make clean 命令，用来清除环境变量，即清除配置文件，一般编译内核前都要运行</p>
+<p>make mrproper</p>
+<p>sudo modprobe configs   #这会生成 /proc/config.gz</p>
+<p>将当前正在使用的系统的内核配置生成内核配置信息</p>
+<p>gzip -dc /proc/config.gz &gt; .config</p>
+<p>生成编译内核所需要的东西</p>
+<p>make modules_prepare</p>
+<p>下载Module.symvers<br>获取内核编译时生成的内核模块导出符号文件,因为不是从头编译内核，所以没有，但是编译内核模块需要这个<br>wget <a href="https://github.com/raspberrypi/firmware/raw/master/extra/Module.symvers" target="_blank" rel="external">https://github.com/raspberrypi/firmware/raw/master/extra/Module.symvers</a><br>由于我的是树莓派2 是arm7的，所以按照下面的操作<br>wget <a href="https://github.com/raspberrypi/firmware/raw/master/extra/Module7.symvers" target="_blank" rel="external">https://github.com/raspberrypi/firmware/raw/master/extra/Module7.symvers</a><br>cp Module7.symvers   Module.symvers</p>
+<p>到这里 就可以切换到gcc 4.8，（就是update-alternatives的那几行）不然编译出来会kernel oops</p>
+<p>首先安装gcc/g++ 4.8<br>apt-get install gcc-4.8 g++-4.8<br>然后切换gcc/g++ 版本<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 20</div><div class="line">update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50</div><div class="line">update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 20</div><div class="line">update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50</div><div class="line">```  </div><div class="line"></div><div class="line">检查 gcc -v 是否是4.8</div><div class="line"></div><div class="line">随便找一个文件夹下载：</div><div class="line">到MTK的官网下载驱动并传到树莓派上：http://www.mediatek.com/zh-CN/downloads/mt7601u-usb/</div><div class="line">tar xjvf DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.tar.bz2</div><div class="line">cd DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/</div><div class="line"></div><div class="line">打开 common/rtusb_dev_id.c，在 &#123;USB_DEVICE(0x148f,0×7601)&#125;, /* MT 6370 */  下面加入以下内容：</div><div class="line"></div><div class="line">在 &#123;USB_DEVICE(0x148f,0×7601)&#125;, /* MT 6370 */ 下面加入以下内容  </div><div class="line"></div><div class="line">```xml</div><div class="line">&#123;USB_DEVICE(0x148f,0x760b)&#125;, /* 360 Wifi */</div><div class="line">&#123;USB_DEVICE(0x2955,0x1001)&#125;, /* baidu Wifi */</div><div class="line">&#123;USB_DEVICE(0x2a5f,0x1000)&#125;, /* Tencent WIFI */</div><div class="line">&#123;USB_DEVICE(0×2955,0×0001)&#125;, /* XiaoDu Wifi */</div><div class="line">&#123;USB_DEVICE(0x2717,0x4106)&#125;, /* Xiaomi Wifi */</div><div class="line">```  </div><div class="line"></div><div class="line">打开 include/os/rt_linux.h，找到</div><div class="line">int fsuid;</div><div class="line">int fsgid;</div><div class="line">并把它改为</div><div class="line">kuid_t fsuid;</div><div class="line">kgid_t fsgid;</div><div class="line"></div><div class="line">编辑 os/linux/rt_linux.c</div><div class="line">修改如下行</div><div class="line">ULONG RTDebugLevel = RT_DEBUG_TRACE;</div><div class="line">为：</div><div class="line">ULONG RTDebugLevel = 0; // RT_DEBUG_TRACE;</div><div class="line"></div><div class="line">把https://github.com/porjo/mt7601或官方驱动中的src/mcu/bin/MT7601.bin复制到/lib/firmware/下，命名为mt7601u.bin</div><div class="line">make &amp;&amp; sudo make install &amp;&amp; sudo depmod  （如果没错误就成功了，有错误的仔细看一下，是那个文件出的错，和上面的步骤对比一下）</div><div class="line">sudo modprobe mt7601u （我在这里报了一个错 can not find mt7601u,不知道什么原因，但是不影响使用）</div><div class="line">这时使用ifconfig 就会发现多了一个网卡 ra0  下面的步骤可以是ra0 变成wlan0</div><div class="line">nano /etc/udev/rules.d/40-scratch.rules</div><div class="line">在最后一行加入</div><div class="line">ACTION=="add", SUBSYSTEM=="net", ATTR&#123;type&#125;=="1", KERNEL=="ra*", NAME="wlan0"</div><div class="line">重启机器</div><div class="line">reboot</div><div class="line"></div><div class="line">这时通过ifconfig发现新的网卡已经变成wlan0了</div><div class="line"></div><div class="line"></div><div class="line">可以采用ui的配置方案</div><div class="line">sudo apt-get install wicd </div><div class="line"></div><div class="line">通过vnc连接树莓派</div><div class="line">1.点击menu-&gt;internet-&gt;wicd </div><div class="line">2.选择自己的wifi，输入密码即可</div><div class="line"></div><div class="line">如果上面一部配置成功，可以跳过下面的配置。</div><div class="line"></div><div class="line">无线网络配置</div><div class="line">编辑文件/etc/network/interfaces</div><div class="line"></div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line"></div><div class="line">auto eth0</div><div class="line">allow-hotplug eth0</div><div class="line">iface eth0 inet manual</div><div class="line"></div><div class="line">auto wlan0</div><div class="line">allow-hotplug wlan0</div><div class="line">iface wlan0 inet dhcp</div><div class="line">wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf</div><div class="line"></div><div class="line">auto wlan1</div><div class="line">allow-hotplug wlan1</div><div class="line">iface wlan1 inet manual</div><div class="line">wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf</div><div class="line"></div><div class="line">编辑文件/etc/wpa_supplicant/wpa_supplicant.conf</div><div class="line"></div><div class="line">加入</div><div class="line">```xml</div><div class="line">network=&#123;</div><div class="line">        ssid="your_ssid"</div><div class="line">        psk=“your_password"</div><div class="line">        proto=RSN</div><div class="line">        key_mgmt=WPA-PSK</div><div class="line">        pairwise=CCMP TKIP</div><div class="line">        group=CCMP TKIP</div><div class="line">        auth_alg=OPEN</div><div class="line">        priority=3</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行 ifdown wlan0 &amp;&amp; ifup wlan0<br>完成之后 会不会发现 你的网卡已经分配到ip了呢，是不是非常的兴奋，反正我是的。enjoy it</p>
+<p>参考资料</p>
+<p><a href="http://www.7forz.com/2470/" target="_blank" rel="external">http://www.7forz.com/2470/</a></p>
+<p><a href="https://yulun.me/2015/raspberrypi-wifi-mt7601-mediatek-ralink/" target="_blank" rel="external">https://yulun.me/2015/raspberrypi-wifi-mt7601-mediatek-ralink/</a></p>
+<p><a href="https://yulun.me/2015/Raspberry-pi-cross-compile-kernel/" target="_blank" rel="external">https://yulun.me/2015/Raspberry-pi-cross-compile-kernel/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+          
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'mulua';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 mulu
+  
+</p>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78977965-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>
