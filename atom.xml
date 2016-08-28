@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="mulua6.github.io/"/>
-  <updated>2016-08-28T01:12:08.000Z</updated>
+  <updated>2016-08-28T13:28:00.000Z</updated>
   <id>mulua6.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>java面试复习大纲</title>
     <link href="mulua6.github.io/2016/08/28/java%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/"/>
     <id>mulua6.github.io/2016/08/28/java面试复习大纲/</id>
-    <published>2016-08-28T01:12:08.000Z</published>
-    <updated>2016-08-28T01:12:08.000Z</updated>
+    <published>2016-08-28T13:28:00.000Z</published>
+    <updated>2016-08-28T13:28:00.000Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a>
 <p>Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库<br>使用和避免null<br>集合<br>不可变集合<br>当对象被不可信的库调用时，不可变形式是安全的；<br>不可变对象被多个线程调用时，不存在竞态条件问题<br>不可变集合不需要考虑变化，因此可以节省时间和空间。所有不可变的集合都比它们的可变形式有更好的内存利用率（分析和测试细节）；<br>不可变对象因为有固定不变，可以作为常量来安全使用。</p>
@@ -176,57 +176,73 @@ this.service = context.getBean(&quot;messageService&quot;, MessageService.class)
     
     </summary>
     
+      <category term="java" scheme="mulua6.github.io/categories/java/"/>
+    
+    
+      <category term="java 面试" scheme="mulua6.github.io/tags/java-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>java中的路径问题</title>
-    <link href="mulua6.github.io/2016/08/27/java%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"/>
-    <id>mulua6.github.io/2016/08/27/java中的路径问题/</id>
-    <published>2016-08-27T00:51:22.000Z</published>
-    <updated>2016-08-27T00:51:22.000Z</updated>
+    <link href="mulua6.github.io/2016/08/28/java%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"/>
+    <id>mulua6.github.io/2016/08/28/java中的路径问题/</id>
+    <published>2016-08-28T13:27:43.000Z</published>
+    <updated>2016-08-28T13:27:43.000Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a>
-<p>在普通的java程序中<br>    className.class.getClassloader().getResourse(“”);<br>    this.getClass().getResource(“”)<br>获取的是classPath的路径</p>
-<p>在maven的java web中<br>spring + mybatis</p>
-<p>首先是web.xml中配置spring的配置文件applicationContext.xml<br>方法一：配置文件在WEB-INF下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>/WEB-INF/applicationContext.xml</param-value><br>        <!--这里写WEB-INF/applicationContext.xml效果是一样的--><br>    </context-param></p>
-<p>在这种情况下applicationContext.xml中包含的文件都默认在/WEB-INF/下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：/WEB-INF/spring/spring-dbcp-db.xml  </import></p>
-<p>方法二：配置文件在resources下<br>    <context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>classpath:applicationContext.xml</param-value><!--在多个项目中可以使用classpath*: 效果一样--><br>    </context-param></p>
-<p>在这种情况下applicationContext.xml中包含的文件都默认在classes下找。<br>如：\<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：WEB-INF/classes/spring/spring-dbcp-db.xml</import></p>
-<p>在其他的xml配置文件中：这两种写法都可以<br>    <bean id="jdbc" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"><br>       <property name="locations" value="/WEB-INF/jdbc.properties"><br>    或者<br>    <property name="locations" value="classpath\*:jdbc.properties"><br>    </property></property></bean></p>
-<p>但是在单元测试spring的时候：<br>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“applicationContext.xml”);<br>这段代码回去读class path下的文件，所以包含在applicationContext.xml里边的文件也是从class path下查找，所以一般会把配置文件放一份到resources下。</p>
+<h3 id="在普通的java程序中"><a href="#在普通的java程序中" class="headerlink" title="在普通的java程序中"></a>在普通的java程序中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">className.class.getClassloader().getResourse(“”);</div><div class="line">this.getClass().getResource(&quot;&quot;);</div></pre></td></tr></table></figure>
+<p>获取的是classPath的路径 </p>
+<h3 id="在maven的java-web中"><a href="#在maven的java-web中" class="headerlink" title="在maven的java web中"></a>在maven的java web中</h3><p>spring + mybatis</p>
+<h4 id="首先是web-xml中配置spring的配置文件applicationContext-xml"><a href="#首先是web-xml中配置spring的配置文件applicationContext-xml" class="headerlink" title="首先是web.xml中配置spring的配置文件applicationContext.xml"></a>首先是web.xml中配置spring的配置文件applicationContext.xml</h4><p>方法一：配置文件在WEB-INF下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;</div><div class="line">	&lt;param-name&gt;contextConfigLocation</div><div class="line">&lt;/param-name&gt;</div><div class="line">&lt;param-value&gt;/WEB-INF/applicationContext.xml&lt;/param-value&gt;</div><div class="line">&lt;!--这里写WEB-INF/applicationContext.xml效果是一样的--&gt;</div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在/WEB-INF/下找。<br>如：<import resource="spring/spring-dbcp-db.xml">实际的路径应该是：/WEB-INF/spring/spring-dbcp-db.xml  </import></p>
+<p>方法二：配置文件在resources下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;</div><div class="line">	&lt;param-name&gt;</div><div class="line">		contextConfigLocation</div><div class="line">	&lt;/param-name&gt;</div><div class="line">&lt;param-value&gt;</div><div class="line">	classpath:applicationContext.xml</div><div class="line">&lt;/param-value&gt;</div><div class="line">&lt;!--在多个项目中可以使用classpath*: 效果一样--&gt;</div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure></p>
+<p>在这种情况下applicationContext.xml中包含的文件都默认在classes下找。<br>如：<import resource="spring/spring-dbcp-db.xml" \="">实际的路径应该是：WEB-INF/classes/spring/spring-dbcp-db.xml</import></p>
+<p>在其他的xml配置文件中：这两种写法都可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;jdbc&quot; class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot; \&gt;</div><div class="line">&lt;property name=&quot;locations&quot; value=&quot;/WEB-INF/jdbc.properties&quot;&gt;</div><div class="line">或者</div><div class="line">&lt;property name=&quot;locations&quot; value=&quot;classpath\*:jdbc.properties&quot;&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="但是在单元测试spring的时候："><a href="#但是在单元测试spring的时候：" class="headerlink" title="但是在单元测试spring的时候："></a>但是在单元测试spring的时候：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</div></pre></td></tr></table></figure>
+<p>这段代码回去读class path下的文件，所以包含在applicationContext.xml里边的文件也是从class path下查找，所以一般会把配置文件放一份到resources下。</p>
+<h4 id="classpath两种用法："><a href="#classpath两种用法：" class="headerlink" title="classpath两种用法："></a>classpath两种用法：</h4><ol>
+<li>classpath*:applicationContext.xml会加入本项目及所有jar包根目录下的applicationContext.xml文件，跨jar包依赖时使用 </li>
+<li>classpath:applicationContext.xml只加入本项目根目录下的applicationContext.xml文件，不依赖其它jar包的配置文件时推荐这样写，以避免冲突。 </li>
+</ol>
 ]]></content>
     
     <summary type="html">
     
       &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;在普通的java程序中&lt;br&gt;    className.class.getClassloader().getResourse(“”);&lt;br&gt;    this.getClass().getResource(“”)&lt;br&gt;获取的是clas
+&lt;h3 id=&quot;在普通的java程序中&quot;&gt;&lt;a href=&quot;#在普通的java程序中&quot; class=&quot;headerlink&quot; title=&quot;在普通的java程序中&quot;&gt;&lt;/a&gt;在普通的java程序中&lt;/h3&gt;&lt;figure class=&quot;high
     
     </summary>
     
+      <category term="java" scheme="mulua6.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="mulua6.github.io/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>包装类型的比较问题</title>
-    <link href="mulua6.github.io/2016/08/15/%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/"/>
-    <id>mulua6.github.io/2016/08/15/包装类型的比较问题/</id>
-    <published>2016-08-15T22:51:35.000Z</published>
-    <updated>2016-08-15T22:51:35.000Z</updated>
+    <link href="mulua6.github.io/2016/08/28/%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/"/>
+    <id>mulua6.github.io/2016/08/28/包装类型的比较问题/</id>
+    <published>2016-08-28T13:27:33.000Z</published>
+    <updated>2016-08-28T13:27:33.000Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a>
-<p><code>``java</code></p>
-<p>包装类型的值不能够直接用==比较<br>    if (new Integer(1) == new Integer(1)){<br>                System.out.println(“=”);<br>            }<br>            if (new Integer(1) &gt;new Integer(1)){<br>                System.out.println(“&gt;”);<br>            }<br>            if (new Integer(1) &lt;new Integer(1)){<br>                System.out.println(“&lt;”);<br>            }</p>
+    <content type="html"><![CDATA[<p>包装类型的值不能够直接用==比较</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if (new Integer(1) == new Integer(1))&#123;</div><div class="line">	 System.out.println(&quot;=&quot;);&#125;</div><div class="line">if (new Integer(1) &gt;new Integer(1))&#123;</div><div class="line">	 System.out.println(&quot;&gt;&quot;);&#125;</div><div class="line">if (new Integer(1) &lt;new Integer(1))&#123;</div><div class="line">   System.out.println(&quot;&lt;&quot;);&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;code&gt;``java&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;包装类型的值不能够直接用==比较&lt;br&gt;    if (new Integer(1) == new Integer(1)){&lt;br&gt;                System.out
+      &lt;p&gt;包装类型的值不能够直接用==比较&lt;/p&gt;
     
     </summary>
     
+      <category term="java" scheme="mulua6.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="mulua6.github.io/tags/java/"/>
     
   </entry>
   
